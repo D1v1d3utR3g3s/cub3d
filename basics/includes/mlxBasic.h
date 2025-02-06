@@ -14,8 +14,6 @@
 # include <string.h>
 // /!\ As it is meant for training I used strlen and not the one of libft
 
-// #define PI 3.1415926535
-
 // STRUCT
 typedef struct s_player
 {

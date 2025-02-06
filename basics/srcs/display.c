@@ -49,29 +49,6 @@ int	is_near_player(t_pix pix, t_player player)
 	return (0);
 }
 
-// void	draw_map2D(t_grid *grid)
-// {
-// 	int	x;
-// 	int	y;
-// 	int	x0;
-// 	int	y0;
-
-// 	y = 0;
-// 	while (y < grid->nb_tile_y)
-// 	{
-// 		x = 0;
-// 		while (x < grid->nb_tile_x)
-// 		{
-// 			if (grid[y * grid->nb_tile_x + x] == 1)
-// 				wall_col = white;
-// 			else
-// 				wall_col = bkground;
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
-
 void	wall_col(t_pix *pix, t_grid *grid, int black, int white)
 {
 	int	case_x;
@@ -91,16 +68,42 @@ void	wall_col(t_pix *pix, t_grid *grid, int black, int white)
 
 }
 
+void	draw_player(t_mlx_data *mlx)
+{
+	t_player	p;
+	int		green;
+	int		i;
+	int		j;
+
+	green = encode_rgb(0, 255, 0);
+	i = -2;
+	p = mlx->player;
+	while (i < 2)
+	{
+		j = -2;
+		while (j < 2)
+		{
+			img_pix_put(&mlx->img_ptr, p.px + i, p.py + j, green);
+			j++;
+		}
+		i++;
+	}
+	i = 0;
+	while (i < 5)
+	{
+		img_pix_put(&mlx->img_ptr, p.px + p.dx * i, p.py + p.dy * i, green);
+		i++;
+	}
+}
+
 void	full_img(t_mlx_data *mlx)
 {
 	t_pix	pix;
 	int		black;
 	int		white;
-	int		green;
 
 	black = encode_rgb(0, 0, 0);
 	white = encode_rgb(255, 255, 255);
-	green = encode_rgb(0, 255, 0);
 	pix.y = 0;
 	while (pix.y < mlx->h)
 	{
@@ -108,15 +111,16 @@ void	full_img(t_mlx_data *mlx)
 		while (pix.x < mlx->w)
 		{
 			wall_col(&pix, &mlx->grid, black, white);
-			if (is_near_player(pix, mlx->player))
-            {
-				pix.col = green;
-            }
+//			if (is_near_player(pix, mlx->player))
+//			{
+//				pix.col = green;
+//			}
 			img_pix_put(&mlx->img_ptr, pix.x, pix.y, pix.col);
 			pix.x++;
 		}
 		pix.y++;
 	}
+	draw_player(mlx);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img_ptr.mlx_img,
 		0, 0);
 }

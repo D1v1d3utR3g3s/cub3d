@@ -4,9 +4,9 @@ int	init_player(t_player *player)
 {
 	player->px = 300;
 	player->py = 300;
-	player->dx = 0;
-	player->dy = 0;
-	player->angle = 0;
+	player->angle = 3 * M_PI / 2;
+	player->dx = cos(player->angle) * 5;
+	player->dy = sin(player->angle) * 5;
 	return (0);
 }
 

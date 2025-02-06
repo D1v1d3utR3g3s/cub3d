@@ -52,7 +52,7 @@ void	keys_array(int keysym, t_mlx_data *mlx)
 		if (mlx->player.angle > 2 * M_PI)
 			mlx->player.angle -= 2 * M_PI;
 		mlx->player.dx = cos(mlx->player.angle) * 5;
-		mlx->player.dx = sin(mlx->player.angle) * 5;
+		mlx->player.dy = sin(mlx->player.angle) * 5;
 	}
 }
 
@@ -90,6 +90,11 @@ static int	key_handler(int keysym, t_mlx_data *mlx)
 	if (is_key_wasd(keysym))
 	{
 		keys_wasd(keysym, mlx);
+		full_img(mlx);
+	}
+	if (is_key_array(keysym))
+	{
+		keys_array(keysym, mlx);
 		full_img(mlx);
 	}
 	return (0);
