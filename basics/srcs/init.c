@@ -1,15 +1,38 @@
 #include "../includes/mlxBasic.h"
 
+/* ************************************************************************** */
+/* ************************************************************************** */
+int	init_ray(t_mlx_data *mlx, float angle)
+{
+	mlx->ray.rx = mlx->player.px;
+	mlx->ray.ry = mlx->player.py;
+	mlx->ray.dx = 0;
+	mlx->ray.dy = 0;
+	mlx->ray.ra = angle;
+	
+	mlx->ray.dh = -1;
+	mlx->ray.xh = mlx->ray.rx;
+	mlx->ray.yh = mlx->ray.ry;
+	mlx->ray.dv = -1;
+	mlx->ray.xv = mlx->ray.rx;
+	mlx->ray.yv = mlx->ray.ry;
+	return (0);
+}
+
+/* ************************************************************************** */
+/* ************************************************************************** */
 int	init_player(t_player *player)
 {
 	player->px = 300;
 	player->py = 300;
-	player->angle = 3 * M_PI / 2;
-	player->dx = cos(player->angle) * 5;
-	player->dy = sin(player->angle) * 5;
+	player->pa = 3 * M_PI / 2;
+	player->dx = cos(player->pa) * 5;
+	player->dy = sin(player->pa) * 5;
 	return (0);
 }
 
+/* ************************************************************************** */
+/* ************************************************************************** */
 int *transpose_map(char *map)
 {
     int *tmp;
@@ -29,14 +52,8 @@ int *transpose_map(char *map)
     return (tmp);
 }
 
-/*	1, 1, 1, 1, 1, 1, 1, 1,
-    1, 0, 1, 0, 0, 0, 0, 1,
-    1, 0, 1, 0, 0, 0, 0, 1,
-    1, 0, 1, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 1, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 1,
-    1, 1, 1, 1, 1, 1, 1, 1*/
+/* ************************************************************************** */
+/* ************************************************************************** */
 int	init_grid(t_mlx_data *mlx)
 {
 	mlx->grid.nb_tile_x = 8;
@@ -44,12 +61,12 @@ int	init_grid(t_mlx_data *mlx)
 	mlx->grid.w_tile = 64;
     char *map;
     map = "11111111\
-10010001\
 10100001\
-11000111\
-11110011\
-10010101\
-10000111\
+10100001\
+10100001\
+10000001\
+10000101\
+10000001\
 11111111";
 	mlx->grid.map = transpose_map(map);
     return (0);
@@ -96,7 +113,7 @@ int	init_image(t_mlx_data *mlx)
 /* ************************************************************************** */
 int	init_window(t_mlx_data *mlx)
 {
-	mlx->w = 512; 
+	mlx->w = 1024; 
 	mlx->h = 512;
 	mlx->title = "Test Ray Tracing";
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, mlx->w,

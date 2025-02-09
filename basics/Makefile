@@ -11,7 +11,9 @@ MLX_FLAGS	= -lmlx_Linux -lX11 -lXext -lm
 NAME		= mlx
 
 # FILES
-SOURCES = main.c clean.c display.c hook_event.c init.c
+SOURCES = main.c clean.c display_2D.c display_line.c display.c \
+hook_event_utils.c hook_event.c init.c ray_trace.c utils.c\
+ray_trace_backup.c
 
 OBJECTS = $(SOURCES:.c=.o)
 

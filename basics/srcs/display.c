@@ -39,35 +39,42 @@ int	encode_rgb(u_int8_t red, u_int8_t green, u_int8_t blue)
 	return (red << 16 | green << 8 | blue);
 }
 
-int	is_near_player(t_pix pix, t_player player)
+float	update_angle(float a, float da)
 {
-	if ((player.px >= pix.x - 2) && (player.px <= pix.x + 2))
+	float	new_a;
+
+	new_a = a + da;
+	if (new_a > 2 * M_PI)
+		new_a -= 2 * M_PI;
+	else if (new_a < 0)
+		new_a += 2* M_PI;
+	return (new_a);
+}
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+void	draw_rays(t_mlx_data *mlx)
+{
+	int i;
+	int	fov;
+	float	a;
+
+	i = 0;
+	fov = 60;
+//	mlx->ray.ra = mlx->player.pa;
+//	da = -1 * deg_to_rad(1);
+	a = update_angle(mlx->player.pa, deg_to_rad(fov / 2));
+	while (i < fov) // 1 ray
 	{
-		if ((player.py >= pix.y - 2) && (player.py <= pix.y + 2))
-			return (1);
+		init_ray(mlx, a);
+		draw_ray(mlx);
+		a = update_angle(a, deg_to_rad(-1));
+		i++;
 	}
-	return (0);
 }
 
-void	wall_col(t_pix *pix, t_grid *grid, int black, int white)
-{
-	int	case_x;
-	int	case_y;
-	int	grey;
-
-	grey = encode_rgb(125, 125, 125);
-	case_x = pix->x / grid->w_tile;
-	case_y = pix->y / grid->w_tile;
-	pix->col = black;
-	if (pix->x % grid->w_tile == 0 || pix->y % grid->w_tile == 0)
-		pix->col = grey;
-	else if (grid->map[case_y * grid->nb_tile_x + case_x] == 1)
-		pix->col = white;
-	if (grid->map[case_y * grid->nb_tile_x + case_x] != 0 && grid->map[case_y * grid->nb_tile_x + case_x] != 1)
-		printf("ERROR\n");
-
-}
-
+/* ************************************************************************** */
+/* ************************************************************************** */
 void	draw_player(t_mlx_data *mlx)
 {
 	t_player	p;
@@ -88,14 +95,12 @@ void	draw_player(t_mlx_data *mlx)
 		}
 		i++;
 	}
-	i = 0;
-	while (i < 5)
-	{
-		img_pix_put(&mlx->img_ptr, p.px + p.dx * i, p.py + p.dy * i, green);
-		i++;
-	}
+	draw_full_line(mlx, p.px, p.py, p.px + p.dx * 2, p.py + p.dy * 2, green);
+
 }
 
+/* ************************************************************************** */
+/* ************************************************************************** */
 void	full_img(t_mlx_data *mlx)
 {
 	t_pix	pix;
@@ -108,18 +113,15 @@ void	full_img(t_mlx_data *mlx)
 	while (pix.y < mlx->h)
 	{
 		pix.x = 0;
-		while (pix.x < mlx->w)
+		while (pix.x < mlx->h)//mlx->w)
 		{
 			wall_col(&pix, &mlx->grid, black, white);
-//			if (is_near_player(pix, mlx->player))
-//			{
-//				pix.col = green;
-//			}
 			img_pix_put(&mlx->img_ptr, pix.x, pix.y, pix.col);
 			pix.x++;
 		}
 		pix.y++;
 	}
+	draw_rays(mlx);
 	draw_player(mlx);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img_ptr.mlx_img,
 		0, 0);
