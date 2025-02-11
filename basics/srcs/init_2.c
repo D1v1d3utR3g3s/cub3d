@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_2D.c                                       :+:      :+:    :+:   */
+/*   init_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/11 14:47:59 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/11 14:48:01 by hauerbac         ###   ########.fr       */
+/*   Created: 2025/02/11 12:50:27 by hauerbac          #+#    #+#             */
+/*   Updated: 2025/02/11 12:50:45 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,32 @@
 
 /* ************************************************************************** */
 /* ************************************************************************** */
-int	is_near_player(t_pix pix, t_player player)
+int	init_ray(t_c3d_data *c3d, float angle)
 {
-	if ((player.px >= pix.x - 2) && (player.px <= pix.x + 2))
-	{
-		if ((player.py >= pix.y - 2) && (player.py <= pix.y + 2))
-			return (1);
-	}
+	c3d->ray.rx = c3d->player.px;
+	c3d->ray.ry = c3d->player.py;
+	c3d->ray.dx = 0;
+	c3d->ray.dy = 0;
+	c3d->ray.ra = angle;
+	c3d->ray.dh = -1;
+	c3d->ray.hx = c3d->ray.rx;
+	c3d->ray.hy = c3d->ray.ry;
+	c3d->ray.dv = -1;
+	c3d->ray.vx = c3d->ray.rx;
+	c3d->ray.vy = c3d->ray.ry;
+	c3d->ray.dist_wall = -1;
+	c3d->ray.col_wall = encode_rgb(0, 125, 0);
 	return (0);
 }
 
 /* ************************************************************************** */
 /* ************************************************************************** */
-void	wall_col(t_pix *pix, t_grid *grid, int black, int white)
+int	init_player(t_player *player)
 {
-	int	case_x;
-	int	case_y;
-	int	grey;
-
-	grey = encode_rgb(125, 125, 125);
-	case_x = pix->x / grid->w_tile;
-	case_y = pix->y / grid->w_tile;
-	pix->col = black;
-	if (pix->x % grid->w_tile == 0 || pix->y % grid->w_tile == 0)
-		pix->col = grey;
-	else if (grid->map[case_y * grid->nb_tile_x + case_x] == 1)
-		pix->col = white;
-	if (grid->map[case_y * grid->nb_tile_x + case_x] != 0
-		&& grid->map[case_y * grid->nb_tile_x + case_x] != 1)
-		printf("ERROR\n");
+	player->px = 300;
+	player->py = 300;
+	player->pa = 3 * M_PI / 2;
+	player->dx = cos(player->pa) * 5;
+	player->dy = sin(player->pa) * 5;
+	return (0);
 }
