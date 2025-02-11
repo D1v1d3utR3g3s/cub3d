@@ -4,33 +4,37 @@ HEAD_DIR	= ./includes/
 OBJS_DIR	= ./objs/
 
 MLX_DIR		= ./minilibx-linux/
-#LIBFT_DIR	= ./libft/
+LIBFT_DIR	= ./libft/
 CC		= cc
 FLAGS		= -Wall -Wextra -Werror
 MLX_FLAGS	= -lmlx_Linux -lX11 -lXext -lm
-NAME		= mlx
+NAME		= cub3D
+
+DEBUG := 0
+ifeq ($(DEBUG), 1)
+	FLAGS += -g3
+endif
 
 # FILES
 SOURCES = main.c clean.c display_2D.c display_line.c display.c \
-hook_event_utils.c hook_event.c init.c ray_trace.c utils.c\
-display_3D.c \
-ray_trace_backup.c
+hook_event_utils.c hook_event.c init_2.c init.c ray_trace.c utils.c\
+display_3D.c load_scene.c checks_args.c
 
 OBJECTS = $(SOURCES:.c=.o)
 
 SRCS = $(addprefix $(SRCS_DIR), $(SOURCES))
 OBJS = $(addprefix $(OBJS_DIR), $(OBJECTS))
-#LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
+LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c | $(OBJS_DIR)
-	$(CC) $(FLAGS) -c $< -o $@ -I $(HEAD_DIR) -I $(MLX_DIR)
+	$(CC) $(FLAGS) -c $< -o $@ -I $(HEAD_DIR) -I $(MLX_DIR) -I $(LIBFT_DIR)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-#	make re -C ./libft
-#	$(CC) $(FLAGS) $(OBJS) -L. $(LIBFT) -Lminilibx-linux $(MLX_FLAGS) -o $(NAME)
-	$(CC) $(FLAGS) $(OBJS) -Lminilibx-linux $(MLX_FLAGS) -o $(NAME)
+	make re -C ./libft
+	$(CC) $(FLAGS) $(OBJS) -L. $(LIBFT) -Lminilibx-linux $(MLX_FLAGS) -o $(NAME)
+#	$(CC) $(FLAGS) $(OBJS) -Lminilibx-linux $(MLX_FLAGS) -o $(NAME)
 
 $(OBJS_DIR):
 	mkdir -p $(OBJS_DIR)
