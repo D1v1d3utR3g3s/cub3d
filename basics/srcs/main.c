@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:30:01 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/11 16:30:29 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:57:49 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ int	main(const int argc, const char **argv)
 
 	c3d.size_map = 64;
 	c3d.grid.map = NULL;
+	c3d.mlx_ptr = NULL;
+	c3d.img_ptr.mlx_img = NULL;
+	c3d.win_ptr = NULL;
 	if (parse_c3d_args(&file_path, argc, argv) != 0)
 		return (1);
 	result = init_c3d_data(&c3d, file_path);
@@ -43,6 +46,5 @@ int	main(const int argc, const char **argv)
 	full_img(&c3d);
 	hook_event(&c3d);
 	mlx_loop(c3d.mlx_ptr);
-	clear_data(&c3d);
-	return (0);
+	return (clear_data(&c3d), 0);
 }

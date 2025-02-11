@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:32:44 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/11 16:35:54 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:43:00 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@
 /* ************************************************************************** */
 void	clear_data(t_c3d_data *c3d)
 {
-	if (c3d->grid.map)
+	if (c3d && c3d->grid.map)
 	{
 		free(c3d->grid.map);
 		c3d->grid.map = NULL;
 	}
-	if (c3d->mlx_ptr)
+	if (c3d && c3d->mlx_ptr)
 	{
 		if (c3d->img_ptr.mlx_img)
 			mlx_destroy_image(c3d->mlx_ptr, c3d->img_ptr.mlx_img);

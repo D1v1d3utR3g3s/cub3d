@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 17:38:36 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/11 16:15:52 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/11 19:14:44 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ static int	concatene(char **raw_data, int *nb_lines, char **error_msg,
 			*raw_data = ft_strjoin_with_free(*raw_data, a_line);
 			if (!*raw_data)
 			{
-				*error_msg = "Malloc error/read error\n";
+				*error_msg = "ERROR - with the c3d scene file \
+					      loading : malloc error\n";
 				result = 1;
 			}
 			(*nb_lines)++;
@@ -147,14 +148,7 @@ int	load_scene(t_c3d_data *c3d, const char *file_path)
 	int		nb_lines;
 
 	nb_lines = 0;
-	raw_data = (char *) malloc(sizeof(char));
-	if (!raw_data)
-	{
-		c3d->error_msg = "ERROR - with the c3d scene file loading : \
-				  malloc error\n";
-		return (1);
-	}
-	raw_data[0] = '\0';
+	raw_data = NULL;
 	result = read_file(&raw_data, &nb_lines, &c3d->error_msg, file_path);
 	/*if (result == 0 && raw_data)
 		result = first_checks(raw_data, nb_lines, &c3d->error_msg);
