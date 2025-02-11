@@ -39,6 +39,9 @@ int	encode_rgb(u_int8_t red, u_int8_t green, u_int8_t blue)
 	return (red << 16 | green << 8 | blue);
 }
 
+
+/* ************************************************************************** */
+/* ************************************************************************** */
 float	update_angle(float a, float da)
 {
 	float	new_a;
@@ -63,12 +66,13 @@ void	draw_rays(t_mlx_data *mlx)
 	fov = 60;
 //	mlx->ray.ra = mlx->player.pa;
 //	da = -1 * deg_to_rad(1);
-	a = update_angle(mlx->player.pa, deg_to_rad(fov / 2));
-	while (i < fov) // 1 ray
+	a = update_angle(mlx->player.pa, deg_to_rad(-fov / 2));
+	while (i <= fov) // 1 ray
 	{
 		init_ray(mlx, a);
 		draw_ray(mlx);
-		a = update_angle(a, deg_to_rad(-1));
+		draw3D(mlx, i);
+		a = update_angle(a, deg_to_rad(1));
 		i++;
 	}
 }
@@ -113,9 +117,12 @@ void	full_img(t_mlx_data *mlx)
 	while (pix.y < mlx->h)
 	{
 		pix.x = 0;
-		while (pix.x < mlx->h)//mlx->w)
+		while (pix.x < mlx->w)//mlx->h)
 		{
-			wall_col(&pix, &mlx->grid, black, white);
+			if (pix.x < mlx->h)
+				wall_col(&pix, &mlx->grid, black, white);
+			else
+				pix.col = black;
 			img_pix_put(&mlx->img_ptr, pix.x, pix.y, pix.col);
 			pix.x++;
 		}

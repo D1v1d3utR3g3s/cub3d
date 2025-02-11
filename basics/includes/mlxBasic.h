@@ -29,6 +29,9 @@ typedef struct s_ray
 	float	dv;
 	float	vx;
 	float	vy;
+
+	float	dist_wall;
+	int		col_wall;
 }	t_ray;
 
 typedef struct s_player
@@ -97,6 +100,7 @@ int	encode_rgb(u_int8_t red, u_int8_t green, u_int8_t blue);
 void	draw_rays(t_mlx_data *mlx);
 void	draw_player(t_mlx_data *mlx);
 void	full_img(t_mlx_data *mlx);
+float	update_angle(float a, float da);
 
 // hook_event_utils.c
 void	keys_wasd(int keysym, t_mlx_data *mlx);
@@ -117,6 +121,9 @@ int	init_mlx_data(t_mlx_data *mlx);
 
 // ray_trace.c
 void	draw_ray(t_mlx_data *mlx);
+
+// display_3D.c
+void	draw3D(t_mlx_data *mlx, int r);
 
 // utils.c
 float	calc_d(float ax, float ay, float bx, float by, float ang);

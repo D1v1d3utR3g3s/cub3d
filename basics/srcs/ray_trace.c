@@ -113,7 +113,34 @@ static void	nearest_intersect(t_mlx_data *mlx)
 	t_ray	*ray;
 
 	ray = &(mlx->ray);
-	if (ray->dh == -1)
+	if ((ray->dh == -1) && (ray->dv == -1))
+	{
+		ray->rx = mlx->player.px;
+		ray->ry = mlx->player.py;
+	}
+	else if ((ray->dh == -1) || ((ray->dv != -1) && (ray->dv <= ray->dh)))
+	{
+		ray->rx = ray->vx;
+		ray->ry = ray->vy;
+		ray->dist_wall = ray->dv;
+		if (face_right(ray->ra))
+			ray->col_wall = encode_rgb(67, 97, 117);//encode_rgb(139, 69, 19);
+		else
+			ray->col_wall = encode_rgb(112, 128, 144);//encode_rgb(160, 82, 45);
+//		ray->col_wall = encode_rgb(255 * 0.9, 0, 0);
+	}
+	else if ((ray->dv == -1) || (((ray->dh != -1) && ray->dh < ray->dv)))
+	{
+		ray->rx = ray->hx;
+		ray->ry = ray->hy;
+		ray->dist_wall = ray->dh;
+		if (face_down(ray->ra))
+			ray->col_wall = encode_rgb(122, 127, 128);//encode_rgb(205, 133, 63);
+		else
+			ray->col_wall = encode_rgb(176, 196, 222);//encode_rgb(244, 164, 96);
+//		ray->col_wall = encode_rgb(255 * 0.7, 0, 0);
+	}
+/*	if (ray->dh == -1)
 	{
 		ray->rx = ray->vx;
 		ray->ry = ray->vy;
@@ -137,7 +164,7 @@ static void	nearest_intersect(t_mlx_data *mlx)
 	{
 		ray->rx = mlx->player.px;
 		ray->ry = mlx->player.py;
-	}
+	}*/
 }
 
 /* ************************************************************************** */

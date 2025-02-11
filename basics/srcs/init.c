@@ -11,11 +11,14 @@ int	init_ray(t_mlx_data *mlx, float angle)
 	mlx->ray.ra = angle;
 	
 	mlx->ray.dh = -1;
-	mlx->ray.xh = mlx->ray.rx;
-	mlx->ray.yh = mlx->ray.ry;
+	mlx->ray.hx = mlx->ray.rx;
+	mlx->ray.hy = mlx->ray.ry;
 	mlx->ray.dv = -1;
-	mlx->ray.xv = mlx->ray.rx;
-	mlx->ray.yv = mlx->ray.ry;
+	mlx->ray.vx = mlx->ray.rx;
+	mlx->ray.vy = mlx->ray.ry;
+
+	mlx->ray.dist_wall = -1;
+	mlx->ray.col_wall = encode_rgb(0, 125, 0);
 	return (0);
 }
 
