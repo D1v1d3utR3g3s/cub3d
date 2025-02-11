@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:30:01 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/11 18:57:49 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/11 19:56:33 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 static void	display_error(const char *error_msg)
 {
+	write(2, "Error\n", 6);
 	if (error_msg)
 		write(2, error_msg, ft_strlen(error_msg));
-	else
-		write(2, "Error\n", 6);
 }
 
 int	main(const int argc, const char **argv)
