@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:30:10 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/11 13:34:28 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/11 20:03:19 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	init_image(t_c3d_data *c3d)
 		mlx_destroy_window(c3d->mlx_ptr, c3d->win_ptr);
 		mlx_destroy_display(c3d->mlx_ptr);
 		free(c3d->mlx_ptr);
-		c3d->error_msg = "ERROR - with the mlx image generation\n";
+		c3d->error_msg = "With the mlx image generation\n";
 		return (1);
 	}
 	c3d->img_ptr.addr = mlx_get_data_addr(c3d->img_ptr.mlx_img,
@@ -104,7 +104,7 @@ int	init_window(t_c3d_data *c3d)
 	{
 		mlx_destroy_display(c3d->mlx_ptr);
 		free(c3d->mlx_ptr);
-		c3d->error_msg = "ERROR - with the mlx window generation\n";
+		c3d->error_msg = "With the mlx window generation\n";
 		return (1);
 	}
 	return (0);
@@ -129,7 +129,7 @@ int	init_c3d_data(t_c3d_data *c3d, const char *file_path)
 	c3d->mlx_ptr = mlx_init();
 	if (c3d->mlx_ptr == NULL)
 	{
-		c3d->error_msg = "ERROR - with the mlx initialisation\n";
+		c3d->error_msg = "With the mlx initialisation\n";
 		return (1);
 	}
 	if (init_window(c3d) == 1)
