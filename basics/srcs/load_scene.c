@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 17:38:36 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/11 20:00:26 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:24:28 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,9 +150,9 @@ int	load_scene(t_c3d_data *c3d, const char *file_path)
 	nb_lines = 0;
 	raw_data = NULL;
 	result = read_file(&raw_data, &nb_lines, &c3d->error_msg, file_path);
-	/*if (result == 0 && raw_data)
-		result = first_checks(raw_data, nb_lines, &c3d->error_msg);
 	if (result == 0 && raw_data)
+		result = first_checks(raw_data, nb_lines, &c3d->error_msg);
+	/*if (result == 0 && raw_data)
 		result = parse(raw_data, nb_lines, &c3d->error_msg);
 	if (result == 0 && raw_data)
 		result = checks(raw_data, nb_lines, &c3d->error_msg);
