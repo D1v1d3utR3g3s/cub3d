@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:35:18 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/11 16:02:46 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/13 11:42:32 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,19 @@ typedef struct s_c3d_data
 	int			size_map;
 	char		*error_msg;
 }	t_c3d_data;
+
+enum e_values
+{
+	NO_FILE_INDEX,
+	SO_FILE_INDEX,
+	WE_FILE_INDEX,
+	EA_FILE_INDEX,
+	F_COLOR_INDEX,
+	C_COLOR_INDEX,
+	MAP_INDEX,
+	MAP_LINES_NB,
+	MAP_COLUMNS_NB,
+};
 
 // FUNCTIONS
 // clean.c
