@@ -18,7 +18,7 @@ endif
 # FILES
 SOURCES = main.c clean.c display_2D.c display_line.c display.c \
 hook_event_utils.c hook_event.c init_2.c init.c ray_trace.c utils.c\
-display_3D.c load_scene.c checks_args.c
+display_3D.c checks_raw_data_2.c checks_raw_data.c load_scene.c checks_args.c
 
 OBJECTS = $(SOURCES:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:35:18 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/13 11:42:32 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:20:06 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,17 @@ typedef struct s_c3d_data
 enum e_values
 {
 	NO_FILE_INDEX,
+	NO_FILE_LEN,
 	SO_FILE_INDEX,
+	SO_FILE_LEN,
 	WE_FILE_INDEX,
+	WE_FILE_LEN,
 	EA_FILE_INDEX,
+	EA_FILE_LEN,
 	F_COLOR_INDEX,
+	F_COLOR_LEN,
 	C_COLOR_INDEX,
+	C_COLOR_LEN,
 	MAP_INDEX,
 	MAP_LINES_NB,
 	MAP_COLUMNS_NB,
@@ -164,6 +170,15 @@ void	draw_ray_backup(t_c3d_data *c3d);
 
 // load_scene.c
 int		load_scene(t_c3d_data *c3d, const char *file_path);
+
+// checks_raw_data_2.c
+int		is_a_space(const char c);
+void	find_elements_indexes(ssize_t *elements, char *raw_data, ssize_t len);
+
+// checks_raw_data.c
+void	remove_ending_spaces_of_last_line_into_str(char **str, ssize_t *len,
+			ssize_t from, int remove_last_nl);
+int		first_checks(char *raw_data, int nb_lines, char **error_msg);
 
 // checks_args.c
 int		parse_c3d_args(char **file_path, const int argc, const char **argv);
