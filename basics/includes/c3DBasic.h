@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:35:18 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/13 17:20:06 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/14 13:20:26 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,15 +172,18 @@ void	draw_ray_backup(t_c3d_data *c3d);
 int		load_scene(t_c3d_data *c3d, const char *file_path);
 
 // checks_raw_data_2.c
-int		is_a_space(const char c);
 void	find_elements_indexes(ssize_t *elements, char *raw_data, ssize_t len);
 
 // checks_raw_data.c
+int		is_a_space(const char c);
 void	remove_ending_spaces_of_last_line_into_str(char **str, ssize_t *len,
 			ssize_t from, int remove_last_nl);
 int		first_checks(char *raw_data, int nb_lines, char **error_msg);
 
 // checks_args.c
 int		parse_c3d_args(char **file_path, const int argc, const char **argv);
+
+// debug_checks_raw_data.c
+void	debug_elements(ssize_t *elements, char *raw_data, ssize_t len);
 
 #endif

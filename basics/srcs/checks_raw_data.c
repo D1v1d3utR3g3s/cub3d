@@ -6,11 +6,20 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 18:31:08 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/13 17:37:24 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/14 14:55:44 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/c3DBasic.h"
+
+int	is_a_space(const char c)
+{
+	if (c != '\0'
+		&& (c == ' ' || c == '\t' || c == '\v' || c == '\f'
+			|| c == '\r'))
+		return (1);
+	return (0);
+}
 
 static int	first_checks_return_2(char **error_msg, ssize_t *elements)
 {
@@ -72,7 +81,7 @@ void	remove_ending_spaces_of_last_line_into_str(char **str, ssize_t *len,
 
 	if (*len > 0)
 	{
-		i = *len - 1;
+		i = from + (*len) - 1;
 		last_nl_index = -1;
 		if (i >= from && (*str)[i] && (*str)[i] == '\n')
 			last_nl_index = i--;
@@ -110,8 +119,9 @@ int	first_checks(char *raw_data, int nb_lines, char **error_msg)
 		&& raw_data[len - 2] == '\n')
 		return (1);
 	find_elements_indexes(elements, raw_data, len);
-	*error_msg = "There is none texture nor color before the map in the \
-		      scene file\n";
+	debug_elements(elements, raw_data, len);
+	*error_msg = \
+	"There is none texture nor color before the map in the scene file\n";
 	if (elements[NO_FILE_INDEX] < 0 && elements[SO_FILE_INDEX] < 0
 		&& elements[WE_FILE_INDEX] < 0 && elements[EA_FILE_INDEX] < 0
 		&& elements[F_COLOR_INDEX] < 0 && elements[C_COLOR_INDEX] < 0
