@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 16:31:51 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/17 10:08:01 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/17 20:03:39 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,50 +54,58 @@ static int	check_map(t_c3d_data *c3d, ssize_t *elements, char **raw_data,
 	return (0);
 }
 
-/*static int	check_structure_file_path(const char *raw_data, ssize_t from,
-						ssize_t len)
+static void	save_texture_file_path(t_c3d_data *c3d, char *file_path,
+									ssize_t index)
 {
-	int		result;
+	if (index == NO_FILE_INDEX)
+		c3d->textures.NO = file_path;
+	if (index == SO_FILE_INDEX)
+		c3d->textures.SO = file_path;
+	if (index == WE_FILE_INDEX)
+		c3d->textures.WE = file_path;
+	if (index == EA_FILE_INDEX)
+		c3d->textures.EA = file_path;
+}
+
+static int	check_texture_file_path(t_c3d_data *c3d, ssize_t *elements,
+									const char *raw_data, ssize_t index)
+{
 	char	*file_path;
 	int		fd;
 
-	result = 0;
-	file_path = ft_substr(raw_data, from, len);
+	file_path = ft_substr(raw_data, elements[index], elements[index + 1]);
 	if (file_path == NULL)
-		result = -3;
-	else
 	{
-		fd = open(file_path, O_RDONLY);
-		if (fd == -1)
-			result = -1;
-		if (fd != -1 && close(fd) == -1)
-			result = -2;
-		if (file_path)
-		{
-			free(file_path);
-			file_path = NULL;
-		}
+		c3d->error_msg = "Malloc error on a texture file\n";
+		return (-3);
 	}
-	return (result);
-}*/
+	fd = open(file_path, O_RDONLY);
+	if (fd == -1)
+		return (free(file_path), -1);
+	if (fd != -1 && close(fd) == -1)
+	{
+		c3d->error_msg = "Close error of a texture file\n";
+		return (free(file_path), -2);
+	}
+	save_texture_file_path(c3d, file_path, index);
+	return (0);
+}
 
-int	parse(t_c3d_data *c3d, ssize_t *elements, char **raw_data, ssize_t len)
+int	parse(t_c3d_data *c3d, ssize_t *el, char **raw_data, ssize_t len)
 {
-	/*c3d->error_msg = "No such file/wrong read rights on \"North texture\"\n";
-	if (check_structure_file_path(*raw_data, elements[NO_FILE_INDEX],
-			elements[NO_FILE_LEN]) == -1)
+	c3d->error_msg = \
+		"No such file/wrong read rights on \"North texture\"\n";
+	if (check_texture_file_path(c3d, el, *raw_data, NO_FILE_INDEX) < 0)
 		return (1);
-	c3d->error_msg = "No such file/wrong read rights on \"South texture\"\n";
-	if (check_structure_file_path(*raw_data, elements[SO_FILE_INDEX],
-			elements[SO_FILE_LEN]) == -1)
+	c3d->error_msg = \
+		"No such file/wrong read rights on \"South texture\"\n";
+	if (check_texture_file_path(c3d, el, *raw_data, SO_FILE_INDEX) < 0)
 		return (1);
 	c3d->error_msg = "No such file/wrong read rights on \"West texture\"\n";
-	if (check_structure_file_path(*raw_data, elements[WE_FILE_INDEX],
-			elements[WE_FILE_LEN]) == -1)
+	if (check_texture_file_path(c3d, el, *raw_data, WE_FILE_INDEX) < 0)
 		return (1);
 	c3d->error_msg = "No such file/wrong read rights on \"East texture\"\n";
-	if (check_structure_file_path(*raw_data, elements[EA_FILE_INDEX],
-			elements[EA_FILE_LEN]) == -1)
-		return (1);*/
-	return (check_map(c3d, elements, raw_data, len));
+	if (check_texture_file_path(c3d, el, *raw_data, EA_FILE_INDEX) < 0)
+		return (1);
+	return (check_map(c3d, el, raw_data, len));
 }

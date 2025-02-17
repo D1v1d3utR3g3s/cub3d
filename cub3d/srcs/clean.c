@@ -6,11 +6,35 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:32:44 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/17 00:57:23 by rmorice          ###   ########.fr       */
+/*   Updated: 2025/02/17 19:56:37 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/c3DBasic.h"
+
+void	clear_textures(t_c3d_data *c3d)
+{
+	if (c3d && c3d->textures.NO)
+	{
+		free(c3d->textures.NO);
+		c3d->textures.NO = NULL;
+	}
+	if (c3d && c3d->textures.SO)
+	{
+		free(c3d->textures.SO);
+		c3d->textures.SO = NULL;
+	}
+	if (c3d && c3d->textures.WE)
+	{
+		free(c3d->textures.WE);
+		c3d->textures.WE = NULL;
+	}
+	if (c3d && c3d->textures.EA)
+	{
+		free(c3d->textures.EA);
+		c3d->textures.EA = NULL;
+	}
+}
 
 /* ************************************************************************** */
 /*                                 clear_data                                 */
@@ -29,6 +53,7 @@ void	clear_data(t_c3d_data *c3d)
 	t_mlx	*mlx;
 
 	mlx = &(c3d->mlx);
+	clear_textures(c3d);
 /*	if (c3d && c3d->maze.map)
 	{
 		free(c3d->maze.map);

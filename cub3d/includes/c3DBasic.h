@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:35:18 by rmorice           #+#    #+#             */
-/*   Updated: 2025/02/17 12:22:36 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/17 19:57:50 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_player
 typedef struct s_c3d_data
 {
 	t_mlx		mlx;
+	t_texture	textures;
 	t_maze		maze;
 	t_map_col	m_col;
 	t_player	player;
