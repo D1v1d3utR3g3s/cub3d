@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   c3DBasic.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/10 21:35:18 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/17 02:30:36 by rmorice          ###   ########.fr       */
+/*   Created: 2025/02/10 21:35:18 by rmorice           #+#    #+#             */
+/*   Updated: 2025/02/17 12:22:36 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 # define C3DBASIC_H
 
 // INCLUDES
-//# include "../minilibx-linux/mlx.h"
-//# include <X11/keysym.h>
-//# include <X11/X.h>
 # include "../libft/includes/libft.h"
+# include "../libft/includes/get_next_line_bonus.h"
 # include "c3DMap.h"
 # include "c3DMlx.h"
 
@@ -60,36 +58,10 @@ typedef struct s_player
 	float	rot_speed;
 }	t_player;
 
-/*
-typedef struct s_grid
-{
-	int	nb_tile_x;
-	int	nb_tile_y;
-	int	w_tile;
-	int	*map;
-}	t_grid;*/
-/*
-typedef struct s_mlx_img
-{
-	void	*mlx_img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}	t_mlx_img;
-
-typedef struct s_pix
-{
-	int	x;
-	int	y;
-	int	col;
-}	t_pix;
-*/
-
 typedef struct s_c3d_data
 {
-    t_mlx		mlx;
-    t_maze		maze;
+	t_mlx		mlx;
+	t_maze		maze;
 	t_map_col	m_col;
 	t_player	player;
 	t_ray		ray;
@@ -122,21 +94,6 @@ enum e_values
 // FUNCTIONS
 // clean.c
 void	clear_data(t_c3d_data *c3d);
-
-/*
-// display_2D.c
-int		is_near_player(t_pix pix, t_player player);
-void	wall_col(t_pix *pix, t_grid *grid, int black, int white);
-
-// display_3D.c
-void	draw3D(t_c3d_data *c3d, int r);
-
-// display_line.c
-void	draw_point_line(t_c3d_data *c3d, int beginX, int beginY, int endX,
-			int endY, int col);
-void	draw_full_line(t_c3d_data *c3d, int beginX, int beginY, int endX,
-			int endY, int col);
-*/
 
 // colors.c
 int		determine_col(int x, int y, t_c3d_data *c3d);
@@ -172,12 +129,6 @@ void	apply_event(t_c3d_data *c3d);
 // hook_event.c
 void	hook_event(t_c3d_data *c3d);
 
-/*
-// init_2.c
-int		init_ray(t_c3d_data *c3d, float angle);
-int		init_player(t_player *player);
-*/
-
 // init_colors_data.c
 void	init_col_array(int **col, int size);
 int		init_col(t_c3d_data *c3d);
@@ -193,8 +144,10 @@ void	init_event(t_event *event);
 int		init_c3d_data(t_c3d_data *c3d, const char *file_path);
 
 // raycast_3d_utils.c
-void	update_line_col(int ray_nb, float offset, float line_h, t_c3d_data *c3d);
-void	update_3d_line_col(int beginX, int beginY, int endX, int endY, t_c3d_data *c3d);
+void	update_line_col(int ray_nb, float offset, float line_h,
+			t_c3d_data *c3d);
+void	update_3d_line_col(int beginX, int beginY, int endX, int endY,
+			t_c3d_data *c3d);
 
 // raycast_intersect_utils.c
 int		check_hit_wall(int mp, t_c3d_data *c3d);
@@ -219,9 +172,9 @@ void	update_maze(t_maze *maze, char *str, int nb_col, int nb_line);
 void	update_player(t_player *player, float x, float y, float a);
 float	update_angle(float a, float da);
 
-//void	draw_ray_backup(t_c3d_data *c3d);
-
-// load_scene_2.c
+// parse_scene.c
+int		parse(t_c3d_data *c3d, ssize_t *elements, char **raw_data,
+			ssize_t len);
 
 // load_scene.c
 int		load_scene(t_c3d_data *c3d, const char *file_path);
@@ -233,7 +186,8 @@ void	find_elements_indexes(ssize_t *elements, char *raw_data, ssize_t len);
 int		is_a_space(const char c);
 void	remove_ending_spaces_of_last_line_into_str(char **str, ssize_t *len,
 			ssize_t from, int remove_last_nl);
-int		first_checks(char *raw_data, int nb_lines, char **error_msg);
+int		first_checks(char **error_msg, ssize_t *elements, char *raw_data,
+			ssize_t *len);
 
 // checks_args.c
 int		parse_c3d_args(char **file_path, const int argc, const char **argv);

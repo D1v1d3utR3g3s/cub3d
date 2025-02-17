@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:13:56 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/17 00:59:28 by rmorice          ###   ########.fr       */
+/*   Updated: 2025/02/17 13:52:08 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	key_handler_press(int keysym, t_c3d_data *c3d)
 	if (keysym == XK_Escape)
 	{
 		clear_data(c3d);
-		exit(1);
+		exit(0);
 	}
 	if (keysym == XK_W || keysym == XK_w)
 		c3d->event.f_XK_W = 1;
@@ -63,7 +63,7 @@ static int	key_handler_rel(int keysym, t_c3d_data *c3d)
 	if (keysym == XK_Escape)
 	{
 		clear_data(c3d);
-		exit(1);
+		exit(0);
 	}
 	if (keysym == XK_W || keysym == XK_w)
 		c3d->event.f_XK_W = 0;
