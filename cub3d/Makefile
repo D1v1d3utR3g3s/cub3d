@@ -20,8 +20,8 @@ SOURCES = main.c clean.c colors.c display_img_mlx.c display.c error.c\
 hook_event_close.c hook_event_mov.c hook_event_rot.c hook_event_utils.c\
 hook_event.c init_colors_data.c init_mlx.c init.c raycast_3d_utils.c\
 raycast_intersect_utils.c raycast_intersect.c raycasting.c update.c utils.c\
-debug_checks_raw_data.c checks_raw_data_2.c checks_raw_data.c load_scene.c\
-checks_args.c
+debug_checks_raw_data.c checks_raw_data_2.c checks_raw_data.c parse_scene.c\
+load_scene.c checks_args.c
 #init_2.c display_2D.c display_line.c display_3D.c \
 
 OBJECTS = $(SOURCES:.c=.o)
