@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 17:38:36 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/13 17:24:28 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/14 10:58:12 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ static int	concatene(char **raw_data, int *nb_lines, char **error_msg,
 			*raw_data = ft_strjoin_with_free(*raw_data, a_line);
 			if (!*raw_data)
 			{
-				*error_msg = "With the c3d scene file loading :\
-					      malloc error\n";
+				*error_msg = \
+			"With the c3d scene file loading : malloc error\n";
 				result = 1;
 			}
 			(*nb_lines)++;
