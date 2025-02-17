@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:35:18 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/14 13:20:26 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:30:21 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // INCLUDES
 # include "../minilibx-linux/mlx.h"
 # include "../libft/includes/libft.h"
+# include "../libft/includes/get_next_line_bonus.h"
 # include <X11/keysym.h>
 # include <X11/X.h>
 # include <stddef.h>
@@ -166,7 +167,9 @@ float	deg_to_rad(float deg);
 
 void	draw_ray_backup(t_c3d_data *c3d);
 
-// load_scene_2.c
+// parse_scene.c
+int		parse(t_c3d_data *c3d, ssize_t *elements, char **raw_data,
+			ssize_t len);
 
 // load_scene.c
 int		load_scene(t_c3d_data *c3d, const char *file_path);
@@ -178,7 +181,8 @@ void	find_elements_indexes(ssize_t *elements, char *raw_data, ssize_t len);
 int		is_a_space(const char c);
 void	remove_ending_spaces_of_last_line_into_str(char **str, ssize_t *len,
 			ssize_t from, int remove_last_nl);
-int		first_checks(char *raw_data, int nb_lines, char **error_msg);
+int		first_checks(char **error_msg, ssize_t *elements, char *raw_data,
+			ssize_t *len);
 
 // checks_args.c
 int		parse_c3d_args(char **file_path, const int argc, const char **argv);
