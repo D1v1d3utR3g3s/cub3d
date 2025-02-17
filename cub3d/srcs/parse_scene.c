@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 16:31:51 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/17 20:03:39 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/17 21:53:03 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ static int	check_map(t_c3d_data *c3d, ssize_t *elements, char **raw_data,
 			return (1);
 		if ((*raw_data)[i] == ' ')
 			(*raw_data)[i] = '_';
-		j++;
-		if ((*raw_data)[i] == '\n' || (*raw_data)[i] == '\0')
+		if (!((*raw_data)[i] == '\n' || (*raw_data)[i] == '\0'))
+			j++;
+		else
 		{
 			if (j > elements[MAP_COLUMNS_NB])
 				elements[MAP_COLUMNS_NB] = j;
@@ -73,7 +74,7 @@ static int	check_texture_file_path(t_c3d_data *c3d, ssize_t *elements,
 	char	*file_path;
 	int		fd;
 
-	file_path = ft_substr(raw_data, elements[index], elements[index + 1]);
+	file_path = ft_substr(&raw_data[elements[index]], 0, elements[index + 1]);
 	if (file_path == NULL)
 	{
 		c3d->error_msg = "Malloc error on a texture file\n";
