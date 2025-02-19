@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 12:34:16 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/19 17:50:59 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/19 19:06:59 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,14 @@ void	debug_c3d_data(t_c3d_data *c3d)
 	printf("\"East texture\" path : \"%s\"\n", c3d->textures.EA);
 	printf("\"Floor color\" : %d\n", c3d->textures.F);
 	printf("\"Ceiling color\" : %d\n", c3d->textures.C);
-	printf("\"Map\" - number of lines : %d - number of columns : %d - \n\
-\"%s\"\n - c3d->maze.map length : %ld - %ld %% %d = %ld - %ld / %d = %ld\n",
+	if (!c3d->maze.map)
+		printf("\"Map\" - number of lines : %d - \
+number of columns : %d - \n\"%s\"\n",
+		c3d->maze.nb_line, c3d->maze.nb_col, c3d->maze.map);
+	else
+		printf("\"Map\" - number of lines : %d - \
+number of columns : %d - \n\"%s\"\n - c3d->maze.map length : %ld - \
+%ld %% %d = %ld - %ld / %d = %ld\n",
 		c3d->maze.nb_line, c3d->maze.nb_col, c3d->maze.map,
 		ft_strlen(c3d->maze.map), ft_strlen(c3d->maze.map),
 		c3d->maze.nb_col, ft_strlen(c3d->maze.map) % c3d->maze.nb_col,

@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:30:01 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/19 17:55:12 by rmorice          ###   ########.fr       */
+/*   Updated: 2025/02/19 19:23:12 by rmorice          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(const int argc, const char **argv)
 	c3d.mlx.win_ptr = NULL;
 	c3d.m_col.col = NULL;
 	c3d.wall_size = 12;
-
+	file_path = NULL;
 	if (parse_c3d_args(&file_path, argc, argv) != 0)
 		return (1);
 	result = init_c3d_data(&c3d, file_path);
