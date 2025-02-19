@@ -25,7 +25,7 @@ OBJS_DIR	= objs/
 HEAD_DIR	= includes/
 
 CC			= cc
-FLAGS		= -Wall -Wextra -Werror -g
+FLAGS		= -Wall -Wextra -Werror -g3 -gdwarf-2
 AR			= ar -rc -s
 
 CHECK_SRCS	= ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c
