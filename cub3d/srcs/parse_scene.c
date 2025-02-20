@@ -6,52 +6,64 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 16:31:51 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/17 21:53:03 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/19 00:31:03 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/c3DBasic.h"
 
-static int	is_a_map_valid_char(const char c)
+static int	is_a_valid_color_value(int *value, ssize_t *i, ssize_t end,
+									const char *raw_data)
 {
-	int	boolean;
-
-	if (c == '0' || c == '1'
-		|| c == 'N' || c == 'S' || c == 'E' || c == 'W'
-		|| c == ' ' || c == '\n' || c == '\0')
-		boolean = 1;
-	else
-		boolean = 0;
-	return (boolean);
-}
-
-static int	check_map(t_c3d_data *c3d, ssize_t *elements, char **raw_data,
-						ssize_t len)
-{
-	ssize_t	i;
 	ssize_t	j;
 
-	c3d->error_msg = "There is an invalid character into the map\n";
-	j = 0;
-	i = elements[MAP_INDEX];
-	while (i < len && (*raw_data)[i])
+	*value = 0;
+	j = *i;
+	while (j >= 0 && j < end && raw_data[j] && raw_data[j] == ' ')
+		j++;
+	*i = j;
+	while (j >= 0 && j < end && (j - *i <= 2) && *value <= 255 && raw_data[j]
+			&& ft_isdigit(raw_data[j]))
 	{
-		if (!is_a_map_valid_char((*raw_data)[i]))
-			return (1);
-		if ((*raw_data)[i] == ' ')
-			(*raw_data)[i] = '_';
-		if (!((*raw_data)[i] == '\n' || (*raw_data)[i] == '\0'))
-			j++;
-		else
-		{
-			if (j > elements[MAP_COLUMNS_NB])
-				elements[MAP_COLUMNS_NB] = j;
-			j = 0;
-		}
-		i++;
+		*value = (*value * 10) + (raw_data[j] - '0');
+		j++;
 	}
-	c3d->error_msg = NULL;
-	debug_elements(elements, *raw_data, len);
+	if (j < 0 || (j < end && !ft_isdigit(raw_data[j]) && raw_data[j] != ' '
+					&& raw_data[j] != ',') || (j - *i > 3) || *value > 255)
+		return (0);
+	while (j >= 0 && j < end && raw_data[j] && raw_data[j] == ' ')
+		j++;
+	if (j >= 0 && j < end && raw_data[j] && raw_data[j] == ',')
+		j++;
+	*i = j;
+	return (1);
+}
+
+static int	check_rgb_colors(t_c3d_data *c3d, ssize_t *el,
+								const char *raw_data, ssize_t index)
+{
+	ssize_t	i;
+	int		red;
+	int		green;
+	int		blue;
+
+	i = el[index];
+	red = 0;
+	green = 0;
+	blue = 0;
+	c3d->error_msg = "The R part for the color is not in [0, 255]\n";
+	if (!is_a_valid_color_value(&red, &i, el[index] + el[index + 1], raw_data))
+		return (-1);
+	c3d->error_msg = "The G part for the color is not in [0, 255]\n";
+	if (!is_a_valid_color_value(&green, &i, el[index] + el[index + 1], raw_data))
+		return (-2);
+	c3d->error_msg = "The B part for the color is not in [0, 255]\n";
+	if (!is_a_valid_color_value(&blue, &i, el[index] + el[index + 1], raw_data))
+		return (-3);
+	if (index == F_COLOR_INDEX)
+		c3d->textures.F = red << 16 | green << 8 | blue;
+	else if (index == C_COLOR_INDEX)
+		c3d->textures.C = red << 16 | green << 8 | blue;
 	return (0);
 }
 
@@ -108,5 +120,10 @@ int	parse(t_c3d_data *c3d, ssize_t *el, char **raw_data, ssize_t len)
 	c3d->error_msg = "No such file/wrong read rights on \"East texture\"\n";
 	if (check_texture_file_path(c3d, el, *raw_data, EA_FILE_INDEX) < 0)
 		return (1);
-	return (check_map(c3d, el, raw_data, len));
+	if (check_rgb_colors(c3d, el, *raw_data, F_COLOR_INDEX) < 0)
+		return (1);
+	if (check_rgb_colors(c3d, el, *raw_data, C_COLOR_INDEX) < 0) 
+		return (1);
+	c3d->error_msg = NULL;
+	return (parse_map(c3d, el, raw_data, len));
 }

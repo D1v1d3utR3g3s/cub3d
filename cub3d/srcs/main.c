@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:30:01 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/17 01:07:12 by rmorice          ###   ########.fr       */
+/*   Updated: 2025/02/19 19:23:12 by rmorice          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,14 @@ int	main(const int argc, const char **argv)
 	int			result;
 
 	c3d.size_map = 64;
-	c3d.maze.map = NULL;
+	init_maze(&(c3d.maze));
+	init_player(&(c3d.player));
 	c3d.mlx.mlx_ptr = NULL;
 	c3d.mlx.img_ptr.mlx_img = NULL;
 	c3d.mlx.win_ptr = NULL;
 	c3d.m_col.col = NULL;
 	c3d.wall_size = 12;
-
+	file_path = NULL;
 	if (parse_c3d_args(&file_path, argc, argv) != 0)
 		return (1);
 	result = init_c3d_data(&c3d, file_path);
@@ -56,11 +57,9 @@ int	main(const int argc, const char **argv)
 	////////////////////////////////////////////////////////////////////
 	////                        add for test                        ////
 	// initialise and update for testing purpose
-	init_maze(&(c3d.maze));
     // init player
-	init_player(&(c3d.player));
 	init_event(&(c3d.event));
-
+/*
 	char	*str = "11111111\
 10100001\
 10100001\
@@ -70,7 +69,7 @@ int	main(const int argc, const char **argv)
 10000001\
 11111111";
 	update_maze(&(c3d.maze), str, 8, 8);
-	update_player(&(c3d.player), 300, 300, 3 * M_PI / 2);
+	update_player(&(c3d.player), 300, 300, 3 * M_PI / 2);*/
 	init_col(&c3d);
 	// loop display, hook event, etc.
 	loop_game(&c3d);
@@ -78,7 +77,7 @@ int	main(const int argc, const char **argv)
 	////////////////////////////////////////////////////////////////////
 	////                      remove for test                       ////
 /*	init_player(&c3d.player);
-	init_maze(&c3d);
+	//init_maze(&c3d);
 	full_img(&c3d);
 
 	hook_event(&c3d);

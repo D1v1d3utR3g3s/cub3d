@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:32:44 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/17 19:56:37 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/20 12:54:37 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ void	clear_data(t_c3d_data *c3d)
 
 	mlx = &(c3d->mlx);
 	clear_textures(c3d);
-/*	if (c3d && c3d->maze.map)
+	if (c3d && c3d->maze.map)
 	{
 		free(c3d->maze.map);
 		c3d->maze.map = NULL;
-	}*/
+	}
 	if (c3d && mlx && mlx->mlx_ptr)
 	{
 		if (mlx->img_ptr.mlx_img)

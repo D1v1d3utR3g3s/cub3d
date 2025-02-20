@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:30:10 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/17 20:11:42 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/19 20:34:42 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,8 @@ int	init_c3d_data(t_c3d_data *c3d, const char *file_path)
 	c3d->textures.SO = NULL;
 	c3d->textures.WE = NULL;
 	c3d->textures.EA = NULL;
+	c3d->textures.F = encode_rgb(0, 0, 0);
+	c3d->textures.C = encode_rgb(0, 0, 0);
 	if (load_scene(c3d, file_path) == 1)
 		return (1);
 	if (init_mlx_data(&(c3d->mlx)) == 1)

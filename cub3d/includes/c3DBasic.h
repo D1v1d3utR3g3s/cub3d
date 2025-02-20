@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:35:18 by rmorice           #+#    #+#             */
-/*   Updated: 2025/02/17 19:57:50 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/20 12:34:50 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ enum e_values
 	MAP_INDEX,
 	MAP_LINES_NB,
 	MAP_COLUMNS_NB,
+	PLAYERS_NB,
+	PLAYER_INDEX,
 };
 
 // FUNCTIONS
@@ -170,8 +172,12 @@ float	deg_to_rad(float deg);
 
 // update.c
 void	update_maze(t_maze *maze, char *str, int nb_col, int nb_line);
-void	update_player(t_player *player, float x, float y, float a);
+void	update_player(t_c3d_data *c3d, int x, int y, float a);
 float	update_angle(float a, float da);
+
+// parse_scene_2.c
+int		parse_map(t_c3d_data *c3d, ssize_t *elements, char **raw_data,
+			ssize_t len);
 
 // parse_scene.c
 int		parse(t_c3d_data *c3d, ssize_t *elements, char **raw_data,
@@ -195,5 +201,6 @@ int		parse_c3d_args(char **file_path, const int argc, const char **argv);
 
 // debug_checks_raw_data.c
 void	debug_elements(ssize_t *elements, char *raw_data, ssize_t len);
+void	debug_c3d_data(t_c3d_data *c3d);
 
 #endif

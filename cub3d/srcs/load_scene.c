@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 17:38:36 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/16 20:18:23 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:28:23 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,17 +152,16 @@ int	load_scene(t_c3d_data *c3d, const char *file_path)
 	raw_data = NULL;
 	len = 0;
 	result = read_file(&raw_data, &nb_lines, &c3d->error_msg, file_path);
-	elements = (ssize_t [15]){-1, -1, -1, -1, -1, -1, -1, -1, \
+	elements = (ssize_t [17]){-1, -1, -1, -1, -1, -1, -1, -1, \
 							-1, -1, -1, -1, \
-							-1, nb_lines, 0};
+							-1, nb_lines, 0, 0, -1};
 	if (result == 0 && raw_data)
 		result = first_checks(&c3d->error_msg, elements, raw_data, &len);
 	if (result == 0 && raw_data)
 		result = parse(c3d, elements, &raw_data, len);
 	/*if (result == 0 && raw_data)
-		result = checks(&c3d->error_msg, elements, raw_data, len);
-	if (result == 0 && raw_data)
-		result = reformate(c3d, elements, raw_data, len);*/
+		result = checks(&c3d->error_msg, elements, raw_data, len);*/
+	debug_c3d_data(c3d);
 	if (raw_data)
 		free_raw_data(&raw_data, &nb_lines);
 	return (result);
