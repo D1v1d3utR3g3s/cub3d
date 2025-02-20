@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 19:07:51 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/19 17:32:03 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/20 12:32:03 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,13 @@ static void     parse_map_char_and_player(t_c3d_data *c3d, ssize_t *k,
                 x = *k % c3d->maze.nb_col;
                 y = *k / c3d->maze.nb_col;
                 if (raw_data[*i] == 'N')
-                        update_player(&c3d->player, x, y, 3 * M_PI / 2);
+                        update_player(c3d, x, y, 3 * M_PI / 2);
                 if (raw_data[*i] == 'S')
-                        update_player(&c3d->player, x, y, M_PI / 2);
+                        update_player(c3d, x, y, M_PI / 2);
                 if (raw_data[*i] == 'E')
-                        update_player(&c3d->player, x, y, 0);
+                        update_player(c3d, x, y, 0);
                 if (raw_data[*i] == 'W')
-                        update_player(&c3d->player, x, y, M_PI);
+                        update_player(c3d, x, y, M_PI);
                 c3d->maze.map[*k] = '0';
         }
         (*k)++;

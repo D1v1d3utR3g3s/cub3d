@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:35:18 by rmorice           #+#    #+#             */
-/*   Updated: 2025/02/19 15:08:50 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/20 12:34:50 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ float	deg_to_rad(float deg);
 
 // update.c
 void	update_maze(t_maze *maze, char *str, int nb_col, int nb_line);
-void	update_player(t_player *player, float x, float y, float a);
+void	update_player(t_c3d_data *c3d, int x, int y, float a);
 float	update_angle(float a, float da);
 
 // parse_scene_2.c

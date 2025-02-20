@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 13:13:13 by roxane            #+#    #+#             */
-/*   Updated: 2025/02/17 00:41:24 by rmorice          ###   ########.fr       */
+/*   Updated: 2025/02/20 12:37:45 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ void	update_maze(t_maze *maze, char *str, int nb_col, int nb_line)
 /* Return :                                                                   */
 /*  - None                                                                    */
 /* ************************************************************************** */
-void	update_player(t_player *player, float x, float y, float a)
+void	update_player(t_c3d_data *c3d, int x, int y, float a)
 {
-	player->px = x;
-	player->py = y;
-	player->pa = a;
-	player->dx = cos(a) * player->mov_speed;
-	player->dy = sin(a) * player->mov_speed;
+	c3d->player.px = x * c3d->maze.w_tile + c3d->maze.w_tile / 2;
+	c3d->player.py = y * c3d->maze.w_tile + c3d->maze.w_tile / 2;
+	c3d->player.pa = a;
+	c3d->player.dx = cos(a) * c3d->player.mov_speed;
+	c3d->player.dy = sin(a) * c3d->player.mov_speed;
 }
 
 /* ************************************************************************** */
