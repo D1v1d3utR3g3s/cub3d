@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 13:23:30 by roxane            #+#    #+#             */
-/*   Updated: 2025/02/17 02:16:29 by rmorice          ###   ########.fr       */
+/*   Updated: 2025/03/03 21:31:50 by rmorice          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	determine_col(int x, int y, t_c3d_data *c3d)
 		c3d->m_col.col[id] = -1;
 		return (col);
 	}
-	else if (y < (c3d->mlx.h - 160) / 2)
+	else if (y < c3d->mlx.h / 2)
 		return (c3d->m_col.c);
 	else if (y < c3d->mlx.h - 1)
 		return (c3d->m_col.f);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   c3DMlx.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roxane <roxane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 12:20:58 by roxane            #+#    #+#             */
-/*   Updated: 2025/02/14 12:25:20 by roxane           ###   ########.fr       */
+/*   Updated: 2025/03/03 21:28:03 by rmorice          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define C3DMLX_H
 
 # include "../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx_int.h"
 # include <X11/keysym.h>
 # include <X11/X.h>
 
@@ -31,6 +32,8 @@ typedef struct s_mlx_img
 	int		bpp;
 	int		line_len;
 	int		endian;
+	int		width;
+	int		height;
 }	t_mlx_img;
 
 typedef struct s_mlx
@@ -45,14 +48,14 @@ typedef struct s_mlx
 
 typedef struct s_event
 {
-//	int f_XK_Up;
-//	int f_XK_Down;
-	int f_XK_Left;
-	int f_XK_Right;
-	int f_XK_W;
-	int f_XK_A;
-	int f_XK_S;
-	int f_XK_D;
+//	int f_xk_up;
+//	int f_xk_down;
+	int	f_xk_left;
+	int	f_xk_right;
+	int	f_xk_w;
+	int	f_xk_a;
+	int	f_xk_s;
+	int	f_xk_d;
 }	t_event;
 
 #endif

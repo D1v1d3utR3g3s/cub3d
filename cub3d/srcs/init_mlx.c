@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:47:29 by roxane            #+#    #+#             */
-/*   Updated: 2025/02/16 19:40:26 by rmorice          ###   ########.fr       */
+/*   Updated: 2025/03/03 21:42:25 by rmorice          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ static int	init_image(t_mlx *mlx)
 /* ************************************************************************** */
 static int	init_window(t_mlx *mlx)
 {
-	mlx->w = 512;//1024; 
-	mlx->h = 512;
+	mlx->w = 1024;
+	mlx->h = 832;
 	mlx->title = "Test Ray Tracing";
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, mlx->w,
 			mlx->h, mlx->title);

@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:10:44 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/17 01:20:22 by rmorice          ###   ########.fr       */
+/*   Updated: 2025/03/03 21:37:00 by rmorice          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@
 /******************************************************************************/
 int	check_event(t_c3d_data *c3d)
 {
-	if (c3d->event.f_XK_W != 0)
+	if (c3d->event.f_xk_w != 0)
 		return (1);
-	if (c3d->event.f_XK_A != 0)
+	if (c3d->event.f_xk_a != 0)
 		return (1);
-	if (c3d->event.f_XK_S != 0)
+	if (c3d->event.f_xk_s != 0)
 		return (1);
-	if (c3d->event.f_XK_D != 0)
+	if (c3d->event.f_xk_d != 0)
 		return (1);
-	if (c3d->event.f_XK_Left != 0)
+	if (c3d->event.f_xk_left != 0)
 		return (1);
-	if (c3d->event.f_XK_Right != 0)
+	if (c3d->event.f_xk_right != 0)
 		return (1);
 	return (0);
 }
@@ -100,16 +100,16 @@ int	calc_margin(float d)
 /******************************************************************************/
 void	apply_event(t_c3d_data *c3d)
 {
-	if ((c3d->event.f_XK_W != 0) && (c3d->event.f_XK_S == 0))
+	if ((c3d->event.f_xk_w != 0) && (c3d->event.f_xk_s == 0))
 		move_dir(c3d, 'w');
-	if ((c3d->event.f_XK_A != 0) && (c3d->event.f_XK_D == 0))
+	if ((c3d->event.f_xk_a != 0) && (c3d->event.f_xk_d == 0))
 		move_dir(c3d, 'a');
-	if ((c3d->event.f_XK_S != 0) && (c3d->event.f_XK_W == 0))
+	if ((c3d->event.f_xk_s != 0) && (c3d->event.f_xk_w == 0))
 		move_dir(c3d, 's');
-	if ((c3d->event.f_XK_D != 0) && (c3d->event.f_XK_A == 0))
+	if ((c3d->event.f_xk_d != 0) && (c3d->event.f_xk_a == 0))
 		move_dir(c3d, 'd');
-	if ((c3d->event.f_XK_Left != 0) && (c3d->event.f_XK_Right == 0))
+	if ((c3d->event.f_xk_left != 0) && (c3d->event.f_xk_right == 0))
 		rot_dir(c3d, 'L');
-	if ((c3d->event.f_XK_Right != 0) && (c3d->event.f_XK_Left == 0))
+	if ((c3d->event.f_xk_right != 0) && (c3d->event.f_xk_left == 0))
 		rot_dir(c3d, 'R');
 }

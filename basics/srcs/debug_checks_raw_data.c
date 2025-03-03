@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 12:34:16 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/14 15:38:09 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/02/17 09:48:59 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	debug_elements(ssize_t *elements, char *raw_data, ssize_t len)
 	printf("\"Ceiling color\" element index : %ld - length : %ld\n",
 		elements[C_COLOR_INDEX], elements[C_COLOR_LEN]);
 	print_element_value(elements, C_COLOR_INDEX, raw_data, len);
-	printf("\"Map\" element index : %ld - number of lines : %ld - \"%s\"\n",
+	printf("\"Map\" element index : %ld - number of lines : %ld \
+- number of columns : %ld - \n\"%s\"\n",
 		elements[MAP_INDEX], elements[MAP_LINES_NB],
-		&raw_data[elements[MAP_INDEX]]);
+		elements[MAP_COLUMNS_NB], &raw_data[elements[MAP_INDEX]]);
 }
