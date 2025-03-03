@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:13:56 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/17 13:52:08 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/03 21:39:16 by rmorice          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,17 @@ static int	key_handler_press(int keysym, t_c3d_data *c3d)
 		exit(0);
 	}
 	if (keysym == XK_W || keysym == XK_w)
-		c3d->event.f_XK_W = 1;
+		c3d->event.f_xk_w = 1;
 	if (keysym == XK_A || keysym == XK_a)
-		c3d->event.f_XK_A = 1;
+		c3d->event.f_xk_a = 1;
 	if (keysym == XK_S || keysym == XK_s)
-		c3d->event.f_XK_S = 1;
+		c3d->event.f_xk_s = 1;
 	if (keysym == XK_D || keysym == XK_d)
-		c3d->event.f_XK_D = 1;
+		c3d->event.f_xk_d = 1;
 	if (keysym == XK_Left)
-		c3d->event.f_XK_Left = 1;
+		c3d->event.f_xk_left = 1;
 	if (keysym == XK_Right)
-		c3d->event.f_XK_Right = 1;
+		c3d->event.f_xk_right = 1;
 	return (0);
 }
 
@@ -66,17 +66,17 @@ static int	key_handler_rel(int keysym, t_c3d_data *c3d)
 		exit(0);
 	}
 	if (keysym == XK_W || keysym == XK_w)
-		c3d->event.f_XK_W = 0;
+		c3d->event.f_xk_w = 0;
 	if (keysym == XK_A || keysym == XK_a)
-		c3d->event.f_XK_A = 0;
+		c3d->event.f_xk_a = 0;
 	if (keysym == XK_S || keysym == XK_s)
-		c3d->event.f_XK_S = 0;
+		c3d->event.f_xk_s = 0;
 	if (keysym == XK_D || keysym == XK_d)
-		c3d->event.f_XK_D = 0;
+		c3d->event.f_xk_d = 0;
 	if (keysym == XK_Left)
-		c3d->event.f_XK_Left = 0;
+		c3d->event.f_xk_left = 0;
 	if (keysym == XK_Right)
-		c3d->event.f_XK_Right = 0;
+		c3d->event.f_xk_right = 0;
 	return (0);
 }
 

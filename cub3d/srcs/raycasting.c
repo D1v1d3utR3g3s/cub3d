@@ -6,11 +6,20 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:15:38 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/17 02:31:36 by rmorice          ###   ########.fr       */
+/*   Updated: 2025/03/03 21:52:43 by rmorice          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/c3DBasic.h"
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+static void	update_ray_hit(t_ray *ray, int x, int y, int dist)
+{
+	ray->rx = x;
+	ray->ry = y;
+	ray->dist_wall = dist;
+}
 
 /* ************************************************************************** */
 /*                             nearest_intersect                              */
@@ -36,23 +45,19 @@ static void	nearest_intersect(t_c3d_data *c3d)
 	}
 	else if ((ray->dh == -1) || ((ray->dv != -1) && (ray->dv <= ray->dh)))
 	{
-		ray->rx = ray->vx;
-		ray->ry = ray->vy;
-		ray->dist_wall = ray->dv;
+		update_ray_hit(ray, ray->vx, ray->vy, ray->dv);
 		if (face_right(ray->ra))
-			ray->col_wall = c3d->m_col.ea;
+			ray->wall_dir = EAST;
 		else
-			ray->col_wall = c3d->m_col.we;
+		ray->wall_dir = WEST;
 	}
-	else if ((ray->dv == -1) || (((ray->dh != -1) && ray->dh < ray->dv)))
+	else if ((ray->dv == -1) || ((ray->dh != -1) && (ray->dh < ray->dv)))
 	{
-		ray->rx = ray->hx;
-		ray->ry = ray->hy;
-		ray->dist_wall = ray->dh;
+		update_ray_hit(ray, ray->hx, ray->hy, ray->dh);
 		if (face_down(ray->ra))
-			ray->col_wall = c3d->m_col.so;
+			ray->wall_dir = SOUTH;
 		else
-			ray->col_wall = c3d->m_col.no;
+			ray->wall_dir = NORTH;
 	}
 }
 
@@ -92,7 +97,7 @@ static float	compensate_fishbowl_distortion(float d, float angle)
 }
 
 /* ************************************************************************** */
-/*                              calc_wall_height                              */
+/*                            colorise_wall_height                            */
 /* -------------------------------------------------------------------------- */
 /* This function converts the player-ray distance in height of the wall       */
 /* The colors of the pixels that composed the wall height (over 1 pixel) is   */
@@ -103,7 +108,7 @@ static float	compensate_fishbowl_distortion(float d, float angle)
 /* Return :                                                                   */
 /*  - None                                                                    */
 /* ************************************************************************** */
-static void	calc_wall_height(int ray_nb, t_c3d_data *c3d)
+static void	colorise_wall_height(int ray_nb, t_c3d_data *c3d)
 {
 	float	line_h;
 	float	offset;
@@ -113,15 +118,13 @@ static void	calc_wall_height(int ray_nb, t_c3d_data *c3d)
 
 	angle_offset = update_angle(c3d->player.pa, -c3d->ray.ra);
 	d = compensate_fishbowl_distortion(c3d->ray.dist_wall, angle_offset);
-	delta = 320;
+	delta = c3d->mlx.h * (c3d->mlx.w / c3d->mlx.h);
 	line_h = (c3d->maze.w_tile * delta) / d;
-//	if (line_h > c3d->mlx.w)//delta)
-//		line_h = c3d->mlx.w;//delta;
 	if (line_h < 0)
 		line_h = 0;
 	offset = (delta - line_h) / 2;
-	update_3d_line_col(ray_nb, offset, ray_nb, offset + line_h, c3d);
-//	update_line_col(ray_nb, offset, line_h, c3d);
+	(void)offset;
+	extract_slice_texture(&c3d->mlx, c3d, ray_nb, line_h);
 }
 
 /* ************************************************************************** */
@@ -151,7 +154,8 @@ void	raycast(t_c3d_data *c3d)
 	while (n_ray < c3d->mlx.w)
 	{
 		calc_nearest_intersect(c3d);
-		calc_wall_height(n_ray, c3d);
+		if (c3d->ray.wall_dir != -1)
+			colorise_wall_height(n_ray, c3d);
 		a = update_angle(a, da);
 		init_ray(c3d, a);
 		n_ray++;

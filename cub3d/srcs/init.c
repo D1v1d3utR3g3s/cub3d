@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:30:10 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/19 20:34:42 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/03 21:44:00 by rmorice          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init_maze(t_maze *maze)
 {
 	maze->nb_col = 0;
 	maze->nb_line = 0;
-	maze->w_tile = 64; // for now square grid (64px * 64px)
+	maze->w_tile = 64; // for now, square grid (64px * 64px) rq. 64 => width and height textures
 	maze->map = NULL;
 }
 
@@ -47,10 +47,9 @@ void	init_player(t_player *player)
 	player->dy = -1;
 	player->da = 0;
 	player->fov = 60;
-	//
 	player->mov_speed = 5;
 	player->rot_speed = 0.1;
-	player->size = 12 / 2;
+//	player->size = 12 / 2;
 }
 
 /* ************************************************************************** */
@@ -76,6 +75,7 @@ void	init_ray(t_c3d_data *c3d, float angle)
 	c3d->ray.vy = c3d->ray.ry;
 	c3d->ray.dv = -1;
 	c3d->ray.dist_wall = -1;
+	c3d->ray.wall_dir = -1;
 	c3d->ray.col_wall = encode_rgb(255, 0, 0);
 }
 
@@ -90,14 +90,14 @@ void	init_ray(t_c3d_data *c3d, float angle)
 /* ************************************************************************** */
 void	init_event(t_event *event)
 {
-//	event->f_XK_Up = 0;
-//	event->f_XK_Down = 0;
-	event->f_XK_Left = 0;
-	event->f_XK_Right = 0;
-	event->f_XK_W = 0;
-	event->f_XK_A = 0;
-	event->f_XK_S = 0;
-	event->f_XK_D = 0;
+//	event->f_xk_up = 0;
+//	event->f_xk_down = 0;
+	event->f_xk_left = 0;
+	event->f_xk_right = 0;
+	event->f_xk_w = 0;
+	event->f_xk_a = 0;
+	event->f_xk_s = 0;
+	event->f_xk_d = 0;
 }
 
 /* ************************************************************************** */
@@ -124,15 +124,5 @@ int	init_c3d_data(t_c3d_data *c3d, const char *file_path)
 		return (1);
 	if (init_mlx_data(&(c3d->mlx)) == 1)
 		return (1);
-/*	c3d->mlx_ptr = mlx_init();
-	if (c3d->mlx_ptr == NULL)
-	{
-		c3d->error_msg = "With the mlx initialisation\n";
-		return (1);
-	}
-	if (init_window(c3d) == 1)
-		return (1);
-	if (init_image(c3d) == 1)
-		return (1);*/
 	return (0);
 }

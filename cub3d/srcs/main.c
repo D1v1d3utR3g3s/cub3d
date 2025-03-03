@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:30:01 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/19 19:23:12 by rmorice          ###   ########.fr       */
+/*   Updated: 2025/03/03 22:04:16 by rmorice          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int	main(const int argc, const char **argv)
 	update_maze(&(c3d.maze), str, 8, 8);
 	update_player(&(c3d.player), 300, 300, 3 * M_PI / 2);*/
 	init_col(&c3d);
+	init_textures(&c3d);
+
 	// loop display, hook event, etc.
 	loop_game(&c3d);
 	////////////////////////////////////////////////////////////////////

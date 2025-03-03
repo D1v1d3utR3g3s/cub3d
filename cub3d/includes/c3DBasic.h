@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   c3DBasic.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:35:18 by rmorice           #+#    #+#             */
-/*   Updated: 2025/02/20 12:34:50 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/03 21:21:44 by rmorice          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,22 @@
 # include "../libft/includes/libft.h"
 # include "../libft/includes/get_next_line_bonus.h"
 # include "c3DMap.h"
-# include "c3DMlx.h"
+//# include "c3DMlx.h"
 
 # include <stddef.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
 # include <string.h>
+
+// ENUM
+enum	e_cardinal
+{
+	NORTH,
+	EAST,
+	SOUTH,
+	WEST
+};
 
 // STRUCT
 typedef struct s_ray
@@ -39,6 +48,7 @@ typedef struct s_ray
 	float	dv;
 	float	vx;
 	float	vy;
+	int		wall_dir;
 	float	dist_wall;
 	int		col_wall;
 }	t_ray;
@@ -52,7 +62,6 @@ typedef struct s_player
 	float	dy;
 	float	da;
 	int		fov;
-	// in progress...
 	int		size;
 	float	mov_speed;
 	float	rot_speed;
@@ -69,7 +78,6 @@ typedef struct s_c3d_data
 	t_event		event;
 	int			size_map;
 	char		*error_msg;
-	// in progress
 	int			wall_size;
 }	t_c3d_data;
 
@@ -146,12 +154,6 @@ void	init_ray(t_c3d_data *c3d, float angle);
 void	init_event(t_event *event);
 int		init_c3d_data(t_c3d_data *c3d, const char *file_path);
 
-// raycast_3d_utils.c
-void	update_line_col(int ray_nb, float offset, float line_h,
-			t_c3d_data *c3d);
-void	update_3d_line_col(int beginX, int beginY, int endX, int endY,
-			t_c3d_data *c3d);
-
 // raycast_intersect_utils.c
 int		check_hit_wall(int mp, t_c3d_data *c3d);
 int		calc_mp(t_ray *ray, t_c3d_data *c3d);
@@ -162,6 +164,12 @@ void	ver_intersect(t_c3d_data *c3d);
 
 // raycasting.c
 void	raycast(t_c3d_data *c3d);
+
+// textures.c
+void	init_textures(t_c3d_data *c3d);
+
+// textures_utils.c
+void	extract_slice_texture(t_mlx *mlx, t_c3d_data *c3d, int x, int line_h);
 
 // utils.c
 float	calc_d(float ax, float ay, float bx, float by);
