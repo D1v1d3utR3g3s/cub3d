@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:35:18 by rmorice           #+#    #+#             */
-/*   Updated: 2025/03/04 06:34:44 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/04 09:44:44 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,10 @@ int		closure_checks(char **error_msg, t_maze maze);
 // parse_scene_2.c
 int		parse_map(t_c3d_data *c3d, ssize_t *elements, char **raw_data,
 			ssize_t len);
+
+// parse_scene_3.c
+int		check_commas_into_format(t_c3d_data *c3d, ssize_t start,
+			ssize_t end, const char *raw_data);
 
 // parse_scene.c
 int		parse(t_c3d_data *c3d, ssize_t *elements, char **raw_data,
