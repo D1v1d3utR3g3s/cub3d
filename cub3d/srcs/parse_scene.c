@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 16:31:51 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/19 00:31:03 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/04 09:43:03 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ static int	check_rgb_colors(t_c3d_data *c3d, ssize_t *el,
 	int		blue;
 
 	i = el[index];
+	if (check_commas_into_format(c3d, i, el[index] + el[index + 1], raw_data))
+		return (-4);
 	red = 0;
 	green = 0;
 	blue = 0;

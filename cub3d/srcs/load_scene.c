@@ -159,10 +159,10 @@ int	load_scene(t_c3d_data *c3d, const char *file_path)
 		result = first_checks(&c3d->error_msg, elements, raw_data, &len);
 	if (result == 0 && raw_data)
 		result = parse(c3d, elements, &raw_data, len);
-	/*if (result == 0 && raw_data)
-		result = checks(&c3d->error_msg, elements, raw_data, len);*/
-	debug_c3d_data(c3d);
 	if (raw_data)
 		free_raw_data(&raw_data, &nb_lines);
+	if (result == 0 && c3d->maze.map)
+		result = closure_checks(&c3d->error_msg, c3d->maze);
+	debug_c3d_data(c3d);
 	return (result);
 }

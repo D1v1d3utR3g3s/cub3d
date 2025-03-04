@@ -202,7 +202,7 @@ int		parse_map(t_c3d_data *c3d, ssize_t *elements, char **raw_data,
 
 // parse_scene_3.c
 int		check_commas_into_format(t_c3d_data *c3d, ssize_t start,
-	ssize_t end, const char *raw_data);
+			ssize_t end, const char *raw_data);
 
 // parse_scene.c
 int		parse(t_c3d_data *c3d, ssize_t *elements, char **raw_data,
