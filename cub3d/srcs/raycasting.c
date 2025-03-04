@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:15:38 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/03/03 21:52:43 by rmorice          ###   ########.fr       */
+/*   Updated: 2025/03/04 15:18:18 by rmorice          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	nearest_intersect(t_c3d_data *c3d)
 		if (face_right(ray->ra))
 			ray->wall_dir = EAST;
 		else
-		ray->wall_dir = WEST;
+			ray->wall_dir = WEST;
 	}
 	else if ((ray->dv == -1) || ((ray->dh != -1) && (ray->dh < ray->dv)))
 	{
@@ -82,21 +82,6 @@ static void	calc_nearest_intersect(t_c3d_data *c3d)
 }
 
 /* ************************************************************************** */
-/*                       compensate_fishbowl_distortion                       */
-/* -------------------------------------------------------------------------- */
-/* This function compensates the fishbow distortion generated during the 3D   */
-/* conversion                                                                 */
-/* Input :                                                                    */
-/*  - t_c3d_data *c3d : pointer to struct that contained datas about c3d      */
-/* Return :                                                                   */
-/*  - None                                                                    */
-/* ************************************************************************** */
-static float	compensate_fishbowl_distortion(float d, float angle)
-{
-	return (d * cos(angle));
-}
-
-/* ************************************************************************** */
 /*                            colorise_wall_height                            */
 /* -------------------------------------------------------------------------- */
 /* This function converts the player-ray distance in height of the wall       */
@@ -110,11 +95,10 @@ static float	compensate_fishbowl_distortion(float d, float angle)
 /* ************************************************************************** */
 static void	colorise_wall_height(int ray_nb, t_c3d_data *c3d)
 {
-	float	line_h;
-	float	offset;
 	float	angle_offset;
 	float	d;
 	int		delta;
+	float	line_h;
 
 	angle_offset = update_angle(c3d->player.pa, -c3d->ray.ra);
 	d = compensate_fishbowl_distortion(c3d->ray.dist_wall, angle_offset);
@@ -122,8 +106,6 @@ static void	colorise_wall_height(int ray_nb, t_c3d_data *c3d)
 	line_h = (c3d->maze.w_tile * delta) / d;
 	if (line_h < 0)
 		line_h = 0;
-	offset = (delta - line_h) / 2;
-	(void)offset;
 	extract_slice_texture(&c3d->mlx, c3d, ray_nb, line_h);
 }
 
@@ -153,6 +135,7 @@ void	raycast(t_c3d_data *c3d)
 	da = deg_to_rad(fov) / c3d->mlx.w;
 	while (n_ray < c3d->mlx.w)
 	{
+		c3d->ray.wall_dir = -1;
 		calc_nearest_intersect(c3d);
 		if (c3d->ray.wall_dir != -1)
 			colorise_wall_height(n_ray, c3d);

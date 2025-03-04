@@ -22,7 +22,8 @@ hook_event.c init_colors_data.c init_mlx.c init.c \
 raycast_intersect_utils.c raycast_intersect.c raycasting.c update.c utils.c\
 debug_checks_raw_data.c checks_raw_data_2.c checks_raw_data.c parse_scene_2.c\
 parse_scene_3.c parse_scene.c map_closure_checks.c load_scene.c checks_args.c\
-textures.c textures_utils.c
+textures.c textures_utils.c \
+wall_collision.c writing_testing_purpose.c
 
 OBJECTS = $(SOURCES:.c=.o)
 
