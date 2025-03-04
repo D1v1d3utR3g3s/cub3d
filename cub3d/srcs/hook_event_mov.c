@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:57:25 by roxane            #+#    #+#             */
-/*   Updated: 2025/02/17 01:31:33 by rmorice          ###   ########.fr       */
+/*   Updated: 2025/03/04 15:32:25 by rmorice          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static float	associate_dir_angle(char dir)
 }
 
 /******************************************************************************/
-/*                                 mov_allow                                  */
+/*                             mov_allow_in_maze                              */
 /* -------------------------------------------------------------------------- */
 /* This function checks following which axis (/axes) the movement is allowed  */
 /* (x, y, both or none)                                                       */
@@ -49,24 +49,20 @@ static float	associate_dir_angle(char dir)
 /*  - 3 : movement allowed in x et y axes (both)                              */
 /*  - 0 : movement is not allowed in any direction                            */
 /******************************************************************************/
-static int	mov_allow(t_c3d_data *c3d, float dx, float dy)
+static int	mov_allow_in_maze(t_c3d_data *c3d, float dx, float dy)
 {
-	int	ipx;
-	int	ipx_add;
-	int	ipy;
-	int	ipy_add;
+	int	x;
+	int	y;
+	int	mov;
 
-	ipx = c3d->player.px / c3d->maze.w_tile;
-	ipx_add = (int)(c3d->player.px + dx) / c3d->maze.w_tile;
-	ipy = c3d->player.py / c3d->maze.w_tile;
-	ipy_add = (int)(c3d->player.py + dy) / c3d->maze.w_tile;
-	if (c3d->maze.map[ipy_add * c3d->maze.nb_col + ipx_add] == '0')
-		return (3);
-	else if (c3d->maze.map[ipy * c3d->maze.nb_col + ipx_add] == '0')
-		return (1);
-	else if (c3d->maze.map[ipy_add * c3d->maze.nb_col + ipx] == '0')
-		return (2);
-	return (0);
+	x = c3d->player.px + dx;
+	y = c3d->player.py + dy;
+	mov = 0;
+	if (x >= 0 && x < c3d->maze.nb_col * 64)
+		mov += 1;
+	if (y >= 0 && y < c3d->maze.nb_line * 64)
+		mov += 2;
+	return (mov);
 }
 
 /******************************************************************************/
@@ -94,7 +90,10 @@ static int	which_delta_apply(t_c3d_data *c3d, float dir_a)
 	dy = calc_dy(c3d, dir_a);
 	dx += calc_margin(dx);
 	dy += calc_margin(dy);
-	return (mov_allow(c3d, dx, dy));
+	if (BONUS == 1)
+		return (mov_allow_wall(c3d, dx, dy));
+	else
+		return (mov_allow_in_maze(c3d, dx, dy));
 }
 
 /******************************************************************************/
@@ -124,7 +123,13 @@ void	move_dir(t_c3d_data *c3d, char dir)
 		c3d->player.py += dy;
 	}
 	else if (mov == 1)
+	{
 		c3d->player.px += dx;
+		display_player_pos(*c3d);
+	}
 	else if (mov == 2)
+	{
 		c3d->player.py += dy;
+		display_player_pos(*c3d);
+	}
 }

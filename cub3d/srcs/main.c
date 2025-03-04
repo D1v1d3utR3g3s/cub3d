@@ -54,36 +54,13 @@ int	main(const int argc, const char **argv)
 	if (result == 1)
 		return (display_error(c3d.error_msg), clear_data(&c3d), 1);
 
-	////////////////////////////////////////////////////////////////////
-	////                        add for test                        ////
-	// initialise and update for testing purpose
-    // init player
 	init_event(&(c3d.event));
-/*
-	char	*str = "11111111\
-10100001\
-10100001\
-10100001\
-10000001\
-10000101\
-10000001\
-11111111";
-	update_maze(&(c3d.maze), str, 8, 8);
-	update_player(&(c3d.player), 300, 300, 3 * M_PI / 2);*/
 	init_col(&c3d);
 	init_textures(&c3d);
 
-	// loop display, hook event, etc.
-	loop_game(&c3d);
-	////////////////////////////////////////////////////////////////////
-	////////////////////////////////////////////////////////////////////
-	////                      remove for test                       ////
-/*	init_player(&c3d.player);
-	//init_maze(&c3d);
-	full_img(&c3d);
+	display_map(c3d);
+	display_player_pos(c3d);
 
-	hook_event(&c3d);
-	mlx_loop(c3d.mlx_ptr);*/
-	////////////////////////////////////////////////////////////////////
+	loop_game(&c3d);
 	return (clear_data(&c3d), 0);
 }

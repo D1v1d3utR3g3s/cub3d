@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:15:38 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/03/03 21:46:54 by rmorice          ###   ########.fr       */
+/*   Updated: 2025/03/04 15:23:36 by rmorice          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,19 @@ int	calc_mp(t_ray *ray, t_c3d_data *c3d)
 		my = c3d->maze.nb_line - 1;
 	mp = my * c3d->maze.nb_col + mx;
 	return (mp);
+}
+
+/* ************************************************************************** */
+/*                       compensate_fishbowl_distortion                       */
+/* -------------------------------------------------------------------------- */
+/* This function compensates the fishbow distortion generated during the 3D   */
+/* conversion                                                                 */
+/* Input :                                                                    */
+/*  - t_c3d_data *c3d : pointer to struct that contained datas about c3d      */
+/* Return :                                                                   */
+/*  - None                                                                    */
+/* ************************************************************************** */
+float	compensate_fishbowl_distortion(float d, float angle)
+{
+	return (d * cos(angle));
 }

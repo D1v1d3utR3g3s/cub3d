@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:30:10 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/03/03 21:44:00 by rmorice          ###   ########.fr       */
+/*   Updated: 2025/03/04 15:14:59 by rmorice          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	init_maze(t_maze *maze)
 {
 	maze->nb_col = 0;
 	maze->nb_line = 0;
-	maze->w_tile = 64; // for now, square grid (64px * 64px) rq. 64 => width and height textures
+	maze->w_tile = 64; // for now, square grid (64px * 64px)
+	// rq. 64 => width and height textures
 	maze->map = NULL;
 }
 

@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:35:18 by rmorice           #+#    #+#             */
-/*   Updated: 2025/03/03 21:21:44 by rmorice          ###   ########.fr       */
+/*   Updated: 2025/03/04 16:21:43 by rmorice          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include <stdio.h>
 # include <math.h>
 # include <string.h>
+
+# define BONUS 1
 
 // ENUM
 enum	e_cardinal
@@ -157,6 +159,7 @@ int		init_c3d_data(t_c3d_data *c3d, const char *file_path);
 // raycast_intersect_utils.c
 int		check_hit_wall(int mp, t_c3d_data *c3d);
 int		calc_mp(t_ray *ray, t_c3d_data *c3d);
+float	compensate_fishbowl_distortion(float d, float angle);
 
 // raycast_intersect.c
 void	hor_intersect(t_c3d_data *c3d);
@@ -183,9 +186,23 @@ void	update_maze(t_maze *maze, char *str, int nb_col, int nb_line);
 void	update_player(t_c3d_data *c3d, int x, int y, float a);
 float	update_angle(float a, float da);
 
+// wall_collision.c
+int		mov_allow_wall(t_c3d_data *c3d, float dx, float dy);
+
+// writing_testing_purpose
+void	display_player_pos(t_c3d_data c3d);
+void	display_map(t_c3d_data c3d);
+
+// map_closure_checks.c
+int		closure_checks(char **error_msg, t_maze maze);
+
 // parse_scene_2.c
 int		parse_map(t_c3d_data *c3d, ssize_t *elements, char **raw_data,
 			ssize_t len);
+
+// parse_scene_3.c
+int		check_commas_into_format(t_c3d_data *c3d, ssize_t start,
+	ssize_t end, const char *raw_data);
 
 // parse_scene.c
 int		parse(t_c3d_data *c3d, ssize_t *elements, char **raw_data,
