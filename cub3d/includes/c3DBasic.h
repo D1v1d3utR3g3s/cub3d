@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:35:18 by rmorice           #+#    #+#             */
-/*   Updated: 2025/03/03 21:21:44 by rmorice          ###   ########.fr       */
+/*   Updated: 2025/03/04 06:34:44 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,9 @@ float	deg_to_rad(float deg);
 void	update_maze(t_maze *maze, char *str, int nb_col, int nb_line);
 void	update_player(t_c3d_data *c3d, int x, int y, float a);
 float	update_angle(float a, float da);
+
+// map_closure_checks.c
+int		closure_checks(char **error_msg, t_maze maze);
 
 // parse_scene_2.c
 int		parse_map(t_c3d_data *c3d, ssize_t *elements, char **raw_data,
