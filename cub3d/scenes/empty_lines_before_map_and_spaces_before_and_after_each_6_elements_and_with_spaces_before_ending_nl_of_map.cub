@@ -1,18 +1,18 @@
 	     	
   F      220  , 100, 0        
   
-    SO  ./textures/south_texture 
+    SO  ./textures/PIPES_2B.xpm 
 
-  NO      ./textures/north_texture.xpm  
+  NO      ./textures/BRICK_1A.xpm  
  
 
  C   225, 30 , 0  
 
- WE   ./textures/west_texture                 
+ WE   ./textures/WOOD_1C.xpm                 
 
 
 
-            EA              ./textures/east_texture   
+            EA              ./textures/GRID_2B.xpm   
 
 
 	
