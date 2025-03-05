@@ -6,14 +6,14 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 19:07:51 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/20 12:32:03 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/05 05:43:03 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/c3DBasic.h"
 
-static int	is_a_map_valid_char(const char c, ssize_t *elements,
-								ssize_t i)
+static int	is_a_map_valid_char(t_c3d_data *c3d, ssize_t *elements,
+								const char c, ssize_t i)
 {
 	int	boolean;
 
@@ -29,7 +29,10 @@ static int	is_a_map_valid_char(const char c, ssize_t *elements,
 		}
 	}
 	else
+	{
+		c3d->error_msg = "There is an invalid character into the map\n";
 		boolean = 0;
+	}
 	return (boolean);
 }
 
@@ -39,25 +42,26 @@ static int	check_map(t_c3d_data *c3d, ssize_t *elements, char **raw_data,
 	ssize_t	i;
 	ssize_t	j;
 
-	c3d->error_msg = "There is an invalid character into the map\n";
 	j = 0;
 	i = elements[MAP_INDEX];
-	while (i < len && (*raw_data)[i])
+	while (i < len)
 	{
-		if (!is_a_map_valid_char((*raw_data)[i], elements, i))
+		if (!is_a_map_valid_char(c3d, elements, (*raw_data)[i], i))
 			return (1);
 		if ((*raw_data)[i] == ' ')
 			(*raw_data)[i] = '_';
-		if (!((*raw_data)[i] == '\n' || (*raw_data)[i] == '\0'))
-			j++;
-		else
+		if ((*raw_data)[i] == '\n' || (*raw_data)[i] == '\0')
 		{
 			if (j > elements[MAP_COLUMNS_NB])
 				elements[MAP_COLUMNS_NB] = j;
 			j = 0;
 		}
+		else
+			j++;
 		i++;
 	}
+	if (j > elements[MAP_COLUMNS_NB])
+		elements[MAP_COLUMNS_NB] = j;
 	c3d->error_msg = NULL;
 	debug_elements(elements, *raw_data, len);
 	return (0);

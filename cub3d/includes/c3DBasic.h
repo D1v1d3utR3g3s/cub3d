@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:35:18 by rmorice           #+#    #+#             */
-/*   Updated: 2025/03/04 16:21:43 by rmorice          ###   ########.fr       */
+/*   Updated: 2025/03/05 02:10:43 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,6 +213,10 @@ int		load_scene(t_c3d_data *c3d, const char *file_path);
 
 // checks_raw_data_2.c
 void	find_elements_indexes(ssize_t *elements, char *raw_data, ssize_t len);
+
+// checks_raw_data_3.c
+int		remove_ending_spaces_of_each_line_into_map(char **str, ssize_t *len,
+			ssize_t from);
 
 // checks_raw_data.c
 int		is_a_space(const char c);
