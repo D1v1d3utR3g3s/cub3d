@@ -25,8 +25,7 @@ void	init_maze(t_maze *maze)
 {
 	maze->nb_col = 0;
 	maze->nb_line = 0;
-	maze->w_tile = 64; // for now, square grid (64px * 64px)
-	// rq. 64 => width and height textures
+	maze->w_tile = 64;
 	maze->map = NULL;
 }
 
@@ -50,7 +49,6 @@ void	init_player(t_player *player)
 	player->fov = 60;
 	player->mov_speed = 5;
 	player->rot_speed = 0.1;
-//	player->size = 12 / 2;
 }
 
 /* ************************************************************************** */
@@ -69,12 +67,16 @@ void	init_ray(t_c3d_data *c3d, float angle)
 	c3d->ray.ra = angle;
 	c3d->ray.dx = 0;
 	c3d->ray.dy = 0;
+	c3d->ray.hit_h = 0;
 	c3d->ray.hx = c3d->ray.rx;
 	c3d->ray.hy = c3d->ray.ry;
 	c3d->ray.dh = -1;
+	c3d->ray.hit_v = 0;
 	c3d->ray.vx = c3d->ray.rx;
 	c3d->ray.vy = c3d->ray.ry;
 	c3d->ray.dv = -1;
+	c3d->ray.hit_h_door = 0;
+	c3d->ray.hit_v_door = 0;
 	c3d->ray.dist_wall = -1;
 	c3d->ray.wall_dir = -1;
 	c3d->ray.col_wall = encode_rgb(255, 0, 0);
@@ -91,8 +93,6 @@ void	init_ray(t_c3d_data *c3d, float angle)
 /* ************************************************************************** */
 void	init_event(t_event *event)
 {
-//	event->f_xk_up = 0;
-//	event->f_xk_down = 0;
 	event->f_xk_left = 0;
 	event->f_xk_right = 0;
 	event->f_xk_w = 0;

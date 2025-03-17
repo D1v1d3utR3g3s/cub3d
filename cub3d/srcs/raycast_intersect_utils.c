@@ -13,6 +13,29 @@
 #include "../includes/c3DBasic.h"
 
 /* ************************************************************************** */
+/*                               calc_wall_dist                               */
+/* -------------------------------------------------------------------------- */
+/* This function calculates the dist between the player and the current ray   */
+/* Input :                                                                    */
+/*  - t_c3d_data *c3d : pointer to a struct that contained necessary datas    */
+/* Return :                                                                   */
+/*  - int : the distance between p(px, py) and ray(rx, ry)                    */
+/* ************************************************************************** */
+static int	calc_wall_dist(t_c3d_data *c3d)
+{
+	int	px;
+	int	py;
+	int	x;
+	int	y;
+
+	px = c3d->player.px;
+	py = c3d->player.py;
+	x = c3d->ray.rx;
+	y = c3d->ray.ry;
+	return (calc_d(px, py, x, y));
+}
+
+/* ************************************************************************** */
 /*                               check_hit_wall                               */
 /* -------------------------------------------------------------------------- */
 /* This function checks if the map element corresponding to the index mp is   */
@@ -20,14 +43,33 @@
 /* Inputs :                                                                   */
 /*  - int mp : the index of the element that we want to check in map array    */
 /*  - t_c3d_data *c3d : pointer to struct that contained datas about c3d      */
+/*  - int dir the dir of the wall hitten                                      */
 /* Return :                                                                   */
 /*  - 1 : if the element is a wall                                            */
 /*  - 0 : otherwise                                                           */
 /* ************************************************************************** */
-int	check_hit_wall(int mp, t_c3d_data *c3d)
+int	check_hit_wall(int mp, t_c3d_data *c3d, int dir)
 {
+	int	d;
+
 	if ((mp > 0) && (mp < c3d->maze.nb_col * c3d->maze.nb_line))
 	{
+		if (BONUS_DOOR == 1)
+		{
+			if (c3d->maze.map[mp] == '2' || c3d->maze.map[mp] == '3')
+			{
+				d = calc_wall_dist(c3d);
+				update_doors(c3d, mp, d);
+			}
+			if (c3d->maze.map[mp] == '2')
+			{
+				if (dir == 0)
+					c3d->ray.hit_h_door = 1;
+				else
+					c3d->ray.hit_v_door = 1;
+				return (1);
+			}
+		}
 		if (c3d->maze.map[mp] == '1')
 			return (1);
 	}

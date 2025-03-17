@@ -4,3 +4,5 @@
 */libft/libft.a
 */.cub3d
 clean_version
+.gitignore
+cub3d_pre_merge

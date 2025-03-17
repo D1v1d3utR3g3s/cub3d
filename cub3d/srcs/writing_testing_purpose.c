@@ -12,6 +12,26 @@
 
 #include "../includes/c3DBasic.h"
 
+void	display_anim_pos(t_c3d_data *c3d)
+{
+	int	x;
+	int	y;
+
+	x = c3d->anim.wall_id % c3d->maze.nb_col;
+	y = c3d->anim.wall_id / c3d->maze.nb_col;
+	printf("animation id %d (%d, %d) | dir ", c3d->anim.wall_id, x, y);
+	if (c3d->anim.dir == NORTH)
+		printf("North\n");
+	else if (c3d->anim.dir == EAST)
+		printf("East\n");
+	else if (c3d->anim.dir == SOUTH)
+		printf("South\n");
+	else if (c3d->anim.dir == WEST)
+		printf("West\n");
+	else
+		printf("NONE\n");
+}
+
 void	display_map(t_c3d_data c3d)
 {
 	int	i;

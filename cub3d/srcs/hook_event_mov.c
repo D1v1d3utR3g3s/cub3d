@@ -88,8 +88,6 @@ static int	which_delta_apply(t_c3d_data *c3d, float dir_a)
 
 	dx = calc_dx(c3d, dir_a);
 	dy = calc_dy(c3d, dir_a);
-	dx += calc_margin(dx);
-	dy += calc_margin(dy);
 	if (BONUS == 1)
 		return (mov_allow_wall(c3d, dx, dy));
 	else
@@ -123,13 +121,9 @@ void	move_dir(t_c3d_data *c3d, char dir)
 		c3d->player.py += dy;
 	}
 	else if (mov == 1)
-	{
 		c3d->player.px += dx;
-		display_player_pos(*c3d);
-	}
 	else if (mov == 2)
-	{
 		c3d->player.py += dy;
+	if (DISPLAY_DEBUG)
 		display_player_pos(*c3d);
-	}
 }

@@ -30,35 +30,3 @@ void	rot_dir(t_c3d_data *c3d, char dir)
 	else if (dir == 'R')
 		c3d->player.pa = update_angle(c3d->player.pa, c3d->player.rot_speed);
 }
-
-/******************************************************************************/
-/*                                  rot_left                                  */
-/* -------------------------------------------------------------------------- */
-/* This function applies the rotation to the player (left direction)          */
-/* Input :                                                                    */
-/*  - t_c3d_data *c3d : pointer to struct that contained datas about c3d      */
-/* Return :                                                                   */
-/*  - None                                                                    */
-/******************************************************************************/
-/*void	rot_left(t_c3d_data *c3d)
-{
-	c3d->player.pa -= c3d->player.rot_speed;
-	if (c3d->player.pa < 0)
-		c3d->player.pa += 2 * M_PI;
-}*/
-
-/******************************************************************************/
-/*                                 rot_right                                  */
-/* -------------------------------------------------------------------------- */
-/* This function applies the rotation to the player (right direction)         */
-/* Input :                                                                    */
-/*  - t_c3d_data *c3d : pointer to struct that contained datas about c3d      */
-/* Return :                                                                   */
-/*  - None                                                                    */
-/******************************************************************************/
-/*void	rot_right(t_c3d_data *c3d)
-{
-	c3d->player.pa += c3d->player.rot_speed;
-	if (c3d->player.pa > 2 * M_PI)
-		c3d->player.pa -= 2 * M_PI;
-}*/

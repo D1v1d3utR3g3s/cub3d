@@ -48,8 +48,6 @@ typedef struct s_mlx
 
 typedef struct s_event
 {
-//	int f_xk_up;
-//	int f_xk_down;
 	int	f_xk_left;
 	int	f_xk_right;
 	int	f_xk_w;

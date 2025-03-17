@@ -23,22 +23,13 @@ typedef struct s_maze
 	char	*map;
 }	t_maze;
 
-/*typedef struct s_line
-{
-	int	x;
-	int	y;
-	int	text_y0;
-	int	text_yn;
-	int	tex_x;
-	int	tex_y;
-}	t_line;*/
-
 typedef struct s_map_col
 {
 	t_mlx_img	tex_no;
 	t_mlx_img	tex_so;
 	t_mlx_img	tex_we;
 	t_mlx_img	tex_ea;
+	t_mlx_img	tex_door;
 	int			background;
 	int			no;
 	int			ea;
@@ -47,7 +38,6 @@ typedef struct s_map_col
 	int			f;
 	int			c;
 	int			*col;
-//	t_line		line;
 }	t_map_col;
 
 typedef struct s_texture
@@ -59,5 +49,21 @@ typedef struct s_texture
 	int		F;
 	int		C;
 }	t_texture;
+
+typedef struct s_minimap
+{
+	float	coef;
+	int		x0;
+	int		y0;
+	int		w;
+	int		h;
+	int		w_tile;
+	int		mmp_x;
+	int		mmp_y;
+	float	mmp_px;
+	float	mmp_py;
+	float	mmp_dx;
+	float	mmp_dy;
+}	t_minimap;
 
 #endif

@@ -28,7 +28,6 @@ void	init_col_array(int **col_map, int size)
 	int	i;
 
 	i = 0;
-	// check before to display err msg, clean and exit so not necessary
 	if (!(*col_map))
 		display_error("color array not created\n");
 	while (i < size)

@@ -37,6 +37,13 @@ void	clear_textures(t_c3d_data *c3d)
 }
 
 /* ************************************************************************** */
+/*                             clear_img_texture                              */
+/* -------------------------------------------------------------------------- */
+/* This function clears the different image associated to texture image       */
+/* Input :                                                                    */
+/*  - t_c3d_data *c3d : a pointer to a struct that contained datas to clear   */
+/* Return :                                                                   */
+/*  - None                                                                    */
 /* ************************************************************************** */
 static void	clear_img_texture(t_c3d_data *c3d)
 {
@@ -48,6 +55,39 @@ static void	clear_img_texture(t_c3d_data *c3d)
 		mlx_destroy_image(c3d->mlx.mlx_ptr, c3d->m_col.tex_so.mlx_img);
 	if (c3d->m_col.tex_we.mlx_img)
 		mlx_destroy_image(c3d->mlx.mlx_ptr, c3d->m_col.tex_we.mlx_img);
+	if (BONUS_DOOR && c3d->m_col.tex_door.mlx_img)
+		mlx_destroy_image(c3d->mlx.mlx_ptr, c3d->m_col.tex_door.mlx_img);
+}
+
+/* ************************************************************************** */
+/*                                 clear_anim                                 */
+/* -------------------------------------------------------------------------- */
+/* This function clears the different element of struct anim                  */
+/* Every element that have been malloced are also free to be leaks free       */
+/* Input :                                                                    */
+/*  - t_c3d_data *c3d : a pointer to a struct that contained datas to clear   */
+/* Return :                                                                   */
+/*  - None                                                                    */
+/* ************************************************************************** */
+static void	clear_anim(t_c3d_data *c3d)
+{
+	int		i;
+	t_anim	*anim;
+
+	i = 0;
+	anim = &(c3d->anim);
+	if (anim->sprite)
+	{
+		while (i < anim->nb_anim)
+		{
+			if (anim->sprite[i].mlx_img)
+				mlx_destroy_image(c3d->mlx.mlx_ptr, anim->sprite[i].mlx_img);
+			i++;
+		}
+		free(anim->sprite);
+	}
+	if (anim->anim_dir)
+		free(anim->anim_dir);
 }
 
 /* ************************************************************************** */
@@ -68,6 +108,8 @@ void	clear_data(t_c3d_data *c3d)
 
 	mlx = &(c3d->mlx);
 	clear_textures(c3d);
+	if (BONUS_ANIM)
+		clear_anim(c3d);
 	if (c3d && c3d->maze.map)
 	{
 		free(c3d->maze.map);
@@ -85,4 +127,6 @@ void	clear_data(t_c3d_data *c3d)
 	}
 	if (c3d->m_col.col)
 		free(c3d->m_col.col);
+	if (BONUS_DOOR)
+		free(c3d->doors.dist);
 }

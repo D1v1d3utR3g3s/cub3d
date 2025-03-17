@@ -18,12 +18,15 @@ endif
 # FILES
 SOURCES = main.c clean.c colors.c display_img_mlx.c display.c error.c\
 hook_event_close.c hook_event_mov.c hook_event_rot.c hook_event_utils.c\
-hook_event.c init_colors_data.c init_mlx.c init.c \
+hook_event.c init_colors_data.c init_game.c init_mlx.c init.c \
 raycast_intersect_utils.c raycast_intersect.c raycasting.c update.c utils.c\
-debug_checks_raw_data.c checks_raw_data_2.c checks_raw_data_3.c checks_raw_data.c parse_scene_2.c\
-parse_scene_3.c parse_scene.c map_closure_checks.c load_scene.c checks_args.c\
+utils_math.c debug_checks_raw_data.c checks_raw_data_2.c checks_raw_data_3.c\
+checks_raw_data.c parse_scene_3.c parse_scene_2.c parse_scene.c\
+ map_closure_checks.c load_scene.c checks_args.c\
 textures.c textures_utils.c \
-wall_collision.c writing_testing_purpose.c
+bonus_minimap.c bonus_minimap_utils.c bonus_mouse.c bonus_doors.c\
+bonus_wall_collision.c bonus_anim.c bonus_anim_utils.c time_fct.c\
+writing_testing_purpose.c
 
 OBJECTS = $(SOURCES:.c=.o)
 

@@ -12,14 +12,33 @@
 
 #include "../includes/c3DBasic.h"
 
-int	check_in_window(t_c3d_data *c3d, int x, int y)
+/* ************************************************************************** */
+/*                               update_ray_hit                               */
+/* -------------------------------------------------------------------------- */
+/* This function updates ray datas associated to hor or ver intersection      */
+/* Inputs :                                                                   */
+/*  - t_c3d_data *c3d : pointer to struct that contained datas about c3d      */
+/*  - t_ray *ray : pointer to struct that contained datas about ray           */
+/*  - int dir : 0 if horizontal intersection, 1 if vertical intersection      */
+/* Return :                                                                   */
+/*  - NONE                                                                    */
+/* ************************************************************************** */
+static void	update_ray_hit(t_c3d_data *c3d, t_ray *ray, int dir)
 {
-	if (((x < 0) || (x >= c3d->maze.nb_col * c3d->maze.w_tile))
-		|| ((y < 0) || (y >= c3d->maze.nb_line * c3d->maze.w_tile)))
+	if (dir == 0)
 	{
-		return (0);
+		ray->hx = ray->rx;
+		ray->hy = ray->ry;
+		ray->dh = calc_d(c3d->player.px, c3d->player.py, ray->hx, ray->hy);
+		ray->hit_h = 1;
 	}
-	return (1);
+	else
+	{
+		ray->vx = ray->rx;
+		ray->vy = ray->ry;
+		ray->dv = calc_d(c3d->player.px, c3d->player.py, ray->vx, ray->vy);
+		ray->hit_v = 1;
+	}
 }
 
 /* ************************************************************************** */
@@ -57,6 +76,7 @@ static int	init_hor_intersect(t_c3d_data *c3d)
 	{
 		ray->ry = c3d->player.py;
 		ray->rx = c3d->player.px;
+//		ray->hit_h = 1;
 		return (8);
 	}
 	return (0);
@@ -76,29 +96,19 @@ static int	init_hor_intersect(t_c3d_data *c3d)
 /* ************************************************************************** */
 void	hor_intersect(t_c3d_data *c3d)
 {
-	int		dof;
-	int		mp;
 	t_ray	*ray;
 
 	ray = &(c3d->ray);
-	dof = init_hor_intersect(c3d);
+	init_hor_intersect(c3d);
 	if (!check_in_window(c3d, ray->rx, ray->ry))
 	{
 		c3d->ray.wall_dir = -1;
 		return ;
 	}
-	while (dof < 8)
+	while (ray->hit_h == 0)
 	{
-		mp = calc_mp(ray, c3d);
-		/*if (mp < 0 || mp >= c3d->maze.nb_col * c3d->maze.nb_line)
-			return ;*/
-		if (check_hit_wall(mp, c3d))
-		{
-			ray->hx = ray->rx;
-			ray->hy = ray->ry;
-			ray->dh = calc_d(c3d->player.px, c3d->player.py, ray->hx, ray->hy);
-			dof = 8;
-		}
+		if (check_hit_wall(calc_mp(ray, c3d), c3d, 0))
+			update_ray_hit(c3d, ray, 0);
 		else
 		{
 			if (!check_in_window(c3d, ray->rx + ray->dx, ray->ry + ray->dy))
@@ -108,7 +118,6 @@ void	hor_intersect(t_c3d_data *c3d)
 			}
 			ray->rx += ray->dx;
 			ray->ry += ray->dy;
-			dof++;
 		}
 	}
 }
@@ -148,6 +157,7 @@ static int	init_ver_intersect(t_c3d_data *c3d)
 	{
 		ray->ry = c3d->player.py;
 		ray->rx = c3d->player.px;
+//		ray->hit_v = 1;
 		return (8);
 	}
 	return (0);
@@ -167,29 +177,19 @@ static int	init_ver_intersect(t_c3d_data *c3d)
 /* ************************************************************************** */
 void	ver_intersect(t_c3d_data *c3d)
 {
-	int		dof;
-	int		mp;
 	t_ray	*ray;
 
 	ray = &(c3d->ray);
-	dof = init_ver_intersect(c3d);
+	init_ver_intersect(c3d);
 	if (!check_in_window(c3d, ray->rx, ray->ry))
 	{
 		c3d->ray.wall_dir = -1;
 		return ;
 	}
-	while (dof < 8)
+	while (ray->hit_v == 0)
 	{
-		mp = calc_mp(ray, c3d);
-		/*if (mp < 0 || mp >= c3d->maze.nb_col * c3d->maze.nb_line)
-			return ;*/
-		if (check_hit_wall(mp, c3d))
-		{
-			ray->vx = ray->rx;
-			ray->vy = ray->ry;
-			ray->dv = calc_d(c3d->player.px, c3d->player.py, ray->vx, ray->vy);
-			dof = 8;
-		}
+		if (check_hit_wall(calc_mp(ray, c3d), c3d, 1))
+			update_ray_hit(c3d, ray, 1);
 		else
 		{
 			if (!check_in_window(c3d, ray->rx + ray->dx, ray->ry + ray->dy))
@@ -199,7 +199,6 @@ void	ver_intersect(t_c3d_data *c3d)
 			}
 			ray->rx += ray->dx;
 			ray->ry += ray->dy;
-			dof++;
 		}
 	}
 }

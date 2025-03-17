@@ -13,8 +13,18 @@
 #include "../includes/c3DBasic.h"
 
 /* ************************************************************************** */
+/*                           update_nearest_ray_hit                           */
+/* -------------------------------------------------------------------------- */
+/* This function updates nearest hit datas (rx, ry, dist_wall)                */
+/* Inputs :                                                                   */
+/*  - t_ray *ray : pointer to structure that contained ray datas              */
+/*  - int x : the x coordinate to associate to rx                             */
+/*  - int y : the y coordinate to associate to ry                             */
+/*  - int dist : distance between the player and the nearest hit of a wall    */
+/* Return :                                                                   */
+/*  - None                                                                    */
 /* ************************************************************************** */
-static void	update_ray_hit(t_ray *ray, int x, int y, int dist)
+static void	update_nearest_ray_hit(t_ray *ray, int x, int y, int dist)
 {
 	ray->rx = x;
 	ray->ry = y;
@@ -38,22 +48,22 @@ static void	nearest_intersect(t_c3d_data *c3d)
 	t_ray	*ray;
 
 	ray = &(c3d->ray);
-	if ((ray->dh == -1) && (ray->dv == -1))
+	if ((ray->hit_h == 0) && (ray->hit_v == 0))
 	{
 		ray->rx = c3d->player.px;
 		ray->ry = c3d->player.py;
 	}
-	else if ((ray->dh == -1) || ((ray->dv != -1) && (ray->dv <= ray->dh)))
+	else if ((ray->hit_h == 0) || ((ray->hit_v != 0) && (ray->dv <= ray->dh)))
 	{
-		update_ray_hit(ray, ray->vx, ray->vy, ray->dv);
+		update_nearest_ray_hit(ray, ray->vx, ray->vy, ray->dv);
 		if (face_right(ray->ra))
 			ray->wall_dir = EAST;
 		else
 			ray->wall_dir = WEST;
 	}
-	else if ((ray->dv == -1) || ((ray->dh != -1) && (ray->dh < ray->dv)))
+	else if ((ray->hit_v == 0) || ((ray->hit_h != 0) && (ray->dh < ray->dv)))
 	{
-		update_ray_hit(ray, ray->hx, ray->hy, ray->dh);
+		update_nearest_ray_hit(ray, ray->hx, ray->hy, ray->dh);
 		if (face_down(ray->ra))
 			ray->wall_dir = SOUTH;
 		else
@@ -106,7 +116,7 @@ static void	colorise_wall_height(int ray_nb, t_c3d_data *c3d)
 	line_h = (c3d->maze.w_tile * delta) / d;
 	if (line_h < 0)
 		line_h = 0;
-	extract_slice_texture(&c3d->mlx, c3d, ray_nb, line_h);
+	extract_slice_tex(&c3d->mlx, c3d, ray_nb, line_h);
 }
 
 /* ************************************************************************** */
@@ -133,6 +143,8 @@ void	raycast(t_c3d_data *c3d)
 	a = update_angle(c3d->player.pa, deg_to_rad(-fov / 2));
 	init_ray(c3d, a);
 	da = deg_to_rad(fov) / c3d->mlx.w;
+	if (BONUS_DOOR)
+		init_doors_val(c3d);
 	while (n_ray < c3d->mlx.w)
 	{
 		c3d->ray.wall_dir = -1;

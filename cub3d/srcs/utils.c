@@ -13,21 +13,24 @@
 #include "../includes/c3DBasic.h"
 
 /* ************************************************************************** */
-/*                                   calc_d                                   */
+/*                              check_in_window                               */
 /* -------------------------------------------------------------------------- */
-/* This function calculates the distance between a(ax, ay) and b(bx, by)      */
-/* rq : ab is the hypothenus                                                  */
+/* This function checks if the pixel (x, y) is in the window                  */
 /* Inputs :                                                                   */
-/*  - float ax : the x coordinate of a                                        */
-/*  - float ay : the y coordinate of a                                        */
-/*  - float bx : the x coordinate of b                                        */
-/*  - float by : the y coordinate of b                                        */
+/*  - t_c3d_data *c3d : pointer to a struct that contained necessary datas    */
+/*  - int x : x coordinate to check                                           */
+/*  - int y : y coordinate to check                                           */
 /* Return :                                                                   */
-/*  - float : the size of the hypothenus connecting a and b                   */
+/*  - 1 : if pixel (x, y) is in the window                                    */
+/*  - 0 : otherwise                                                           */
 /* ************************************************************************** */
-float	calc_d(float ax, float ay, float bx, float by)
+int	check_in_window(t_c3d_data *c3d, int x, int y)
 {
-	return (sqrt(pow((bx - ax), 2) + pow((by - ay), 2)));
+	if ((x < 0) || (x >= c3d->maze.nb_col * c3d->maze.w_tile))
+		return (0);
+	if ((y < 0) || (y >= c3d->maze.nb_line * c3d->maze.w_tile))
+		return (0);
+	return (1);
 }
 
 /* ************************************************************************** */
@@ -64,34 +67,4 @@ int	face_right(float rad)
 	if (rad < M_PI / 2 || rad > 3 * M_PI / 2)
 		return (1);
 	return (0);
-}
-
-/* ************************************************************************** */
-/*                                 rad_to_deg                                 */
-/* -------------------------------------------------------------------------- */
-/* This function cconverts the radian angle given in input into an angle in   */
-/* deg                                                                        */
-/* Input :                                                                    */
-/*  - float rad : the angle to convert                                        */
-/* Return :                                                                   */
-/*  - float : the converted angle                                             */
-/* ************************************************************************** */
-float	rad_to_deg(float rad)
-{
-	return (rad * 180 / M_PI);
-}
-
-/* ************************************************************************** */
-/*                                 deg_to_rad                                 */
-/* -------------------------------------------------------------------------- */
-/* This function cconverts the degree angle given in input into an angle in   */
-/* radian                                                                     */
-/* Input :                                                                    */
-/*  - float deg : the angle to convert                                        */
-/* Return :                                                                   */
-/*  - float : the converted angle                                             */
-/* ************************************************************************** */
-float	deg_to_rad(float deg)
-{
-	return (deg * M_PI / 180);
 }
