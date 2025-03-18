@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 04:45:51 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/03/04 08:00:03 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/18 15:05:50 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	is_not_an_adequate_char(int *walls_nb, const char c)
 {
 	if (*walls_nb == 0 && c == '0')
 		return (1);
-	if (c == '1')
+	if (c == '1' || c == '2' || c == '3')
 		(*walls_nb)++;
 	if (c == '_')
 		*walls_nb = 0;
