@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 12:34:16 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/19 19:06:59 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/18 11:55:00 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,25 +65,25 @@ void	debug_elements(ssize_t *elements, char *raw_data, ssize_t len)
 void	debug_c3d_data(t_c3d_data *c3d)
 {
 	printf("c3d->error_msg : \"%s\"\n", c3d->error_msg);
-	printf("\"North texture\" path : \"%s\"\n", c3d->textures.NO);
-	printf("\"South texture\" path : \"%s\"\n", c3d->textures.SO);
-	printf("\"West texture\" path : \"%s\"\n", c3d->textures.WE);
-	printf("\"East texture\" path : \"%s\"\n", c3d->textures.EA);
-	printf("\"Floor color\" : %d\n", c3d->textures.F);
-	printf("\"Ceiling color\" : %d\n", c3d->textures.C);
+	printf("\"North texture\" path : \"%s\"\n", c3d->textures.no);
+	printf("\"South texture\" path : \"%s\"\n", c3d->textures.so);
+	printf("\"West texture\" path : \"%s\"\n", c3d->textures.we);
+	printf("\"East texture\" path : \"%s\"\n", c3d->textures.ea);
+	printf("\"Floor color\" : %d\n", c3d->textures.f);
+	printf("\"Ceiling color\" : %d\n", c3d->textures.c);
 	if (!c3d->maze.map)
 		printf("\"Map\" - number of lines : %d - \
 number of columns : %d - \n\"%s\"\n",
-		c3d->maze.nb_line, c3d->maze.nb_col, c3d->maze.map);
+			c3d->maze.nb_line, c3d->maze.nb_col, c3d->maze.map);
 	else
 		printf("\"Map\" - number of lines : %d - \
 number of columns : %d - \n\"%s\"\n - c3d->maze.map length : %ld - \
 %ld %% %d = %ld - %ld / %d = %ld\n",
-		c3d->maze.nb_line, c3d->maze.nb_col, c3d->maze.map,
-		ft_strlen(c3d->maze.map), ft_strlen(c3d->maze.map),
-		c3d->maze.nb_col, ft_strlen(c3d->maze.map) % c3d->maze.nb_col,
-		ft_strlen(c3d->maze.map), c3d->maze.nb_col,
-		ft_strlen(c3d->maze.map) / c3d->maze.nb_col);
+			c3d->maze.nb_line, c3d->maze.nb_col, c3d->maze.map,
+			ft_strlen(c3d->maze.map), ft_strlen(c3d->maze.map),
+			c3d->maze.nb_col, ft_strlen(c3d->maze.map) % c3d->maze.nb_col,
+			ft_strlen(c3d->maze.map), c3d->maze.nb_col,
+			ft_strlen(c3d->maze.map) / c3d->maze.nb_col);
 	printf("\"Player\" px : %.2f - py : %.2f - pa : %.2f - dx : %.2f - \
 dy : %.2f - da : %.2f - fov : %d\n", c3d->player.px, c3d->player.py,
 		c3d->player.pa, c3d->player.dx, c3d->player.dy, c3d->player.da,

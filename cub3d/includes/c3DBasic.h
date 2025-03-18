@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:35:18 by rmorice           #+#    #+#             */
-/*   Updated: 2025/03/05 02:10:43 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/18 11:16:22 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,8 +229,7 @@ void		init_col_array(int **col, int size);
 int			init_col(t_c3d_data *c3d);
 
 // init_game.c
-//void		init_game(t_c3d_data *c3d);
-void	init_game(t_c3d_data *c3d, const char *file_path);
+void		init_game(t_c3d_data *c3d, const char *file_path);
 
 // init_mlx.c
 int			init_mlx_data(t_mlx *mlx);
@@ -306,7 +305,8 @@ int			parse(t_c3d_data *c3d, ssize_t *elements, char **raw_data,
 int			load_scene(t_c3d_data *c3d, const char *file_path);
 
 // checks_raw_data_2.c
-void		find_elements_indexes(ssize_t *elements, char *raw_data, ssize_t len);
+void		find_elements_indexes(ssize_t *elements, char *raw_data,
+				ssize_t len);
 
 // checks_raw_data_3.c
 int			remove_ending_spaces_of_each_line_into_map(char **str, ssize_t *len,

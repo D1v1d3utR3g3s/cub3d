@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 12:30:10 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/03/04 15:14:59 by rmorice          ###   ########.fr       */
+/*   Updated: 2025/03/18 12:57:30 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,12 +115,12 @@ void	init_event(t_event *event)
 int	init_c3d_data(t_c3d_data *c3d, const char *file_path)
 {
 	c3d->error_msg = NULL;
-	c3d->textures.NO = NULL;
-	c3d->textures.SO = NULL;
-	c3d->textures.WE = NULL;
-	c3d->textures.EA = NULL;
-	c3d->textures.F = encode_rgb(0, 0, 0);
-	c3d->textures.C = encode_rgb(0, 0, 0);
+	c3d->textures.no = NULL;
+	c3d->textures.so = NULL;
+	c3d->textures.we = NULL;
+	c3d->textures.ea = NULL;
+	c3d->textures.f = encode_rgb(0, 0, 0);
+	c3d->textures.c = encode_rgb(0, 0, 0);
 	if (load_scene(c3d, file_path) == 1)
 		return (1);
 	if (init_mlx_data(&(c3d->mlx)) == 1)
