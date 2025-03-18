@@ -108,8 +108,6 @@ void	clear_data(t_c3d_data *c3d)
 
 	mlx = &(c3d->mlx);
 	clear_textures(c3d);
-	if (BONUS_ANIM)
-		clear_anim(c3d);
 	if (c3d && c3d->maze.map)
 	{
 		free(c3d->maze.map);
@@ -122,6 +120,8 @@ void	clear_data(t_c3d_data *c3d)
 		if (mlx->win_ptr)
 			mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 		clear_img_texture(c3d);
+		if (BONUS_ANIM)
+			clear_anim(c3d);
 		mlx_destroy_display(mlx->mlx_ptr);
 		free(mlx->mlx_ptr);
 	}
