@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:17:11 by rmorice           #+#    #+#             */
-/*   Updated: 2025/03/04 04:03:54 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:02:50 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ void	init_textures(t_c3d_data *c3d)
 	char	*str_door;
 
 	str_door = "associated_textures/doors/door.xpm";
-	c3d->m_col.tex_no = load_xpm_textures(c3d, &c3d->mlx, c3d->textures.NO);
-	c3d->m_col.tex_ea = load_xpm_textures(c3d, &c3d->mlx, c3d->textures.EA);
-	c3d->m_col.tex_so = load_xpm_textures(c3d, &c3d->mlx, c3d->textures.SO);
-	c3d->m_col.tex_we = load_xpm_textures(c3d, &c3d->mlx, c3d->textures.WE);
+	c3d->m_col.tex_no = load_xpm_textures(c3d, &c3d->mlx, c3d->textures.no);
+	c3d->m_col.tex_ea = load_xpm_textures(c3d, &c3d->mlx, c3d->textures.ea);
+	c3d->m_col.tex_so = load_xpm_textures(c3d, &c3d->mlx, c3d->textures.so);
+	c3d->m_col.tex_we = load_xpm_textures(c3d, &c3d->mlx, c3d->textures.we);
 	if (BONUS_DOOR == 1)
 		c3d->m_col.tex_door = load_xpm_textures(c3d, &c3d->mlx, str_door);
 }
