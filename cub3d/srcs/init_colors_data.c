@@ -59,6 +59,7 @@ int	init_col(t_c3d_data *c3d)
 	m_col->ea = encode_rgb(111, 114, 133);
 	m_col->f = encode_rgb(67, 97, 117);
 	m_col->c = encode_rgb(20, 66, 90);
+	m_col->col = NULL;
 	m_col->col = malloc(sizeof(int) * c3d->mlx.w * c3d->mlx.h);
 	if (!m_col->col)
 		err_clear_exit("malloc error\n", c3d);
