@@ -39,6 +39,8 @@ static int	check_obstacle(t_c3d_data *c3d, int x, int y, int w_tile)
 		return (1);
 	if (c3d->maze.map[my * c3d->maze.nb_col + mx] == '1')
 		return (1);
+	if (c3d->maze.map[my * c3d->maze.nb_col + mx] == '_')
+		return (1);
 	if (BONUS_DOOR)
 	{
 		if (c3d->maze.map[my * c3d->maze.nb_col + mx] == '2')

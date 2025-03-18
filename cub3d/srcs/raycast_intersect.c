@@ -76,7 +76,6 @@ static int	init_hor_intersect(t_c3d_data *c3d)
 	{
 		ray->ry = c3d->player.py;
 		ray->rx = c3d->player.px;
-//		ray->hit_h = 1;
 		return (8);
 	}
 	return (0);
@@ -157,7 +156,6 @@ static int	init_ver_intersect(t_c3d_data *c3d)
 	{
 		ray->ry = c3d->player.py;
 		ray->rx = c3d->player.px;
-//		ray->hit_v = 1;
 		return (8);
 	}
 	return (0);

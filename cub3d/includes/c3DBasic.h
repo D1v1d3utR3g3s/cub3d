@@ -35,6 +35,8 @@
 # define DISPLAY_DEBUG 0
 
 # define NO_COL -16777216
+# define ROT_SPEED 0.1
+# define MOV_SPEED 3.4
 
 // ENUM
 enum	e_cardinal

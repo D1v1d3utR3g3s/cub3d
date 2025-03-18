@@ -12,7 +12,6 @@
 
 #include "../includes/c3DBasic.h"
 
-
 ////////////////////////////////////////////////////////////////////////////////
 ///                                 TO DO :                                  ///
 /// ------------------------------------------------------------------------ ///
@@ -36,10 +35,15 @@ static void	init_clearable_datas(t_c3d_data *c3d)
 	c3d->mlx.mlx_ptr = NULL;
 	c3d->mlx.win_ptr = NULL;
 	c3d->mlx.img_ptr.mlx_img = NULL;
+	c3d->mlx.img_ptr.addr = NULL;
 	c3d->m_col.tex_no.mlx_img = NULL;
+	c3d->m_col.tex_no.addr = NULL;
 	c3d->m_col.tex_so.mlx_img = NULL;
+	c3d->m_col.tex_so.addr = NULL;
 	c3d->m_col.tex_ea.mlx_img = NULL;
+	c3d->m_col.tex_ea.addr = NULL;
 	c3d->m_col.tex_we.mlx_img = NULL;
+	c3d->m_col.tex_we.addr = NULL;
 	c3d->m_col.col = NULL;
 	if (BONUS_DOOR)
 	{

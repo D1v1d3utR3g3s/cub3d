@@ -146,7 +146,7 @@ void	extract_slice_tex(t_mlx *mlx, t_c3d_data *c3d, int x, int line_h)
 	offset_x = determine_offset_x(c3d);
 	while (init_y <= end_y)
 	{
-		if (init_y >= 0 && init_y <= mlx->h)
+		if (init_y >= 0 && init_y < mlx->h)
 		{
 			col = get_color(c3d, init_y, offset_x, line_h);
 			c3d->m_col.col[init_y * mlx->w + x] = col;

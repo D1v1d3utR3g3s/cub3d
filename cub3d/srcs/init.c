@@ -47,8 +47,8 @@ void	init_player(t_player *player)
 	player->dy = -1;
 	player->da = 0;
 	player->fov = 60;
-	player->mov_speed = 5;
-	player->rot_speed = 0.1;
+	player->mov_speed = MOV_SPEED;
+	player->rot_speed = ROT_SPEED;
 }
 
 /* ************************************************************************** */
@@ -124,6 +124,9 @@ int	init_c3d_data(t_c3d_data *c3d, const char *file_path)
 	if (load_scene(c3d, file_path) == 1)
 		return (1);
 	if (init_mlx_data(&(c3d->mlx)) == 1)
-		return (1);
+	{
+		clear_data(c3d);
+		exit(1);
+	}
 	return (0);
 }

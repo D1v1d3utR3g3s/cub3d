@@ -37,6 +37,11 @@ static int	init_image(t_mlx *mlx)
 	}
 	mlx->img_ptr.addr = mlx_get_data_addr(mlx->img_ptr.mlx_img,
 			&mlx->img_ptr.bpp, &mlx->img_ptr.line_len, &mlx->img_ptr.endian);
+	if (!mlx->img_ptr.addr)
+	{
+		display_error("extract datas mlx file\n");
+		return (1);
+	}
 	return (0);
 }
 
@@ -85,11 +90,11 @@ int	init_mlx_data(t_mlx *mlx)
 	if (mlx->mlx_ptr == NULL)
 	{
 		display_error("with the mlx initialisation\n");
-		exit (1);
+		return (1);
 	}
 	if (init_window(mlx) == 1)
-		exit (1);
+		return (1);
 	if (init_image(mlx) == 1)
-		exit (1);
+		return (1);
 	return (0);
 }
