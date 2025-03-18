@@ -6,7 +6,7 @@
 #    By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 09:21:28 by rmorice           #+#    #+#              #
-#    Updated: 2024/07/04 11:17:12 by rmorice          ###   ########.fr        #
+#    Updated: 2025/03/18 13:27:41 by hauerbac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ OBJS_DIR	= objs/
 HEAD_DIR	= includes/
 
 CC			= cc
-FLAGS		= -Wall -Wextra -Werror -g3 -gdwarf-2
+FLAGS		= -Wall -Wextra -Werror -g3
 AR			= ar -rc -s
 
 CHECK_SRCS	= ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c

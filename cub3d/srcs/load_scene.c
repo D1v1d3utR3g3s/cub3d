@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 17:38:36 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/19 15:28:23 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:25:19 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ static int	concatene(char **raw_data, int *nb_lines, char **error_msg,
 /*  - const char *file_path : a scene file path                               */
 /* Return :                                                                   */
 /*  - 0 : if everything went well and was created successfully                */
-/*  - 1 : if a problem has be encountered                                     */
+/*  - 1 : if a problem has be encountered                              */
 /* ************************************************************************** */
 static int	read_file(char **raw_data, int *nb_lines, char **error_msg,
 				const char *file_path)
@@ -125,6 +125,11 @@ static int	read_file(char **raw_data, int *nb_lines, char **error_msg,
 	{
 		if (result == 0)
 			*error_msg = ".cub file close failed\n";
+		result = 1;
+	}
+	if (result == 0 && *nb_lines == 0)
+	{
+		*error_msg = "Empty .cub file\n";
 		result = 1;
 	}
 	return (result);
@@ -163,6 +168,5 @@ int	load_scene(t_c3d_data *c3d, const char *file_path)
 		free_raw_data(&raw_data, &nb_lines);
 	if (result == 0 && c3d->maze.map)
 		result = closure_checks(&c3d->error_msg, c3d->maze);
-	debug_c3d_data(c3d);
 	return (result);
 }

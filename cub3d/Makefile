@@ -12,7 +12,7 @@ NAME		= cub3D
 
 DEBUG := 0
 ifeq ($(DEBUG), 1)
-	FLAGS += -g3 -gdwarf-2
+	FLAGS += -g3
 endif
 
 # FILES
