@@ -36,7 +36,6 @@ void	display_map(t_c3d_data c3d)
 {
 	int	i;
 
-	printf("\n\n");
 	i = 0;
 	while (c3d.maze.map[i])
 	{
@@ -55,4 +54,10 @@ void	display_player_pos(t_c3d_data c3d)
 	printf("(%f, %f) | ", c3d.player.px, c3d.player.py);
 	printf("(%d, ", (int)((c3d.player.px - w_tile / 2) / w_tile));
 	printf("%d)\n", (int)((c3d.player.py - w_tile / 2) / w_tile));
+}
+
+void	display_map_and_player(t_c3d_data c3d)
+{
+	display_map(c3d);
+	display_player_pos(c3d);
 }

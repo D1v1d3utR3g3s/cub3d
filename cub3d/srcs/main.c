@@ -20,9 +20,9 @@
 ///   - remove ft_strtrim modif (needed for my system at home)               ///
 ///   - change window size                                          - DONE   ///
 ///   - adapt view (player ~ half the size of a wall)               - DONE   ///
-///   - update rotation and movement speed                                   ///
+///   - update rotation and movement speed                          - DONE   ///
 ///   - remove hard programmation part                       - IN PROGRESS   ///
-///   - check simultaneous multi keys event                                  ///
+///   - check simultaneous multi keys event                         - DONE   ///
 ///   - add textures to walls                                       - DONE   ///
 ///   - for now w_tile = 64px  => textures 64px * 64px                       ///
 /// ------------------------------------------------------------------------ ///
@@ -81,10 +81,7 @@ int	main(const int argc, const char **argv)
 //	init_game(&c3d);
 	init_game(&c3d, argv[1]);
 	if (DISPLAY_DEBUG)
-	{
-		display_map(c3d);
-		display_player_pos(c3d);
-	}
+		display_map_and_player(c3d);
 	loop_game(&c3d);
 	return (clear_data(&c3d), 0);
 }
