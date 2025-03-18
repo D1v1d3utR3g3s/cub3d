@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 18:31:08 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/03/05 02:32:02 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:34:41 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,10 +121,12 @@ int	first_checks(char **error_msg, ssize_t *elements, char *raw_data,
 		&& elements[F_COLOR_INDEX] < 0 && elements[C_COLOR_INDEX] < 0
 		&& elements[MAP_INDEX] != -1)
 		return (1);
+	if (first_checks_return(error_msg, elements) == 1)
+		return (1);
 	*error_msg = "There is an empty line into the \"Map\" element\n";
 	if (elements[MAP_INDEX] >= 0 && elements[MAP_LINES_NB] > 0
 		&& remove_ending_spaces_of_each_line_into_map(&raw_data, len, \
 				elements[MAP_INDEX]) < 0)
 		return (1);
-	return (first_checks_return(error_msg, elements));
+	return (0);
 }
