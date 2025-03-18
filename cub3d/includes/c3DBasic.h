@@ -92,7 +92,6 @@ typedef struct s_player
 	float	dy;
 	float	da;
 	int		fov;
-//	int		size;
 	float	mov_speed;
 	float	rot_speed;
 }	t_player;
@@ -229,7 +228,8 @@ void		init_col_array(int **col, int size);
 int			init_col(t_c3d_data *c3d);
 
 // init_game.c
-void		init_game(t_c3d_data *c3d, const char *file_path);
+//void		init_game(t_c3d_data *c3d);
+void	init_game(t_c3d_data *c3d, const char *file_path);
 
 // init_mlx.c
 int			init_mlx_data(t_mlx *mlx);
@@ -285,6 +285,7 @@ int			face_right(float rad);
 void		display_anim_pos(t_c3d_data *c3d);
 void		display_map(t_c3d_data c3d);
 void		display_player_pos(t_c3d_data c3d);
+void		display_map_and_player(t_c3d_data c3d);
 
 // map_closure_checks.c
 int			closure_checks(char **error_msg, t_maze maze);

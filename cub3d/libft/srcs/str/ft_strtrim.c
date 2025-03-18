@@ -91,7 +91,6 @@ static unsigned int	ft_strrlastset(char const *s, char const *set)
 	i = ft_strlen((char *)s) - 1;
 	while (s[i] != '\0')
 	{
-//		while ((i >= 0) && (ft_isinset(s[i], set)))
 		while ((i != 0) && (ft_isinset(s[i], set)))
 			i--;
 		if (!ft_isinset(s[i], set))
