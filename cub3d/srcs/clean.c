@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:32:44 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/03/03 21:30:15 by rmorice          ###   ########.fr       */
+/*   Updated: 2025/03/18 12:54:43 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 void	clear_textures(t_c3d_data *c3d)
 {
-	if (c3d && c3d->textures.NO)
+	if (c3d && c3d->textures.no)
 	{
-		free(c3d->textures.NO);
-		c3d->textures.NO = NULL;
+		free(c3d->textures.no);
+		c3d->textures.no = NULL;
 	}
-	if (c3d && c3d->textures.SO)
+	if (c3d && c3d->textures.so)
 	{
-		free(c3d->textures.SO);
-		c3d->textures.SO = NULL;
+		free(c3d->textures.so);
+		c3d->textures.so = NULL;
 	}
-	if (c3d && c3d->textures.WE)
+	if (c3d && c3d->textures.we)
 	{
-		free(c3d->textures.WE);
-		c3d->textures.WE = NULL;
+		free(c3d->textures.we);
+		c3d->textures.we = NULL;
 	}
-	if (c3d && c3d->textures.EA)
+	if (c3d && c3d->textures.ea)
 	{
-		free(c3d->textures.EA);
-		c3d->textures.EA = NULL;
+		free(c3d->textures.ea);
+		c3d->textures.ea = NULL;
 	}
 }
 
