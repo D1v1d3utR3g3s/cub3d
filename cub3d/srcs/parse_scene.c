@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 16:31:51 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/03/04 09:43:03 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/18 12:02:24 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ static int	is_a_valid_color_value(int *value, ssize_t *i, ssize_t end,
 		j++;
 	*i = j;
 	while (j >= 0 && j < end && (j - *i <= 2) && *value <= 255 && raw_data[j]
-			&& ft_isdigit(raw_data[j]))
+		&& ft_isdigit(raw_data[j]))
 	{
 		*value = (*value * 10) + (raw_data[j] - '0');
 		j++;
 	}
 	if (j < 0 || (j < end && !ft_isdigit(raw_data[j]) && raw_data[j] != ' '
-					&& raw_data[j] != ',') || (j - *i > 3) || *value > 255)
+			&& raw_data[j] != ',') || (j - *i > 3) || *value > 255)
 		return (0);
 	while (j >= 0 && j < end && raw_data[j] && raw_data[j] == ' ')
 		j++;
@@ -40,32 +40,32 @@ static int	is_a_valid_color_value(int *value, ssize_t *i, ssize_t end,
 }
 
 static int	check_rgb_colors(t_c3d_data *c3d, ssize_t *el,
-								const char *raw_data, ssize_t index)
+								const char *raw_data, ssize_t idx)
 {
 	ssize_t	i;
 	int		red;
 	int		green;
 	int		blue;
 
-	i = el[index];
-	if (check_commas_into_format(c3d, i, el[index] + el[index + 1], raw_data))
+	i = el[idx];
+	if (check_commas_into_format(c3d, i, el[idx] + el[idx + 1], raw_data))
 		return (-4);
 	red = 0;
 	green = 0;
 	blue = 0;
 	c3d->error_msg = "The R part for the color is not in [0, 255]\n";
-	if (!is_a_valid_color_value(&red, &i, el[index] + el[index + 1], raw_data))
+	if (!is_a_valid_color_value(&red, &i, el[idx] + el[idx + 1], raw_data))
 		return (-1);
 	c3d->error_msg = "The G part for the color is not in [0, 255]\n";
-	if (!is_a_valid_color_value(&green, &i, el[index] + el[index + 1], raw_data))
+	if (!is_a_valid_color_value(&green, &i, el[idx] + el[idx + 1], raw_data))
 		return (-2);
 	c3d->error_msg = "The B part for the color is not in [0, 255]\n";
-	if (!is_a_valid_color_value(&blue, &i, el[index] + el[index + 1], raw_data))
+	if (!is_a_valid_color_value(&blue, &i, el[idx] + el[idx + 1], raw_data))
 		return (-3);
-	if (index == F_COLOR_INDEX)
-		c3d->textures.F = red << 16 | green << 8 | blue;
-	else if (index == C_COLOR_INDEX)
-		c3d->textures.C = red << 16 | green << 8 | blue;
+	if (idx == F_COLOR_INDEX)
+		c3d->textures.f = red << 16 | green << 8 | blue;
+	else if (idx == C_COLOR_INDEX)
+		c3d->textures.c = red << 16 | green << 8 | blue;
 	return (0);
 }
 
@@ -73,13 +73,13 @@ static void	save_texture_file_path(t_c3d_data *c3d, char *file_path,
 									ssize_t index)
 {
 	if (index == NO_FILE_INDEX)
-		c3d->textures.NO = file_path;
+		c3d->textures.no = file_path;
 	if (index == SO_FILE_INDEX)
-		c3d->textures.SO = file_path;
+		c3d->textures.so = file_path;
 	if (index == WE_FILE_INDEX)
-		c3d->textures.WE = file_path;
+		c3d->textures.we = file_path;
 	if (index == EA_FILE_INDEX)
-		c3d->textures.EA = file_path;
+		c3d->textures.ea = file_path;
 }
 
 static int	check_texture_file_path(t_c3d_data *c3d, ssize_t *elements,
@@ -124,7 +124,7 @@ int	parse(t_c3d_data *c3d, ssize_t *el, char **raw_data, ssize_t len)
 		return (1);
 	if (check_rgb_colors(c3d, el, *raw_data, F_COLOR_INDEX) < 0)
 		return (1);
-	if (check_rgb_colors(c3d, el, *raw_data, C_COLOR_INDEX) < 0) 
+	if (check_rgb_colors(c3d, el, *raw_data, C_COLOR_INDEX) < 0)
 		return (1);
 	c3d->error_msg = NULL;
 	return (parse_map(c3d, el, raw_data, len));

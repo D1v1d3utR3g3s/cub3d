@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 19:07:51 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/03/05 05:43:03 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/18 11:38:49 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,36 +63,35 @@ static int	check_map(t_c3d_data *c3d, ssize_t *elements, char **raw_data,
 	if (j > elements[MAP_COLUMNS_NB])
 		elements[MAP_COLUMNS_NB] = j;
 	c3d->error_msg = NULL;
-	debug_elements(elements, *raw_data, len);
 	return (0);
 }
 
-static void     parse_map_char_and_player(t_c3d_data *c3d, ssize_t *k,
-                                                ssize_t *i, char *raw_data)
+static void	parse_map_char_and_player(t_c3d_data *c3d, ssize_t *k,
+										ssize_t *i, char *raw_data)
 {
-        int     x;
-        int     y;
+	int	x;
+	int	y;
 
-        if (raw_data[*i] == '\n' || raw_data[*i] == '\0')
-                return ;
-        c3d->maze.map[*k] = raw_data[*i];
-        if (raw_data[*i] == 'N' || raw_data[*i] == 'S'
-                || raw_data[*i] == 'E' || raw_data[*i] == 'W')
-        {
-                x = *k % c3d->maze.nb_col;
-                y = *k / c3d->maze.nb_col;
-                if (raw_data[*i] == 'N')
-                        update_player(c3d, x, y, 3 * M_PI / 2);
-                if (raw_data[*i] == 'S')
-                        update_player(c3d, x, y, M_PI / 2);
-                if (raw_data[*i] == 'E')
-                        update_player(c3d, x, y, 0);
-                if (raw_data[*i] == 'W')
-                        update_player(c3d, x, y, M_PI);
-                c3d->maze.map[*k] = '0';
-        }
-        (*k)++;
-        (*i)++;
+	if (raw_data[*i] == '\n' || raw_data[*i] == '\0')
+		return ;
+	c3d->maze.map[*k] = raw_data[*i];
+	if (raw_data[*i] == 'N' || raw_data[*i] == 'S'
+		|| raw_data[*i] == 'E' || raw_data[*i] == 'W')
+	{
+		x = *k % c3d->maze.nb_col;
+		y = *k / c3d->maze.nb_col;
+		if (raw_data[*i] == 'N')
+			update_player(c3d, x, y, 3 * M_PI / 2);
+		if (raw_data[*i] == 'S')
+			update_player(c3d, x, y, M_PI / 2);
+		if (raw_data[*i] == 'E')
+			update_player(c3d, x, y, 0);
+		if (raw_data[*i] == 'W')
+			update_player(c3d, x, y, M_PI);
+		c3d->maze.map[*k] = '0';
+	}
+	(*k)++;
+	(*i)++;
 }
 
 static int	init_maze_map(t_c3d_data *c3d, ssize_t *el, char **raw_data,
@@ -139,7 +138,7 @@ int	parse_map(t_c3d_data *c3d, ssize_t *el, char **raw_data,
 		parse_map_char_and_player(c3d, &k, &i, *raw_data);
 		j = k % el[MAP_COLUMNS_NB];
 		while (j > 0 && j < el[MAP_COLUMNS_NB]
-				&& ((*raw_data)[i] == '\n' || (*raw_data)[i] == '\0'))
+			&& ((*raw_data)[i] == '\n' || (*raw_data)[i] == '\0'))
 		{
 			c3d->maze.map[k++] = '_';
 			j++;

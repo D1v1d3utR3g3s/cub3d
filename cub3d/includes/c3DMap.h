@@ -6,7 +6,7 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:04:06 by rmorice           #+#    #+#             */
-/*   Updated: 2025/03/03 21:25:14 by rmorice          ###   ########.fr       */
+/*   Updated: 2025/03/18 11:51:23 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ typedef struct s_map_col
 
 typedef struct s_texture
 {
-	char	*NO;
-	char	*SO;
-	char	*EA;
-	char	*WE;
-	int		F;
-	int		C;
+	char	*no;
+	char	*so;
+	char	*ea;
+	char	*we;
+	int		f;
+	int		c;
 }	t_texture;
 
 typedef struct s_minimap
