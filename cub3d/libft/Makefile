@@ -6,7 +6,7 @@
 #    By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 09:21:28 by rmorice           #+#    #+#              #
-#    Updated: 2025/03/18 13:27:41 by hauerbac         ###   ########.fr        #
+#    Updated: 2025/03/18 18:08:04 by hauerbac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,16 @@ SRCS_DIR	= srcs/
 OBJS_DIR	= objs/
 HEAD_DIR	= includes/
 
-CC			= cc
-FLAGS		= -Wall -Wextra -Werror -g3
-AR			= ar -rc -s
+CC		= cc
+FLAGS		= -Wall -Wextra -Werror
+DEPSFLAG	= -MMD
+
+DEBUG := 0
+ifeq ($(DEBUG), 1)
+	FLAGS += -g3
+endif
+
+AR		= ar -rc -s
 
 CHECK_SRCS	= ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c
 CHECK_SRCS	:= $(addprefix $(CHECK_DIR), $(CHECK_SRCS))
@@ -59,17 +66,27 @@ SOURCES += $(LSTS_SRCS)
 SOURCES += $(GNL_SRCS)
 SRCS = $(addprefix $(SRCS_DIR), $(SOURCES))
 
+HEADERS =	includes/libft.h \
+		includes/get_next_line_bonus.h
+
 OBJECTS = $(notdir $(SOURCES:.c=.o))
+DEPENDANCES = $(notdir $(SOURCES:.c=.d))
 OBJS = $(addprefix $(OBJS_DIR), $(OBJECTS))
+DEPS = $(addprefix $(OBJS_DIR), $(DEPENDANCES))
 
-$(OBJS_DIR)%.o: $(SRCS_DIR)*/%.c
+-include ${DEPS}
+
+$(OBJS_DIR)%.o: $(SRCS_DIR)*/%.c ${HEADERS} Makefile
+	$(CC) $(FLAGS) ${DEPSFLAG} -c $< -o $@ -I $(HEAD_DIR)
+
+all: BUILD $(NAME)
+
+BUILD:
 	mkdir -p $(OBJS_DIR)
-	$(CC) $(FLAGS) -c $< -o $@ -I $(HEAD_DIR)
-
-all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS)
+	ranlib ${NAME}
 
 clean:
 	rm -rf $(OBJS_DIR)
@@ -77,8 +94,6 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-re: fclean
-	make all
+re: fclean all
 
 .PHONY: all clean fclean re
-

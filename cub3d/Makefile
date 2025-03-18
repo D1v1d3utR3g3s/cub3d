@@ -5,8 +5,9 @@ OBJS_DIR	= ./objs/
 
 MLX_DIR		= ./minilibx-linux/
 LIBFT_DIR	= ./libft/
-CC			= cc
+CC		= cc
 FLAGS		= -Wall -Wextra -Werror
+DEPSFLAG	= -MMD
 MLX_FLAGS	= -lmlx_Linux -lX11 -lXext -lm
 NAME		= cub3D
 
@@ -28,22 +29,32 @@ bonus_minimap.c bonus_minimap_utils.c bonus_mouse.c bonus_doors.c\
 bonus_wall_collision.c bonus_anim.c bonus_anim_utils.c time_fct.c\
 writing_testing_purpose.c
 
+HEADERS =	includes/c3DBasic.h \
+		includes/c3DMap.h \
+		includes/c3DMlx.h
+
 OBJECTS = $(SOURCES:.c=.o)
+DEPENDANCES = $(SOURCES:.c=.d)
 
 SRCS = $(addprefix $(SRCS_DIR), $(SOURCES))
 OBJS = $(addprefix $(OBJS_DIR), $(OBJECTS))
+DEPS = $(addprefix $(OBJS_DIR), $(DEPENDANCES))
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 
-$(OBJS_DIR)%.o: $(SRCS_DIR)%.c | $(OBJS_DIR)
-	$(CC) $(FLAGS) -c $< -o $@ -I $(HEAD_DIR) -I $(MLX_DIR) -I $(LIBFT_DIR)
+-include ${DEPS}
 
-all: $(NAME)
+$(OBJS_DIR)%.o: $(SRCS_DIR)%.c ${HEADERS} Makefile 
+	$(CC) $(FLAGS) ${DEPSFLAG} -c $< -o $@ -I $(HEAD_DIR) -I $(MLX_DIR) -I $(LIBFT_DIR)
 
-$(NAME): $(OBJS)
-	make re -C ./libft
-	$(CC) $(FLAGS) $(OBJS) -L. $(LIBFT) -Lminilibx-linux $(MLX_FLAGS) -o $(NAME)
+all: LIBRARY BUILD $(NAME)
 
-$(OBJS_DIR):
+LIBRARY:
+	make all -C ./libft
+
+$(NAME): $(OBJS) ${LIBFT}
+	$(CC) $(FLAGS) ${DEPSFLAG} $(OBJS) -L. $(LIBFT) -Lminilibx-linux $(MLX_FLAGS) -o $(NAME)
+
+BUILD:
 	mkdir -p $(OBJS_DIR)
 
 clean:
@@ -51,13 +62,10 @@ clean:
 	rm -f $(OBJS)
 	rm -rf $(OBJS_DIR)
 
-fclean:
-#	make fclean -C ./libft
-	make clean
+fclean: clean
 	rm -f $(NAME)
+	rm -f ${LIBFT}
 
-re:
-	make fclean
-	make all
+re: fclean all
 
 .PHONY: all clean fclean re
