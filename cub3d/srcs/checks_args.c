@@ -6,7 +6,7 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:34:08 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/11 15:55:02 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:03:34 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	check_file_path(char **file_path, char **error_msg, const char *arg)
 	*error_msg = "The file path given as an argument is empty\n";
 	if (arg == NULL)
 		return (result);
-	*file_path = ft_strtrim(arg, " \t\n\"\'.()[]{}%$#@!~^&*+-_=:;\\<>,?`");
+	*file_path = ft_strtrim(arg, " \t\n\"\'()[]{}%$#@!~^&*+-_=:;\\<>,?`");
 	if (*file_path == NULL)
 		return (result);
 	arg_len = ft_strlen(*file_path);
