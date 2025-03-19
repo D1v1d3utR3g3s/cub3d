@@ -1,11 +1,12 @@
 	     	
 F   112, 20, 242
 C   82, 130, 172     
+
+
 NO  associated_textures/tiles/bold_cross.xpm
 SO  associated_textures/tiles/hor_tile.xpm
 EA  associated_textures/tiles/double_tile.xpm
 WE  associated_textures/tiles/grid.xpm
-	
 
 111111111   111111111
 100000001111100000001

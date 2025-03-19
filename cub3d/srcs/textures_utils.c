@@ -80,6 +80,7 @@ int	get_texture_color(t_c3d_data *c3d, int y, int dx, int line_h)
 	tmp = get_texture(c3d);
 	dist_to_top = y + (line_h - c3d->mlx.h) / 2;
 	dy = dist_to_top * tmp.height / line_h;
+	dx *= tmp.width / 64;
 	col = *(int *)(tmp.addr + (dy * tmp.line_len + dx * tmp.bpp / 8));
 	if (col == NO_COL)
 		return (-1);
@@ -102,17 +103,17 @@ static int	determine_offset_x(t_c3d_data *c3d)
 
 	offset_x = 0;
 	if (c3d->ray.wall_dir == NORTH)
-		offset_x = (int)c3d->ray.rx % c3d->m_col.tex_no.width;
+		offset_x = (int)c3d->ray.rx % c3d->maze.w_tile;
 	else if (c3d->ray.wall_dir == SOUTH)
 	{
-		offset_x = (int)c3d->ray.rx % c3d->m_col.tex_so.width;
+		offset_x = (int)c3d->ray.rx % c3d->maze.w_tile;//c3d->m_col.tex_so.width;
 		offset_x = c3d->m_col.tex_so.width - offset_x;
 	}
 	else if (c3d->ray.wall_dir == EAST)
-		offset_x = (int)c3d->ray.ry % c3d->m_col.tex_ea.width;
+		offset_x = (int)c3d->ray.ry % c3d->maze.w_tile;//c3d->m_col.tex_ea.height;
 	else if (c3d->ray.wall_dir == WEST)
 	{
-		offset_x = (int)c3d->ray.ry % c3d->m_col.tex_we.width;
+		offset_x = (int)c3d->ray.ry % c3d->maze.w_tile;//c3d->m_col.tex_we.height;
 		offset_x = c3d->m_col.tex_we.width - offset_x;
 	}
 	return (offset_x);

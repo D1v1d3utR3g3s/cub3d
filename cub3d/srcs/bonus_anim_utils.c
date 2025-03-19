@@ -122,6 +122,38 @@ void	get_current_anim_id(t_c3d_data *c3d)
 }
 
 /* ************************************************************************** */
+/*                             determine_offset_x                             */
+/* -------------------------------------------------------------------------- */
+/* This function determines the offset_x to apply to the x axis in function   */
+/* of the direction of the wall                                               */
+/* Input :                                                                    */
+/*  - t_c3d_data *c3d : pointer to a struct that contained necessary datas    */
+/* Return :                                                                   */
+/*  - int : the offset to apply                                               */
+/* ************************************************************************** */
+static int	determine_anim_offset_x(t_c3d_data *c3d, int dir, t_mlx_img tmp)
+{
+	int	offset_x;
+
+	offset_x = 0;
+	if (dir == NORTH)
+		offset_x = (int)c3d->ray.rx % c3d->maze.w_tile;
+	else if (dir == SOUTH)
+	{
+		offset_x = (int)c3d->ray.rx % c3d->maze.w_tile;
+		offset_x = tmp.width - offset_x;
+	}
+	else if (dir == EAST)
+		offset_x = (int)c3d->ray.ry % c3d->maze.w_tile;
+	else if (dir == WEST)
+	{
+		offset_x = (int)c3d->ray.ry % c3d->maze.w_tile;
+		offset_x = tmp.width - offset_x;
+	}
+	return (offset_x);
+}
+
+/* ************************************************************************** */
 /*                               get_anim_color                               */
 /* -------------------------------------------------------------------------- */
 /* This function determines the color associated to a pixel on a wall from    */
@@ -150,6 +182,8 @@ int	get_anim_color(t_c3d_data *c3d, int y, int dx, int line_h)
 	tmp = c3d->anim.sprite[c3d->anim.anim_id];
 	dist_to_top = y + (line_h - c3d->mlx.h) / 2;
 	dy = dist_to_top * tmp.height / line_h;
+	dx = determine_anim_offset_x(c3d, dir, tmp);
+	dx *= tmp.width / 64;
 	anim_col = *(int *)(tmp.addr + (dy * tmp.line_len + dx * tmp.bpp / 8));
 	return (anim_col);
 }

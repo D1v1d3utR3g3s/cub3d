@@ -29,7 +29,7 @@
 
 # define BONUS 1
 # define BONUS_DOOR 1
-# define BONUS_MOUSE 1
+# define BONUS_MOUSE 0
 # define BONUS_MINIMAP 1
 # define BONUS_ANIM 1
 # define DISPLAY_DEBUG 0

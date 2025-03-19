@@ -1,23 +1,23 @@
-	     	
-  F      220  , 100, 0        
-  
-    SO  ./textures/PIPES_2B.xpm 
+F 112, 20, 242
+C 82, 130, 172     	     	
 
-  NO      ./textures/BRICK_1A.xpm  
- 
+NO textures/north.xpm
+SO textures/south.xpm
+EA textures/east.xpm
+WE textures/west.xpm
 
- C   225, 30 , 0  
-
- WE   ./textures/WOOD_1C.xpm                 
-
-
-
-            EA              ./textures/GRID_2B.xpm   
-
-
-	
-
-  11     11                   
- 1001   1001
-1N00011100001
- 11111111111111
+  111         111  
+ 10001       10001
+1000001     1000001
+1000001     1000001
+1000001111111000001
+ 11000000000000011
+  111000000000111
+    10001010001
+   1100010100011
+   1000001000001
+   11E0000000011
+    10010001001
+    11001110011
+     110000011
+       11111
