@@ -6,12 +6,12 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 12:20:58 by roxane            #+#    #+#             */
-/*   Updated: 2025/03/23 21:57:27 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/23 22:30:32 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef C3DMLX_H
-# define C3DMLX_H
+#ifndef C3DMLX_BONUS_H
+# define C3DMLX_BONUS_H
 
 # include "../../minilibx-linux/mlx.h"
 # include "../../minilibx-linux/mlx_int.h"

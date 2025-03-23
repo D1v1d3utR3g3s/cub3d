@@ -6,12 +6,12 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:04:06 by rmorice           #+#    #+#             */
-/*   Updated: 2025/03/23 21:56:42 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/23 22:30:12 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef C3DMAP_H
-# define C3DMAP_H
+#ifndef C3DMAP_BONUS_H
+# define C3DMAP_BONUS_H
 
 # include "c3DMlx_bonus.h"
 

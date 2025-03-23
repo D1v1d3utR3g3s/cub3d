@@ -6,12 +6,12 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:35:18 by rmorice           #+#    #+#             */
-/*   Updated: 2025/03/23 21:56:20 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/23 22:29:35 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef C3DBASIC_H
-# define C3DBASIC_H
+#ifndef C3DBASIC_BONUS_H
+# define C3DBASIC_BONUS_H
 
 // INCLUDES
 # include "../../libft/includes/libft.h"
