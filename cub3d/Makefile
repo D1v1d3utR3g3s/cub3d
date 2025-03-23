@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/03/23 22:16:29 by hauerbac          #+#    #+#              #
+#    Updated: 2025/03/23 22:16:32 by hauerbac         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 # VARIABLES
 SRCS_DIR	= srcs
 HEAD_DIR	= includes
@@ -5,10 +17,12 @@ OBJS_DIR	= .objs
 
 MLX_DIR		= minilibx-linux
 LIBFT_DIR	= libft
+BONUS_DIR	= bonus
 CC		= cc
 FLAGS		= -Wall -Wextra -Werror
 DEPSFLAG	= -MMD
 NAME		= cub3D
+BONUS_NAME	= cub3D_bonus
 
 DEBUG := 0
 ifeq ($(DEBUG), 1)
@@ -51,13 +65,6 @@ SRCS = main.c \
        checks_args.c \
        textures.c \
        textures_utils.c \
-       bonus_minimap.c \
-       bonus_minimap_utils.c \
-       bonus_mouse.c \
-       bonus_doors.c \
-       bonus_wall_collision.c \
-       bonus_anim.c \
-       bonus_anim_utils.c \
        time_fct.c \
        writing_testing_purpose.c
 
@@ -78,14 +85,17 @@ LIBRARY:
 BUILD:
 	mkdir -p ${OBJS_DIR}
 
+bonus:
+	make -C ${BONUS_DIR} all
 clean:
 	make -C ${MLX_DIR} clean
 	make -C ${LIBFT_DIR} clean
-	rm -f ${OBJS} ${DEPS}
 	rm -rf ${OBJS_DIR}
+	make -C ${BONUS_DIR} clean
 
 fclean: clean
 	rm -f ${NAME}
+	rm -f ${BONUS_NAME}
 	rm -f ${LIBFT}
 
 re: fclean all
@@ -98,4 +108,4 @@ ${OBJS_DIR}/%.o: %.c ${HEADERS} Makefile
 ${NAME}: ${OBJS} ${LIBFT}
 	${CC} ${FLAGS} ${DEPSFLAG} -o ${NAME} ${OBJS} -L${LIBFT_DIR} -lft -lX11 -lXext -L${MLX_DIR} -lmlx -lm
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_mouse.c                                      :+:      :+:    :+:   */
+/*   bonus_mouse_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:02:39 by rmorice           #+#    #+#             */
-/*   Updated: 2025/03/23 18:22:35 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/23 21:36:35 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "c3DBasic.h"
+#include "c3DBasic_bonus.h"
 
 // for now only right and left rotation
 // for now, turn left if mx < w / 2

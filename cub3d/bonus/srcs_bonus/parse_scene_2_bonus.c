@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_scene_2.c                                    :+:      :+:    :+:   */
+/*   parse_scene_2_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 19:07:51 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/03/23 19:00:03 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/23 21:45:46 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "c3DBasic.h"
+#include "c3DBasic_bonus.h"
 
 static int	is_a_map_valid_char(t_c3d_data *c3d, ssize_t *elements,
 								const char c, ssize_t i)
 {
 	int	boolean;
 
-	if (c == '0' || c == '1'
+	if (c == '0' || c == '1' || c == '2' || c == '3'
 		|| c == 'N' || c == 'S' || c == 'E' || c == 'W'
 		|| c == ' ' || c == '\n' || c == '\0')
 	{

@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_closure_checks.c                               :+:      :+:    :+:   */
+/*   map_closure_checks_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 04:45:51 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/03/23 18:58:33 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/23 21:45:31 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "c3DBasic.h"
+#include "c3DBasic_bonus.h"
 
 static int	is_not_an_adequate_char(int *walls_nb, const char c)
 {
 	if (*walls_nb == 0 && c == '0')
 		return (1);
-	if (c == '1')
+	if (c == '1' || c == '2' || c == '3')
 		(*walls_nb)++;
 	if (c == '_')
 		*walls_nb = 0;

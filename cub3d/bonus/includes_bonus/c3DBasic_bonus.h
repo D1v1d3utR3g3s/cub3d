@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c3DBasic.h                                         :+:      :+:    :+:   */
+/*   c3DBasic_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:35:18 by rmorice           #+#    #+#             */
-/*   Updated: 2025/03/23 18:56:29 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/23 21:56:20 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define C3DBASIC_H
 
 // INCLUDES
-# include "../libft/includes/libft.h"
-# include "../libft/includes/get_next_line_bonus.h"
-# include "c3DMap.h"
+# include "../../libft/includes/libft.h"
+# include "../../libft/includes/get_next_line_bonus.h"
+# include "c3DMap_bonus.h"
 
 # include <stddef.h>
 # include <string.h>
@@ -27,11 +27,11 @@
 # include <time.h>
 # include <sys/time.h>
 
-# define BONUS 0
-# define BONUS_DOOR 0
+# define BONUS 1
+# define BONUS_DOOR 1
 # define BONUS_MOUSE 0
-# define BONUS_MINIMAP 0
-# define BONUS_ANIM 0
+# define BONUS_MINIMAP 1
+# define BONUS_ANIM 1
 # define DISPLAY_DEBUG 0
 
 # define NO_COL -16777216
