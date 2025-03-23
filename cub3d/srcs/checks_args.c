@@ -6,11 +6,11 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:34:08 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/03/19 15:03:34 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/23 17:54:57 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/c3DBasic.h"
+#include "c3DBasic.h"
 
 static int	check_nb_args(const int argc, const char **argv)
 {

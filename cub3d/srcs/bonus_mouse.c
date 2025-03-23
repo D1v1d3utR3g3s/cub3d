@@ -6,11 +6,11 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 22:02:39 by rmorice           #+#    #+#             */
-/*   Updated: 2025/03/17 05:25:46 by rmorice          ###   ########.fr       */
+/*   Updated: 2025/03/23 18:22:35 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/c3DBasic.h"
+#include "c3DBasic.h"
 
 // for now only right and left rotation
 // for now, turn left if mx < w / 2

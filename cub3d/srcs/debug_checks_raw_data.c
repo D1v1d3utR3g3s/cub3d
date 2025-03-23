@@ -6,11 +6,11 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 12:34:16 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/03/18 11:55:00 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/23 18:00:14 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/c3DBasic.h"
+#include "c3DBasic.h"
 
 static void	print_element_value(ssize_t *elements, int element_index,
 					char *raw_data, ssize_t len)

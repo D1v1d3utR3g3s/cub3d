@@ -6,11 +6,11 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 15:11:18 by rmorice           #+#    #+#             */
-/*   Updated: 2025/03/04 16:08:40 by rmorice          ###   ########.fr       */
+/*   Updated: 2025/03/23 18:11:47 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/c3DBasic.h"
+#include "c3DBasic.h"
 
 void	display_anim_pos(t_c3d_data *c3d)
 {

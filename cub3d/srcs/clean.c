@@ -6,11 +6,11 @@
 /*   By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:32:44 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/03/18 12:54:43 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/23 18:21:33 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/c3DBasic.h"
+#include "c3DBasic.h"
 
 void	clear_textures(t_c3d_data *c3d)
 {

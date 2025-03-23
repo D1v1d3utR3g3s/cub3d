@@ -6,11 +6,11 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 09:11:51 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/03/04 09:46:03 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/23 17:58:25 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/c3DBasic.h"
+#include "c3DBasic.h"
 
 int	check_commas_into_format(t_c3d_data *c3d, ssize_t start, ssize_t end,
 								const char *raw_data)

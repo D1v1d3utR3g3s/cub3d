@@ -6,7 +6,7 @@
 #    By: rmorice <rmorice@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 09:21:28 by rmorice           #+#    #+#              #
-#    Updated: 2025/03/18 18:08:04 by hauerbac         ###   ########.fr        #
+#    Updated: 2025/03/23 17:22:22 by hauerbac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,19 +74,10 @@ DEPENDANCES = $(notdir $(SOURCES:.c=.d))
 OBJS = $(addprefix $(OBJS_DIR), $(OBJECTS))
 DEPS = $(addprefix $(OBJS_DIR), $(DEPENDANCES))
 
--include ${DEPS}
-
-$(OBJS_DIR)%.o: $(SRCS_DIR)*/%.c ${HEADERS} Makefile
-	$(CC) $(FLAGS) ${DEPSFLAG} -c $< -o $@ -I $(HEAD_DIR)
-
 all: BUILD $(NAME)
 
 BUILD:
 	mkdir -p $(OBJS_DIR)
-
-$(NAME): $(OBJS)
-	$(AR) $(NAME) $(OBJS)
-	ranlib ${NAME}
 
 clean:
 	rm -rf $(OBJS_DIR)
@@ -95,5 +86,14 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+-include ${DEPS}
+
+$(OBJS_DIR)%.o: $(SRCS_DIR)*/%.c ${HEADERS} Makefile
+	$(CC) $(FLAGS) ${DEPSFLAG} -c $< -o $@ -I $(HEAD_DIR)
+
+$(NAME): $(OBJS)
+	$(AR) $(NAME) $(OBJS)
+	ranlib ${NAME}
 
 .PHONY: all clean fclean re

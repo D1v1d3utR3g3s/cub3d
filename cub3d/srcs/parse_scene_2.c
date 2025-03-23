@@ -6,11 +6,11 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 19:07:51 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/03/18 15:02:56 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/23 17:57:01 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/c3DBasic.h"
+#include "c3DBasic.h"
 
 static int	is_a_map_valid_char(t_c3d_data *c3d, ssize_t *elements,
 								const char c, ssize_t i)

@@ -6,11 +6,11 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 16:31:51 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/03/18 12:02:24 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/23 17:59:19 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/c3DBasic.h"
+#include "c3DBasic.h"
 
 static int	is_a_valid_color_value(int *value, ssize_t *i, ssize_t end,
 									const char *raw_data)

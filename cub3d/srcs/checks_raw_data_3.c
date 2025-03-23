@@ -6,11 +6,11 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 00:19:08 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/03/05 04:41:02 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/23 18:01:01 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/c3DBasic.h"
+#include "c3DBasic.h"
 
 static void	remove_ending_spaces_of_a_line_into_map(char **str, ssize_t *len,
 													ssize_t *i, ssize_t j)

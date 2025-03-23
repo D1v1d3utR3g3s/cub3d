@@ -6,11 +6,11 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 04:45:51 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/03/18 15:05:50 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/23 17:57:39 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/c3DBasic.h"
+#include "c3DBasic.h"
 
 static int	is_not_an_adequate_char(int *walls_nb, const char c)
 {

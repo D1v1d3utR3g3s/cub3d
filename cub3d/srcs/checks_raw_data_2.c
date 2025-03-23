@@ -6,11 +6,11 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 11:52:15 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/02/14 16:06:18 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/23 18:01:44 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/c3DBasic.h"
+#include "c3DBasic.h"
 
 static int	is_a_line_of_the_map(ssize_t *remained_lines_nb, char *raw_data,
 					ssize_t j, ssize_t len)

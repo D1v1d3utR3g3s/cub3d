@@ -6,11 +6,11 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 18:31:08 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/03/18 16:34:41 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/23 17:55:37 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/c3DBasic.h"
+#include "c3DBasic.h"
 
 int	is_a_space(const char c)
 {

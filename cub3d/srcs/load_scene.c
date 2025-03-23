@@ -6,11 +6,11 @@
 /*   By: hauerbac <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 17:38:36 by hauerbac          #+#    #+#             */
-/*   Updated: 2025/03/18 13:25:19 by hauerbac         ###   ########.fr       */
+/*   Updated: 2025/03/23 17:56:17 by hauerbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/c3DBasic.h"
+#include "c3DBasic.h"
 
 static void	free_raw_data(char **raw_data, int *nb_lines)
 {
