@@ -30,12 +30,13 @@
 # define BONUS 1
 # define BONUS_DOOR 1
 # define BONUS_MOUSE 0
+# define BONUS_MOUSE_CLICK 1
 # define BONUS_MINIMAP 1
 # define BONUS_ANIM 1
 # define DISPLAY_DEBUG 0
 
 # define NO_COL -16777216
-# define ROT_SPEED 0.1
+# define ROT_SPEED 0.08
 # define MOV_SPEED 3.4
 
 // ENUM
@@ -83,6 +84,13 @@ typedef struct s_doors
 	int	*dist;
 }	t_doors;
 
+typedef struct s_mouse
+{
+	int	mx;
+	int	my;
+	int	flag_press;
+}	t_mouse;
+
 typedef struct s_player
 {
 	float	px;
@@ -127,6 +135,7 @@ typedef struct s_c3d_data
 	t_doors		doors;
 	t_minimap	min_map;
 	t_anim		anim;
+	t_mouse		mouse;
 }	t_c3d_data;
 
 enum e_values
@@ -156,6 +165,12 @@ int			allow_for_anim(t_c3d_data *c3d, int x, int y);
 int			determine_dir_anim(t_c3d_data *c3d, int dir_allow);
 void		get_current_anim_id(t_c3d_data *c3d);
 int			get_anim_color(t_c3d_data *c3d, int y, int dx, int line_h);
+
+// bonus_anim_hook.c
+void		display_anim_infos(t_c3d_data *c3d);
+void		rot_dir_mouse(t_c3d_data *c3d);
+int			click(int button, int mx, int my, t_c3d_data *c3d);
+int			unclick(int button, int mx, int my, t_c3d_data *c3d);
 
 // bonus_anim.c
 void		init_id(t_c3d_data *c3d);
@@ -228,8 +243,7 @@ void		init_col_array(int **col, int size);
 int			init_col(t_c3d_data *c3d);
 
 // init_game.c
-//void		init_game(t_c3d_data *c3d);
-void	init_game(t_c3d_data *c3d, const char *file_path);
+void		init_game(t_c3d_data *c3d);
 
 // init_mlx.c
 int			init_mlx_data(t_mlx *mlx);

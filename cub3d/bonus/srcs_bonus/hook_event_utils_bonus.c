@@ -37,6 +37,8 @@ int	check_event(t_c3d_data *c3d)
 		return (1);
 	if (c3d->event.f_xk_right != 0)
 		return (1);
+	if (BONUS_MOUSE_CLICK && c3d->mouse.flag_press != 0)
+		return (1);
 	return (0);
 }
 
@@ -112,4 +114,6 @@ void	apply_event(t_c3d_data *c3d)
 		rot_dir(c3d, 'L');
 	if ((c3d->event.f_xk_right != 0) && (c3d->event.f_xk_left == 0))
 		rot_dir(c3d, 'R');
+	if (BONUS_MOUSE_CLICK && c3d->mouse.flag_press != 0)
+		rot_dir_mouse(c3d);
 }

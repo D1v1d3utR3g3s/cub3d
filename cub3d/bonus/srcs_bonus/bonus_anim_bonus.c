@@ -172,15 +172,4 @@ void	init_anim(t_c3d_data *c3d)
 	c3d->anim.t0 = gettime_in(MILLISECONDS, c3d);
 	c3d->anim.dt = 125;
 	init_id(c3d);
-	printf("(%d, %d) | dir : ", c3d->anim.wall_id % c3d->maze.nb_col, c3d->anim.wall_id / c3d->maze.nb_col);
-	if (c3d->anim.dir == NORTH)
-		printf("North\n");
-	else if (c3d->anim.dir == SOUTH)
-		printf("South\n");
-	else if (c3d->anim.dir == EAST)
-		printf("East\n");
-	else if (c3d->anim.dir == WEST)
-		printf("West\n");
-	else
-		printf("None\n");
 }

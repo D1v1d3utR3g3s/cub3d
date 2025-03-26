@@ -69,6 +69,7 @@ SRCS = main_bonus.c \
        bonus_doors_bonus.c \
        bonus_wall_collision_bonus.c \
        bonus_anim_bonus.c \
+       bonus_anim_hook.c\
        bonus_anim_utils_bonus.c \
        time_fct_bonus.c \
        writing_testing_purpose_bonus.c

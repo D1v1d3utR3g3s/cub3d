@@ -106,21 +106,21 @@ static int	determine_offset_x(t_c3d_data *c3d)
 		offset_x = (int)c3d->ray.rx % c3d->maze.w_tile;
 	else if (c3d->ray.wall_dir == SOUTH)
 	{
-		offset_x = (int)c3d->ray.rx % c3d->maze.w_tile;//c3d->m_col.tex_so.width;
+		offset_x = (int)c3d->ray.rx % c3d->maze.w_tile;
 		offset_x = c3d->m_col.tex_so.width - offset_x;
 	}
 	else if (c3d->ray.wall_dir == EAST)
-		offset_x = (int)c3d->ray.ry % c3d->maze.w_tile;//c3d->m_col.tex_ea.height;
+		offset_x = (int)c3d->ray.ry % c3d->maze.w_tile;
 	else if (c3d->ray.wall_dir == WEST)
 	{
-		offset_x = (int)c3d->ray.ry % c3d->maze.w_tile;//c3d->m_col.tex_we.height;
+		offset_x = (int)c3d->ray.ry % c3d->maze.w_tile;
 		offset_x = c3d->m_col.tex_we.width - offset_x;
 	}
 	return (offset_x);
 }
 
 /* ************************************************************************** */
-/*                           extract_slice_tex                            */
+/*                             extract_slice_tex                              */
 /* -------------------------------------------------------------------------- */
 /* This function updates a wall slice by updating the color array associated  */
 /* Inputs :                                                                   */

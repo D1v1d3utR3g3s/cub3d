@@ -45,6 +45,8 @@ static int	key_handler_press(int keysym, t_c3d_data *c3d)
 		c3d->event.f_xk_right = 1;
 	if (BONUS_DOOR && keysym == XK_space)
 		action_on_door(c3d);
+	if (BONUS_ANIM && (keysym == XK_I || keysym == XK_i))
+		display_anim_infos(c3d);
 	return (0);
 }
 
@@ -96,8 +98,15 @@ void	hook_event(t_c3d_data *c3d)
 	t_mlx	*mlx;
 
 	mlx = &(c3d->mlx);
-	if (BONUS_MOUSE)
+	if (BONUS_MOUSE_CLICK)
+	{
+		mlx_hook(mlx->win_ptr, ButtonPress, ButtonPressMask, click, c3d);
+		mlx_hook(mlx->win_ptr, ButtonRelease, ButtonReleaseMask, unclick, c3d);
+	}
+	if (BONUS_MOUSE && !BONUS_MOUSE_CLICK)
+	{
 		mlx_hook(mlx->win_ptr, MotionNotify, PointerMotionMask, mouse_mov, c3d);
+	}
 	mlx_hook(mlx->win_ptr, KeyPress, KeyPressMask, key_handler_press, c3d);
 	mlx_hook(mlx->win_ptr, KeyRelease, KeyReleaseMask, key_handler_rel, c3d);
 	mlx_hook(mlx->win_ptr, DestroyNotify, StructureNotifyMask,

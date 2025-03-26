@@ -78,8 +78,7 @@ int	main(const int argc, const char **argv)
 	file_path = NULL;
 	if (result == 1)
 		return (display_error(c3d.error_msg), clear_data(&c3d), 1);
-//	init_game(&c3d);
-	init_game(&c3d, argv[1]);
+	init_game(&c3d);
 	if (DISPLAY_DEBUG)
 		display_map_and_player(c3d);
 	loop_game(&c3d);
