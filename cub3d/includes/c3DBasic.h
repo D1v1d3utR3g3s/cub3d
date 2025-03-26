@@ -27,11 +27,6 @@
 # include <time.h>
 # include <sys/time.h>
 
-# define BONUS 0
-# define BONUS_DOOR 0
-# define BONUS_MOUSE 0
-# define BONUS_MINIMAP 0
-# define BONUS_ANIM 0
 # define DISPLAY_DEBUG 0
 
 # define NO_COL -16777216
@@ -63,12 +58,10 @@ typedef struct s_ray
 	float	dy;
 	float	ra;
 	int		hit_h;
-	int		hit_h_door;
 	float	dh;
 	float	hx;
 	float	hy;
 	int		hit_v;
-	int		hit_v_door;
 	float	dv;
 	float	vx;
 	float	vy;
@@ -76,12 +69,6 @@ typedef struct s_ray
 	float	dist_wall;
 	int		col_wall;
 }	t_ray;
-
-typedef struct s_doors
-{
-	int	size;
-	int	*dist;
-}	t_doors;
 
 typedef struct s_player
 {
@@ -96,23 +83,6 @@ typedef struct s_player
 	float	rot_speed;
 }	t_player;
 
-typedef struct s_anim
-{
-	char		*path;
-	char		*ext;
-	long		t0;
-	long		t;
-	int			dt;
-	int			anim_id;
-	int			nb_anim;
-	t_mlx_img	*sprite;
-	int			*anim_dir;
-	int			wall_id;
-	int			dir;
-	int			rand_id;
-	int			nb_frame;
-}	t_anim;
-
 typedef struct s_c3d_data
 {
 	t_mlx		mlx;
@@ -124,9 +94,6 @@ typedef struct s_c3d_data
 	t_event		event;
 	int			size_map;
 	char		*error_msg;
-	t_doors		doors;
-	t_minimap	min_map;
-	t_anim		anim;
 }	t_c3d_data;
 
 enum e_values
@@ -151,39 +118,6 @@ enum e_values
 };
 
 // FUNCTIONS
-// bonus_anim_utils.c
-int			allow_for_anim(t_c3d_data *c3d, int x, int y);
-int			determine_dir_anim(t_c3d_data *c3d, int dir_allow);
-void		get_current_anim_id(t_c3d_data *c3d);
-int			get_anim_color(t_c3d_data *c3d, int y, int dx, int line_h);
-
-// bonus_anim.c
-void		init_id(t_c3d_data *c3d);
-void		init_anim(t_c3d_data *c3d);
-
-// bonus_doors.c
-void		init_doors_val(t_c3d_data *c3d);
-void		init_doors(t_c3d_data *c3d);
-void		update_doors(t_c3d_data *c3d, int mp, int d);
-void		action_on_door(t_c3d_data *c3d);
-
-// bonus_minimap_utils.c
-int			check_in_minimap(t_c3d_data *c3d, int x, int y);
-int			is_outside_map(t_c3d_data *c3d, int x, int y);
-int			is_on_border_minmap(t_c3d_data *c3d, int mmx, int mmy);
-int			is_fov_lim(t_c3d_data *c3d, int mmx, int mmy);
-int			is_player(t_c3d_data *c3d, int mmx, int mmy);
-
-// bonus_minimap.c
-void		update_minimap_col(t_c3d_data *c3d);
-void		init_minimap(t_c3d_data *c3d);
-
-// bonus_mouse.c
-int			mouse_mov(int mx, int my, t_c3d_data *c3d);
-
-// bonus_wall_collision.c
-int			mov_allow_wall(t_c3d_data *c3d, float dx, float dy);
-
 // clean.c
 void		clear_data(t_c3d_data *c3d);
 
@@ -228,8 +162,7 @@ void		init_col_array(int **col, int size);
 int			init_col(t_c3d_data *c3d);
 
 // init_game.c
-//void		init_game(t_c3d_data *c3d);
-void	init_game(t_c3d_data *c3d, const char *file_path);
+void		init_game(t_c3d_data *c3d);
 
 // init_mlx.c
 int			init_mlx_data(t_mlx *mlx);
@@ -272,7 +205,6 @@ float		update_angle(float a, float da);
 // utils_math.c
 int			rand_int(int min, int max, t_c3d_data *c3d);
 float		calc_d(float ax, float ay, float bx, float by);
-float		calc_coef(t_c3d_data *c3d, t_minimap *mmp);
 float		rad_to_deg(float rad);
 float		deg_to_rad(float deg);
 
@@ -282,7 +214,6 @@ int			face_down(float rad);
 int			face_right(float rad);
 
 // writing_testing_purpose
-void		display_anim_pos(t_c3d_data *c3d);
 void		display_map(t_c3d_data c3d);
 void		display_player_pos(t_c3d_data c3d);
 void		display_map_and_player(t_c3d_data c3d);

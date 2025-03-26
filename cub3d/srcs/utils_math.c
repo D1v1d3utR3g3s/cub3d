@@ -53,31 +53,6 @@ float	calc_d(float ax, float ay, float bx, float by)
 }
 
 /* ************************************************************************** */
-/*                                 calc_coef                                  */
-/* -------------------------------------------------------------------------- */
-/* This function calculates the coef to apply for minimap display             */
-/* rq : coef max == 4                                                         */
-/* Inputs :                                                                   */
-/*  - t_c3d_data *c3d : pointer to a struct that contained necessary datas    */
-/*  - t_minimap *mmp : pointer to a struct that contained minmap datas        */
-/* Return :                                                                   */
-/*  - float : the calculated coef                                             */
-/* ************************************************************************** */
-float	calc_coef(t_c3d_data *c3d, t_minimap *mmp)
-{
-	float	coef_w;
-	float	coef_h;
-	float	coef;
-
-	coef_w = (float)(c3d->maze.nb_col * c3d->maze.w_tile) / mmp->w;
-	coef_h = (float)(c3d->maze.nb_line * c3d->maze.w_tile) / mmp->h;
-	coef = fmin(coef_w, coef_h);
-	if (coef > 4)
-		coef = 4;
-	return (coef);
-}
-
-/* ************************************************************************** */
 /*                                 rad_to_deg                                 */
 /* -------------------------------------------------------------------------- */
 /* This function cconverts the radian angle given in input into an angle in   */

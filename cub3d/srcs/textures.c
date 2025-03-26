@@ -49,8 +49,7 @@ t_mlx_img	load_xpm_textures(t_c3d_data *c3d, t_mlx *mlx, char *path)
 /* ************************************************************************** */
 /*                               init_textures                                */
 /* -------------------------------------------------------------------------- */
-/* This function initialises the texture elements (no, ea, so, we and bonus   */
-/* door)                                                                      */
+/* This function initialises the texture elements (no, ea, so, we)            */
 /* Input :                                                                    */
 /*  - t_c3d_data *c3d : pointer to a struct that contained necessary datas    */
 /* Return :                                                                   */
@@ -58,13 +57,8 @@ t_mlx_img	load_xpm_textures(t_c3d_data *c3d, t_mlx *mlx, char *path)
 /* ************************************************************************** */
 void	init_textures(t_c3d_data *c3d)
 {
-	char	*str_door;
-
-	str_door = "associated_textures/doors/door.xpm";
 	c3d->m_col.tex_no = load_xpm_textures(c3d, &c3d->mlx, c3d->textures.no);
 	c3d->m_col.tex_ea = load_xpm_textures(c3d, &c3d->mlx, c3d->textures.ea);
 	c3d->m_col.tex_so = load_xpm_textures(c3d, &c3d->mlx, c3d->textures.so);
 	c3d->m_col.tex_we = load_xpm_textures(c3d, &c3d->mlx, c3d->textures.we);
-	if (BONUS_DOOR == 1)
-		c3d->m_col.tex_door = load_xpm_textures(c3d, &c3d->mlx, str_door);
 }

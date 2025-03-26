@@ -43,8 +43,6 @@ static int	key_handler_press(int keysym, t_c3d_data *c3d)
 		c3d->event.f_xk_left = 1;
 	if (keysym == XK_Right)
 		c3d->event.f_xk_right = 1;
-	if (BONUS_DOOR && keysym == XK_space)
-		action_on_door(c3d);
 	return (0);
 }
 
@@ -85,7 +83,7 @@ static int	key_handler_rel(int keysym, t_c3d_data *c3d)
 /* ************************************************************************** */
 /*                                 hook_event                                 */
 /* -------------------------------------------------------------------------- */
-/* This function links an action to an event (key, mouse, button)             */
+/* This function links an action to an event (key)                            */
 /* Input :                                                                    */
 /*  - t_c3d_data *c3d : pointer to struct that contained datas about c3d      */
 /* Return :                                                                   */
@@ -96,8 +94,6 @@ void	hook_event(t_c3d_data *c3d)
 	t_mlx	*mlx;
 
 	mlx = &(c3d->mlx);
-	if (BONUS_MOUSE)
-		mlx_hook(mlx->win_ptr, MotionNotify, PointerMotionMask, mouse_mov, c3d);
 	mlx_hook(mlx->win_ptr, KeyPress, KeyPressMask, key_handler_press, c3d);
 	mlx_hook(mlx->win_ptr, KeyRelease, KeyReleaseMask, key_handler_rel, c3d);
 	mlx_hook(mlx->win_ptr, DestroyNotify, StructureNotifyMask,

@@ -12,6 +12,16 @@
 
 #include "c3DBasic_bonus.h"
 
+/* ************************************************************************** */
+/*                              display_anim_pos                              */
+/* -------------------------------------------------------------------------- */
+/* This function displays the position of the animated wall on the map as     */
+/* well as the direction that it is facing                                    */
+/* Input :                                                                    */
+/*  - t_c3d_data *c3d : pointer to struct that contained datas about c3d      */
+/* Return :                                                                   */
+/*  - NONE                                                                    */
+/* ************************************************************************** */
 void	display_anim_pos(t_c3d_data *c3d)
 {
 	int	x;
@@ -32,6 +42,17 @@ void	display_anim_pos(t_c3d_data *c3d)
 		printf("NONE\n");
 }
 
+/* ************************************************************************** */
+/*                                display_map                                 */
+/* -------------------------------------------------------------------------- */
+/* This function displays the map saved in maze.map. It is the map obtained   */
+/* through the read of a .cub file and reformated to be a rectangle (all      */
+/* lines will have the same size)                                             */
+/* Input :                                                                    */
+/*  - t_c3d_data *c3d : pointer to struct that contained datas about c3d      */
+/* Return :                                                                   */
+/*  - NONE                                                                    */
+/* ************************************************************************** */
 void	display_map(t_c3d_data c3d)
 {
 	int	i;
@@ -46,6 +67,16 @@ void	display_map(t_c3d_data c3d)
 	}
 }
 
+/* ************************************************************************** */
+/*                             display_player_pos                             */
+/* -------------------------------------------------------------------------- */
+/* This function displays the coordinates of the player (in map adapt for the */
+/* window and in the reference's map)                                         */
+/* Input :                                                                    */
+/*  - t_c3d_data *c3d : pointer to struct that contained datas about c3d      */
+/* Return :                                                                   */
+/*  - NONE                                                                    */
+/* ************************************************************************** */
 void	display_player_pos(t_c3d_data c3d)
 {
 	int	w_tile;
@@ -56,6 +87,18 @@ void	display_player_pos(t_c3d_data c3d)
 	printf("%d)\n", (int)((c3d.player.py - w_tile / 2) / w_tile));
 }
 
+/* ************************************************************************** */
+/*                           display_map_and_player                           */
+/* -------------------------------------------------------------------------- */
+/* This function displays the map saved in maze.map. It is the map obtained   */
+/* through the read of a .cub file and reformated to be a rectangle (all      */
+/* lines will have the same size) and the coordinates of the player (in map   */
+/* adapt for the window and in the reference's map)                           */
+/* Input :                                                                    */
+/*  - t_c3d_data *c3d : pointer to struct that contained datas about c3d      */
+/* Return :                                                                   */
+/*  - NONE                                                                    */
+/* ************************************************************************** */
 void	display_map_and_player(t_c3d_data c3d)
 {
 	display_map(c3d);

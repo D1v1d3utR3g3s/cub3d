@@ -88,10 +88,7 @@ static int	which_delta_apply(t_c3d_data *c3d, float dir_a)
 
 	dx = calc_dx(c3d, dir_a);
 	dy = calc_dy(c3d, dir_a);
-	if (BONUS == 1)
-		return (mov_allow_wall(c3d, dx, dy));
-	else
-		return (mov_allow_in_maze(c3d, dx, dy));
+	return (mov_allow_in_maze(c3d, dx, dy));
 }
 
 /******************************************************************************/

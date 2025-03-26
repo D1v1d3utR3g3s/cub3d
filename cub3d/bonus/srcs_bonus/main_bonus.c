@@ -12,24 +12,16 @@
 
 #include "c3DBasic_bonus.h"
 
-////////////////////////////////////////////////////////////////////////////////
-///                                 TO DO :                                  ///
-/// ------------------------------------------------------------------------ ///
-///   - remove ft_strchr modif (needed for my system at home)                ///
-///   - remove ft_strrchr modif (needed for my system at home)               ///
-///   - remove ft_strtrim modif (needed for my system at home)               ///
-///   - change window size                                          - DONE   ///
-///   - adapt view (player ~ half the size of a wall)               - DONE   ///
-///   - update rotation and movement speed                          - DONE   ///
-///   - remove hard programmation part                       - IN PROGRESS   ///
-///   - check simultaneous multi keys event                         - DONE   ///
-///   - add textures to walls                                       - DONE   ///
-///   - for now w_tile = 64px  => textures 64px * 64px                       ///
-/// ------------------------------------------------------------------------ ///
-///   - correct limit cases for wall collision                               ///
-///   - rotation with Mouse while hold ?                                     ///
-////////////////////////////////////////////////////////////////////////////////
-
+/* ************************************************************************** */
+/*                            init_clearable_datas                            */
+/* -------------------------------------------------------------------------- */
+/* This function initialises all the freeable or clearable datas to NULL (mlx */
+/* various pointer - {mlx, win, img}, addr, and array that will be malloced)  */
+/* Input :                                                                    */
+/*  - t_c3d_data *c3d : pointer to struct that contained datas about c3d      */
+/* Return :                                                                   */
+/*  - NONE                                                                    */
+/* ************************************************************************** */
 static void	init_clearable_datas(t_c3d_data *c3d)
 {
 	c3d->mlx.mlx_ptr = NULL;

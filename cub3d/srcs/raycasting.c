@@ -143,8 +143,6 @@ void	raycast(t_c3d_data *c3d)
 	a = update_angle(c3d->player.pa, deg_to_rad(-fov / 2));
 	init_ray(c3d, a);
 	da = deg_to_rad(fov) / c3d->mlx.w;
-	if (BONUS_DOOR)
-		init_doors_val(c3d);
 	while (n_ray < c3d->mlx.w)
 	{
 		c3d->ray.wall_dir = -1;

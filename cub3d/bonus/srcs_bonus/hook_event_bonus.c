@@ -46,7 +46,7 @@ static int	key_handler_press(int keysym, t_c3d_data *c3d)
 	if (BONUS_DOOR && keysym == XK_space)
 		action_on_door(c3d);
 	if (BONUS_ANIM && (keysym == XK_I || keysym == XK_i))
-		display_anim_infos(c3d);
+		display_infos(c3d);
 	return (0);
 }
 

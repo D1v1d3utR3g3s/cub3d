@@ -13,26 +13,9 @@
 #include "c3DBasic.h"
 
 /* ************************************************************************** */
-/*                                check_hit_h                                 */
-/* -------------------------------------------------------------------------- */
-/* This function checks if the wall hitten is an horizontal one               */
-/* Input :                                                                    */
-/*  - t_c3d_data *c3d : pointer to struct that contained datas about c3d      */
-/* Return :                                                                   */
-/*  - 1 : if the wall hitten is an horizontal one                             */
-/*  - 0 : otherwise                                                           */
-/* ************************************************************************** */
-static int	check_hit_h(t_c3d_data *c3d)
-{
-	if (c3d->ray.wall_dir == NORTH || c3d->ray.wall_dir == SOUTH)
-		return (1);
-	return (0);
-}
-
-/* ************************************************************************** */
 /*                                get_texture                                 */
 /* -------------------------------------------------------------------------- */
-/* This function returns the texture associated to the wall (or door) hitten  */
+/* This function returns the texture associated to the wall hitten            */
 /* Input :                                                                    */
 /*  - t_c3d_data *c3d : pointer to struct that contained datas about c3d      */
 /* Return :                                                                   */
@@ -40,9 +23,6 @@ static int	check_hit_h(t_c3d_data *c3d)
 /* ************************************************************************** */
 static t_mlx_img	get_texture(t_c3d_data *c3d)
 {
-	if ((c3d->ray.hit_h_door && check_hit_h(c3d))
-		|| (c3d->ray.hit_v_door && !check_hit_h(c3d)))
-		return (c3d->m_col.tex_door);
 	if (c3d->ray.wall_dir == NORTH)
 		return (c3d->m_col.tex_no);
 	if (c3d->ray.wall_dir == EAST)
@@ -106,14 +86,14 @@ static int	determine_offset_x(t_c3d_data *c3d)
 		offset_x = (int)c3d->ray.rx % c3d->maze.w_tile;
 	else if (c3d->ray.wall_dir == SOUTH)
 	{
-		offset_x = (int)c3d->ray.rx % c3d->maze.w_tile;//c3d->m_col.tex_so.width;
+		offset_x = (int)c3d->ray.rx % c3d->maze.w_tile;
 		offset_x = c3d->m_col.tex_so.width - offset_x;
 	}
 	else if (c3d->ray.wall_dir == EAST)
-		offset_x = (int)c3d->ray.ry % c3d->maze.w_tile;//c3d->m_col.tex_ea.height;
+		offset_x = (int)c3d->ray.ry % c3d->maze.w_tile;
 	else if (c3d->ray.wall_dir == WEST)
 	{
-		offset_x = (int)c3d->ray.ry % c3d->maze.w_tile;//c3d->m_col.tex_we.height;
+		offset_x = (int)c3d->ray.ry % c3d->maze.w_tile;
 		offset_x = c3d->m_col.tex_we.width - offset_x;
 	}
 	return (offset_x);

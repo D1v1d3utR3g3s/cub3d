@@ -65,8 +65,6 @@ int	determine_col(int x, int y, t_c3d_data *c3d)
 /* This function determines the color associated to a pixel on a wall         */
 /* This color depends of the x coordinate (dx), the y coordinate and the      */
 /* height of the wall that we want to colorise.                               */
-/* rq : the color associated to anime sprite is return if anim bonus is on,   */
-/* that the coord correspond to the animated wall and that the col isn't void */
 /* Inputs :                                                                   */
 /*  - t_c3d_data *c3d : pointer to a struct that contained necessary datas    */
 /*  - int y : the y coordinate of the tile                                    */
@@ -78,17 +76,7 @@ int	determine_col(int x, int y, t_c3d_data *c3d)
 int	get_color(t_c3d_data *c3d, int init_y, int offset_x, int line_h)
 {
 	int	col;
-	int	col_anim;
 
 	col = get_texture_color(c3d, init_y, offset_x, line_h);
-	if (BONUS_ANIM)
-	{
-		if (c3d->anim.wall_id == calc_mp(&(c3d->ray), c3d))
-		{
-			col_anim = get_anim_color(c3d, init_y, offset_x, line_h);
-			if (col_anim != NO_COL)
-				col = col_anim;
-		}
-	}
 	return (col);
 }

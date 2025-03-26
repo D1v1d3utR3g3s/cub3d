@@ -29,7 +29,6 @@ typedef struct s_map_col
 	t_mlx_img	tex_so;
 	t_mlx_img	tex_we;
 	t_mlx_img	tex_ea;
-	t_mlx_img	tex_door;
 	int			background;
 	int			no;
 	int			ea;
@@ -49,21 +48,5 @@ typedef struct s_texture
 	int		f;
 	int		c;
 }	t_texture;
-
-typedef struct s_minimap
-{
-	float	coef;
-	int		x0;
-	int		y0;
-	int		w;
-	int		h;
-	int		w_tile;
-	int		mmp_x;
-	int		mmp_y;
-	float	mmp_px;
-	float	mmp_py;
-	float	mmp_dx;
-	float	mmp_dy;
-}	t_minimap;
 
 #endif

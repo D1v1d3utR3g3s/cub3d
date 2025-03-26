@@ -75,8 +75,6 @@ void	init_ray(t_c3d_data *c3d, float angle)
 	c3d->ray.vx = c3d->ray.rx;
 	c3d->ray.vy = c3d->ray.ry;
 	c3d->ray.dv = -1;
-	c3d->ray.hit_h_door = 0;
-	c3d->ray.hit_v_door = 0;
 	c3d->ray.dist_wall = -1;
 	c3d->ray.wall_dir = -1;
 	c3d->ray.col_wall = encode_rgb(255, 0, 0);

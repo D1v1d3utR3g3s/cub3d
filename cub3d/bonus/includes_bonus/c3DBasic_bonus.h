@@ -167,10 +167,7 @@ void		get_current_anim_id(t_c3d_data *c3d);
 int			get_anim_color(t_c3d_data *c3d, int y, int dx, int line_h);
 
 // bonus_anim_hook.c
-void		display_anim_infos(t_c3d_data *c3d);
-void		rot_dir_mouse(t_c3d_data *c3d);
-int			click(int button, int mx, int my, t_c3d_data *c3d);
-int			unclick(int button, int mx, int my, t_c3d_data *c3d);
+void		display_infos(t_c3d_data *c3d);
 
 // bonus_anim.c
 void		init_id(t_c3d_data *c3d);
@@ -195,6 +192,9 @@ void		init_minimap(t_c3d_data *c3d);
 
 // bonus_mouse.c
 int			mouse_mov(int mx, int my, t_c3d_data *c3d);
+void		rot_dir_mouse(t_c3d_data *c3d);
+int			click(int button, int mx, int my, t_c3d_data *c3d);
+int			unclick(int button, int mx, int my, t_c3d_data *c3d);
 
 // bonus_wall_collision.c
 int			mov_allow_wall(t_c3d_data *c3d, float dx, float dy);

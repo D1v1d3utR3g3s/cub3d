@@ -63,8 +63,6 @@ void	display_3d(t_c3d_data *c3d)
 	init_ray(c3d, c3d->player.pa);
 	init_col_array(&(c3d->m_col.col), c3d->mlx.w * c3d->mlx.h);
 	raycast(c3d);
-	if (BONUS_MINIMAP == 1)
-		update_minimap_col(c3d);
 	full_img(c3d);
 }
 
@@ -80,8 +78,6 @@ void	display_3d(t_c3d_data *c3d)
 /* ************************************************************************** */
 static int	loop_event(t_c3d_data *c3d)
 {
-	if (BONUS_ANIM)
-		get_current_anim_id(c3d);
 	if (check_event(c3d))
 		apply_event(c3d);
 	display_3d(c3d);
