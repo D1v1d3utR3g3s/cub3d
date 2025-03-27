@@ -1,0 +1,14 @@
+	     	
+F   67,97,117
+C   20,66,90
+
+NO  ./textures/wrong_missing_default_color.xpm
+SO  ./associated_textures/tiles/hor_tile.xpm
+EA  ./associated_textures/tiles/double_tile.xpm
+WE  ./associated_textures/tiles/grid.xpm
+
+111111111
+100000001
+1000N0001
+100000001
+111111111

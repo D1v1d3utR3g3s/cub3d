@@ -1,10 +1,10 @@
-F 54, 32, 95
-C 20, 24, 82
+C 54, 32, 95
+F 20, 24, 82
 
-NO textures/north.xpm
-SO textures/south.xpm
-EA textures/east.xpm
-WE textures/west.xpm
+NO ./textures/north.xpm
+SO ./textures/south.xpm
+EA ./textures/east.xpm
+WE ./textures/west.xpm
 
   111         111  
  10001       10001

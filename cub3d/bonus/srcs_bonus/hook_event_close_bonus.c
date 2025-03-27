@@ -24,6 +24,12 @@
 /* ************************************************************************** */
 int	close_handler(t_c3d_data *c3d)
 {
+	char	*col;
+
+	col = "\033[32m";
+	if (c3d->anim.score == 0)
+		col = "\033[31m";
+	printf("%sYour score is : %d\033[0m\n", col, c3d->anim.score);
 	clear_data(c3d);
 	exit(0);
 	return (0);

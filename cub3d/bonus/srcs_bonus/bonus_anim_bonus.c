@@ -156,8 +156,6 @@ void	init_id(t_c3d_data *c3d)
 /* Return :                                                                   */
 /*  - NONE                                                                    */
 /* ************************************************************************** */
-// path sprite : "associated_textures/anim/orb/orb_";
-// nb_anim sprite : 14;
 void	init_anim(t_c3d_data *c3d)
 {
 	c3d->anim.path = "associated_textures/anim/globe/globe_";
@@ -168,8 +166,8 @@ void	init_anim(t_c3d_data *c3d)
 	c3d->anim.anim_dir = init_anim_allow(c3d);
 	c3d->anim.anim_id = 0;
 	c3d->anim.wall_id = -1;
-	c3d->anim.nb_frame = -1;
+	c3d->anim.score = 0;
 	c3d->anim.t0 = gettime_in(MILLISECONDS, c3d);
 	c3d->anim.dt = 125;
-	init_id(c3d);
+	sub_init_anim(c3d);
 }

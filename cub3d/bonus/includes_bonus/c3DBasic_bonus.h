@@ -118,7 +118,8 @@ typedef struct s_anim
 	int			wall_id;
 	int			dir;
 	int			rand_id;
-	int			nb_frame;
+	int			dist_anim;
+	int			score;
 }	t_anim;
 
 typedef struct s_c3d_data
@@ -167,10 +168,12 @@ void		get_current_anim_id(t_c3d_data *c3d);
 int			get_anim_color(t_c3d_data *c3d, int y, int dx, int line_h);
 
 // bonus_anim_hook.c
+void		take_anim_elt(t_c3d_data *c3d);
 void		display_infos(t_c3d_data *c3d);
 
 // bonus_anim.c
 void		init_id(t_c3d_data *c3d);
+void		sub_init_anim(t_c3d_data *c3d);
 void		init_anim(t_c3d_data *c3d);
 
 // bonus_doors.c

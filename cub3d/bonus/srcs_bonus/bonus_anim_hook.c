@@ -13,6 +13,27 @@
 #include "c3DBasic_bonus.h"
 
 /* ************************************************************************** */
+/*                               take_anim_elt                                */
+/* -------------------------------------------------------------------------- */
+/* This function is called when a specific action is trigger. It add one      */
+/* point to the score and change the location of the animation... game on     */
+/* The display is then update                                                 */
+/* Input :                                                                    */
+/*  - t_c3d_data *c3d : pointer to a struct that contained necessary datas    */
+/* Return :                                                                   */
+/*  - NONE                                                                    */
+/* ************************************************************************** */
+void	take_anim_elt(t_c3d_data *c3d)
+{
+	if (c3d->anim.dist_anim != -1 && c3d->anim.dist_anim < 50)
+	{
+		c3d->anim.score++;
+		sub_init_anim(c3d);
+		display_3d(c3d);
+	}
+}
+
+/* ************************************************************************** */
 /*                             display_player_pos                             */
 /* -------------------------------------------------------------------------- */
 /* This function displays the coordinates of the player (in map adapt for the */
@@ -78,4 +99,5 @@ void	display_infos(t_c3d_data *c3d)
 {
 	display_player_infos(c3d);
 	display_anim_infos(c3d);
+	printf("\n");
 }

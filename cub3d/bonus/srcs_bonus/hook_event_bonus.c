@@ -27,10 +27,7 @@
 static int	key_handler_press(int keysym, t_c3d_data *c3d)
 {
 	if (keysym == XK_Escape)
-	{
-		clear_data(c3d);
-		exit(0);
-	}
+		close_handler(c3d);
 	if (keysym == XK_W || keysym == XK_w)
 		c3d->event.f_xk_w = 1;
 	if (keysym == XK_A || keysym == XK_a)
@@ -45,6 +42,8 @@ static int	key_handler_press(int keysym, t_c3d_data *c3d)
 		c3d->event.f_xk_right = 1;
 	if (BONUS_DOOR && keysym == XK_space)
 		action_on_door(c3d);
+	if (BONUS_ANIM && keysym == XK_space)
+		take_anim_elt(c3d);
 	if (BONUS_ANIM && (keysym == XK_I || keysym == XK_i))
 		display_infos(c3d);
 	return (0);
@@ -65,10 +64,7 @@ static int	key_handler_press(int keysym, t_c3d_data *c3d)
 static int	key_handler_rel(int keysym, t_c3d_data *c3d)
 {
 	if (keysym == XK_Escape)
-	{
-		clear_data(c3d);
-		exit(0);
-	}
+		close_handler(c3d);
 	if (keysym == XK_W || keysym == XK_w)
 		c3d->event.f_xk_w = 0;
 	if (keysym == XK_A || keysym == XK_a)

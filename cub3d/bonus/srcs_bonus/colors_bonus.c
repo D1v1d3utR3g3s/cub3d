@@ -79,6 +79,7 @@ int	get_color(t_c3d_data *c3d, int init_y, int offset_x, int line_h)
 {
 	int	col;
 	int	col_anim;
+	int	d;
 
 	col = get_texture_color(c3d, init_y, offset_x, line_h);
 	if (BONUS_ANIM)
@@ -88,6 +89,9 @@ int	get_color(t_c3d_data *c3d, int init_y, int offset_x, int line_h)
 			col_anim = get_anim_color(c3d, init_y, offset_x, line_h);
 			if (col_anim != NO_COL)
 				col = col_anim;
+			d = c3d->anim.dist_anim;
+			if ((d == -1) || (d > c3d->ray.dist_wall))
+				c3d->anim.dist_anim = c3d->ray.dist_wall;
 		}
 	}
 	return (col);

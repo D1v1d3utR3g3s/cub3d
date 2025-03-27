@@ -58,8 +58,8 @@ static int	init_image(t_mlx *mlx)
 /* ************************************************************************** */
 static int	init_window(t_mlx *mlx)
 {
-	mlx->w = 1024;
-	mlx->h = 832;
+	mlx->w = 1200;
+	mlx->h = 1005;
 	mlx->title = "Test Ray Tracing";
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, mlx->w,
 			mlx->h, mlx->title);
