@@ -199,8 +199,18 @@ void		rot_dir_mouse(t_c3d_data *c3d);
 int			click(int button, int mx, int my, t_c3d_data *c3d);
 int			unclick(int button, int mx, int my, t_c3d_data *c3d);
 
+// bonus_wall_collision_bi_dir_bonus.c
+int			check_bi_dir_mov(t_c3d_data *c3d, float dx, float dy);
+
 // bonus_wall_collision.c
+int			check_obstacle(t_c3d_data *c3d, int x, int y, int w_tile);
 int			mov_allow_wall(t_c3d_data *c3d, float dx, float dy);
+
+// bonus_wall_collision_x_dir_bonus.c
+int			check_x_dir_mov(t_c3d_data *c3d, float dx);
+
+// bonus_wall_collision_y_dir_bonus.c
+int			check_y_dir_mov(t_c3d_data *c3d, float dy);
 
 // clean.c
 void		clear_data(t_c3d_data *c3d);

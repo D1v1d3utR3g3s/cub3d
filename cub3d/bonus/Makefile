@@ -67,7 +67,10 @@ SRCS = main_bonus.c \
        bonus_minimap_utils_bonus.c \
        bonus_mouse_bonus.c \
        bonus_doors_bonus.c \
+       bonus_wall_collision_bi_dir_bonus.c\
        bonus_wall_collision_bonus.c \
+       bonus_wall_collision_x_dir_bonus.c\
+       bonus_wall_collision_y_dir_bonus.c\
        bonus_anim_bonus.c \
        bonus_anim_hook.c\
        bonus_anim_sub_init_bonus.c\
