@@ -1,8 +1,7 @@
-*/minilibx-linux
-*/objs
-*/libft/objs
-*/libft/libft.a
-*/.cub3d
-clean_version
-.gitignore
-cub3d_pre_merge
+./minilibx-linux/
+./.objs
+./libft/objs
+./libft/libft.a
+./cub3d
+./cub3d_bonus
+

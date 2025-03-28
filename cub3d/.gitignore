@@ -1,7 +1,0 @@
-mlx
-.objs/
-minilibx-linux/
-srcs/ray_trace_backup.c
-cub3D
-libft/libft.a
-libft/objs/

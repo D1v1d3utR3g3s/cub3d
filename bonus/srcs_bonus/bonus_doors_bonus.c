@@ -92,7 +92,8 @@ void	action_on_door(t_c3d_data *c3d)
 	while (i < c3d->doors.size)
 	{
 		if (c3d->doors.dist[i] != -1)
-		{ if (c3d->doors.dist[i] > 5 && c3d->doors.dist[i] < 50)
+		{
+			if (c3d->doors.dist[i] > 5 && c3d->doors.dist[i] < 50)
 			{
 				if (c3d->maze.map[i] == '2')
 					c3d->maze.map[i] = '3';
